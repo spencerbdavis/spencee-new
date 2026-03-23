@@ -3,18 +3,25 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import { useWeather } from "@/components/providers/weather-provider";
 
-/** Returns a sky palette based on the user's local hour */
+/**
+ * Sky palettes by time of day.
+ * `sky` has 6 stops for a smooth gradient (top → horizon).
+ * The last sky stop should blend naturally into the water top.
+ */
 function getSkyPalette(hour: number) {
   // Night: 9pm – 5am
   if (hour >= 21 || hour < 5) {
     return {
-      label: "night",
-      light: ["#1A2238", "#1E2D48", "#243858", "#1A2844"],
-      dark: ["#0A0E18", "#0E1420", "#121C2A", "#0C1218"],
-      water: { light: ["#12203A", "#0E1A30", "#0A1428"], dark: ["#080E1A", "#060C16", "#050A12"] },
+      label: "night" as const,
+      sky: {
+        light: ["#151D2E", "#182435", "#1C2B3E", "#1F3248", "#233A50", "#284058"],
+        dark:  ["#080C14", "#0A1018", "#0C141E", "#0E1822", "#101C28", "#12202E"],
+      },
+      water: {
+        light: ["#243850", "#1E3048", "#182840"],
+        dark:  ["#0E1820", "#0C141C", "#0A1018"],
+      },
       shimmer: { light: "#3A5878", dark: "#1A2838" },
-      waveA: { light: "#0E1A30", dark: "#060C16" },
-      waveB: { light: "#0A1428", dark: "#050A12" },
       fog: { light: "#2A3858", dark: "#101820" },
       text: "#C8D8F0",
       love: "#C88A7A",
@@ -24,15 +31,18 @@ function getSkyPalette(hour: number) {
   // Sunrise: 5am – 8am
   if (hour >= 5 && hour < 8) {
     return {
-      label: "sunrise",
-      light: ["#2A3050", "#4A3858", "#8A5060", "#D09070"],
-      dark: ["#141822", "#22202E", "#3A2030", "#5A3838"],
-      water: { light: ["#4A6880", "#3A5870", "#2A4860"], dark: ["#162838", "#12222E", "#0E1C28"] },
+      label: "sunrise" as const,
+      sky: {
+        light: ["#354060", "#3E4868", "#4D506E", "#6A5872", "#8A6870", "#B8887A"],
+        dark:  ["#141822", "#181C28", "#1E2030", "#282438", "#322838", "#3E2E38"],
+      },
+      water: {
+        light: ["#506878", "#486070", "#405868"],
+        dark:  ["#162028", "#121C24", "#0E1820"],
+      },
       shimmer: { light: "#7A98B0", dark: "#2A4858" },
-      waveA: { light: "#3A5870", dark: "#12222E" },
-      waveB: { light: "#2A4860", dark: "#0E1C28" },
-      fog: { light: "#C0A090", dark: "#2A2028" },
-      text: "#F5F0E8",
+      fog: { light: "#A09088", dark: "#2A2028" },
+      text: "#F0E8E0",
       love: "#E8927C",
       seattle: "#8DDBC8",
     };
@@ -40,28 +50,34 @@ function getSkyPalette(hour: number) {
   // Golden hour / sunset: 5pm – 9pm
   if (hour >= 17 && hour < 21) {
     return {
-      label: "sunset",
-      light: ["#2A3858", "#4A3050", "#9A4840", "#E8985A"],
-      dark: ["#141820", "#201828", "#3A1820", "#5A3028"],
-      water: { light: ["#4A6078", "#3A5068", "#2A4058"], dark: ["#142028", "#101A22", "#0E161E"] },
-      shimmer: { light: "#8A7868", dark: "#2A3040" },
-      waveA: { light: "#3A5068", dark: "#101A22" },
-      waveB: { light: "#2A4058", dark: "#0E161E" },
-      fog: { light: "#D0A888", dark: "#281E1A" },
-      text: "#F5F0E8",
-      love: "#F0A070",
+      label: "sunset" as const,
+      sky: {
+        light: ["#2E3B58", "#384462", "#48506A", "#5E5868", "#785E60", "#A07058"],
+        dark:  ["#121620", "#161A26", "#1C1E2E", "#242030", "#2E2228", "#382820"],
+      },
+      water: {
+        light: ["#485E70", "#405668", "#384E60"],
+        dark:  ["#141E28", "#121A22", "#10161E"],
+      },
+      shimmer: { light: "#7A7068", dark: "#2A3040" },
+      fog: { light: "#907868", dark: "#221A18" },
+      text: "#F0E8E0",
+      love: "#E0906A",
       seattle: "#7AC8B8",
     };
   }
   // Day: 8am – 5pm
   return {
-    label: "day",
-    light: ["#C5D5E5", "#D0DDEA", "#D6E2EC", "#B4C8D8"],
-    dark: ["#141E22", "#182630", "#1C2E3A", "#14222C"],
-    water: { light: ["#6898B8", "#5888AA", "#48789A"], dark: ["#1A3848", "#152E3C", "#102430"] },
+    label: "day" as const,
+    sky: {
+      light: ["#B8CAD8", "#BED0DE", "#C5D5E2", "#CCDAE6", "#D0DDE8", "#B8CCD8"],
+      dark:  ["#141E22", "#161F26", "#18222A", "#1A2630", "#1C2A36", "#14222C"],
+    },
+    water: {
+      light: ["#6898B8", "#5888AA", "#48789A"],
+      dark:  ["#1A3848", "#152E3C", "#102430"],
+    },
     shimmer: { light: "#88B5D0", dark: "#2A5070" },
-    waveA: { light: "#5888AA", dark: "#152E3C" },
-    waveB: { light: "#48789A", dark: "#102430" },
     fog: { light: "#C5D5E5", dark: "#1A2830" },
     text: "#F5F5F0",
     love: "#E8927C",
@@ -78,10 +94,9 @@ export function FooterScene() {
   const [coffeeActive, setCoffeeActive] = useState(false);
   const [hour, setHour] = useState(() => new Date().getHours());
 
-  const palette = useMemo(() => getSkyPalette(hour), [hour]);
+  const p = useMemo(() => getSkyPalette(hour), [hour]);
 
   useEffect(() => {
-    // Update hour every 5 minutes
     const id = setInterval(() => setHour(new Date().getHours()), 5 * 60 * 1000);
     return () => clearInterval(id);
   }, []);
@@ -109,22 +124,22 @@ export function FooterScene() {
     return () => obs.disconnect();
   }, []);
 
-  const p = palette;
-
   return (
     <>
-      {/* Gradient fade from page background into sky */}
+      {/* Long gradient fade from page content into sky — no hard edge */}
       <div
         className="footer-fade"
         style={{
-          height: 80,
-          background: `linear-gradient(to bottom, var(--background), ${p.light[0]})`,
+          height: 120,
+          background: `linear-gradient(to bottom, var(--background) 0%, var(--background) 20%, ${p.sky.light[0]} 100%)`,
           pointerEvents: "none",
         }}
       />
       <style>{`
         @media (prefers-color-scheme: dark) {
-          .footer-fade { background: linear-gradient(to bottom, var(--background), ${p.dark[0]}) !important; }
+          .footer-fade {
+            background: linear-gradient(to bottom, var(--background) 0%, var(--background) 20%, ${p.sky.dark[0]} 100%) !important;
+          }
         }
       `}</style>
 
@@ -143,17 +158,22 @@ export function FooterScene() {
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0 }}
         >
           <defs>
+            {/* 6-stop sky gradient for smooth blending */}
             <linearGradient id="sky-l" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={p.light[0]} />
-              <stop offset="35%" stopColor={p.light[1]} />
-              <stop offset="65%" stopColor={p.light[2]} />
-              <stop offset="100%" stopColor={p.light[3]} />
+              <stop offset="0%" stopColor={p.sky.light[0]} />
+              <stop offset="20%" stopColor={p.sky.light[1]} />
+              <stop offset="40%" stopColor={p.sky.light[2]} />
+              <stop offset="60%" stopColor={p.sky.light[3]} />
+              <stop offset="80%" stopColor={p.sky.light[4]} />
+              <stop offset="100%" stopColor={p.sky.light[5]} />
             </linearGradient>
             <linearGradient id="sky-d" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={p.dark[0]} />
-              <stop offset="35%" stopColor={p.dark[1]} />
-              <stop offset="65%" stopColor={p.dark[2]} />
-              <stop offset="100%" stopColor={p.dark[3]} />
+              <stop offset="0%" stopColor={p.sky.dark[0]} />
+              <stop offset="20%" stopColor={p.sky.dark[1]} />
+              <stop offset="40%" stopColor={p.sky.dark[2]} />
+              <stop offset="60%" stopColor={p.sky.dark[3]} />
+              <stop offset="80%" stopColor={p.sky.dark[4]} />
+              <stop offset="100%" stopColor={p.sky.dark[5]} />
             </linearGradient>
             <linearGradient id="water-l" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor={p.water.light[0]} />
@@ -165,50 +185,59 @@ export function FooterScene() {
               <stop offset="40%" stopColor={p.water.dark[1]} />
               <stop offset="100%" stopColor={p.water.dark[2]} />
             </linearGradient>
+            {/* Horizon glow — radial, subtle warmth at sunset/sunrise */}
+            <radialGradient id="horizon-glow" cx="50%" cy="100%" r="60%" fx="50%" fy="100%">
+              <stop offset="0%" stopColor={
+                p.label === "sunset" ? "#C08050" :
+                p.label === "sunrise" ? "#C09060" :
+                "#889AB0"
+              } stopOpacity={p.label === "sunset" || p.label === "sunrise" ? "0.18" : "0"} />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+            </radialGradient>
             <style>{`
               .s-sky { fill: url(#sky-l); }
               .s-water { fill: url(#water-l); }
               .s-shimmer { stroke: ${p.shimmer.light}; }
-              .s-wave-a { fill: ${p.waveA.light}; }
-              .s-wave-b { fill: ${p.waveB.light}; }
+              .s-wave-a { fill: ${p.water.light[1]}; }
+              .s-wave-b { fill: ${p.water.light[2]}; }
               @media (prefers-color-scheme: dark) {
                 .s-sky { fill: url(#sky-d); }
                 .s-water { fill: url(#water-d); }
                 .s-shimmer { stroke: ${p.shimmer.dark}; }
-                .s-wave-a { fill: ${p.waveA.dark}; }
-                .s-wave-b { fill: ${p.waveB.dark}; }
+                .s-wave-a { fill: ${p.water.dark[1]}; }
+                .s-wave-b { fill: ${p.water.dark[2]}; }
               }
             `}</style>
           </defs>
 
           {/* Sky */}
-          <rect width="1200" height="220" className="s-sky" />
+          <rect width="1200" height="130" className="s-sky" />
 
-          {/* Distant hazy treeline */}
+          {/* Horizon glow overlay — soft radial, not a circle */}
+          <rect width="1200" height="130" fill="url(#horizon-glow)" />
+
+          {/* Distant hazy treeline — softens sky→water transition */}
           <path
-            d="M0,125 Q60,118 120,122 Q200,115 280,120 Q360,113 440,118 Q520,111 600,116 Q680,110 760,115 Q840,108 920,114 Q1000,108 1080,113 Q1140,117 1200,112 L1200,132 L0,132 Z"
+            d="M0,125 Q60,119 120,122 Q200,116 280,120 Q360,114 440,118 Q520,112 600,116 Q680,111 760,115 Q840,109 920,114 Q1000,109 1080,113 Q1140,117 1200,113 L1200,132 L0,132 Z"
             className="s-water"
-            opacity="0.25"
+            opacity="0.3"
           />
 
           {/* Water */}
           <rect x="0" y="128" width="1200" height="92" className="s-water" />
 
-          {/* Shimmer lines */}
-          <line x1="80" y1="185" x2="160" y2="185" className="s-shimmer" strokeWidth="0.5" opacity="0.3" />
-          <line x1="280" y1="195" x2="380" y2="195" className="s-shimmer" strokeWidth="0.4" opacity="0.25" />
-          <line x1="500" y1="188" x2="590" y2="188" className="s-shimmer" strokeWidth="0.5" opacity="0.3" />
-          <line x1="700" y1="200" x2="800" y2="200" className="s-shimmer" strokeWidth="0.4" opacity="0.2" />
-          <line x1="900" y1="190" x2="980" y2="190" className="s-shimmer" strokeWidth="0.5" opacity="0.25" />
-          <line x1="150" y1="215" x2="260" y2="215" className="s-shimmer" strokeWidth="0.3" opacity="0.15" />
-          <line x1="600" y1="222" x2="720" y2="222" className="s-shimmer" strokeWidth="0.3" opacity="0.15" />
+          {/* Shimmer highlights on water */}
+          <line x1="80" y1="148" x2="150" y2="148" className="s-shimmer" strokeWidth="0.5" opacity="0.25" />
+          <line x1="280" y1="158" x2="370" y2="158" className="s-shimmer" strokeWidth="0.4" opacity="0.2" />
+          <line x1="500" y1="150" x2="580" y2="150" className="s-shimmer" strokeWidth="0.5" opacity="0.25" />
+          <line x1="700" y1="162" x2="790" y2="162" className="s-shimmer" strokeWidth="0.4" opacity="0.18" />
+          <line x1="900" y1="152" x2="970" y2="152" className="s-shimmer" strokeWidth="0.5" opacity="0.2" />
+          <line x1="150" y1="178" x2="250" y2="178" className="s-shimmer" strokeWidth="0.3" opacity="0.12" />
+          <line x1="600" y1="185" x2="710" y2="185" className="s-shimmer" strokeWidth="0.3" opacity="0.12" />
 
-          {/* Sun/moon glow */}
-          {(p.label === "sunset" || p.label === "sunrise") && (
-            <circle cx="600" cy="155" r="60" fill="#F0C880" opacity="0.12" />
-          )}
+          {/* Moon — night only, small and subtle */}
           {p.label === "night" && (
-            <circle cx="900" cy="50" r="12" fill="#E8E0D0" opacity="0.2" />
+            <circle cx="880" cy="35" r="8" fill="#D8D0C4" opacity="0.18" />
           )}
         </svg>
 
@@ -225,7 +254,7 @@ export function FooterScene() {
               animationIterationCount: "infinite",
             }}
           >
-            <path d="M0,40 C150,52 300,28 600,40 C750,48 900,32 1200,40 C1350,52 1500,28 1800,40 C1950,48 2100,32 2400,40 L2400,100 L0,100 Z" className="s-wave-a" opacity="0.12" />
+            <path d="M0,40 C150,52 300,28 600,40 C750,48 900,32 1200,40 C1350,52 1500,28 1800,40 C1950,48 2100,32 2400,40 L2400,100 L0,100 Z" className="s-wave-a" opacity="0.1" />
           </svg>
           <svg
             viewBox="0 0 2400 100"
@@ -238,15 +267,15 @@ export function FooterScene() {
               animationIterationCount: "infinite",
             }}
           >
-            <path d="M0,45 C200,32 400,55 600,42 C800,30 1000,50 1200,45 C1400,32 1600,55 1800,42 C2000,30 2200,50 2400,45 L2400,100 L0,100 Z" className="s-wave-b" opacity="0.15" />
+            <path d="M0,45 C200,32 400,55 600,42 C800,30 1000,50 1200,45 C1400,32 1600,55 1800,42 C2000,30 2200,50 2400,45 L2400,100 L0,100 Z" className="s-wave-b" opacity="0.12" />
           </svg>
         </div>
 
         {/* ===== Fog wisps ===== */}
         <div
           style={{
-            position: "absolute", top: 50, left: "-8%", width: "55%", height: 25,
-            borderRadius: "50%", background: `var(--fog-color, ${p.fog.light})`, opacity: 0.3, filter: "blur(16px)",
+            position: "absolute", top: 40, left: "-8%", width: "55%", height: 22,
+            borderRadius: "50%", background: `var(--fog-color, ${p.fog.light})`, opacity: 0.25, filter: "blur(16px)",
             zIndex: 2, pointerEvents: "none",
             animationName: visible ? "fog-drift-1" : "none",
             animationDuration: "25s", animationTimingFunction: "ease-in-out",
@@ -255,8 +284,8 @@ export function FooterScene() {
         />
         <div
           style={{
-            position: "absolute", top: 65, right: "-6%", width: "45%", height: 20,
-            borderRadius: "50%", background: `var(--fog-color, ${p.fog.light})`, opacity: 0.2, filter: "blur(14px)",
+            position: "absolute", top: 55, right: "-6%", width: "45%", height: 18,
+            borderRadius: "50%", background: `var(--fog-color, ${p.fog.light})`, opacity: 0.18, filter: "blur(14px)",
             zIndex: 2, pointerEvents: "none",
             animationName: visible ? "fog-drift-2" : "none",
             animationDuration: "20s", animationTimingFunction: "ease-in-out",
@@ -290,13 +319,48 @@ export function FooterScene() {
         {/* ===== Ferry ===== */}
         <div
           style={{
-            position: "absolute", bottom: 48, zIndex: 4,
+            position: "absolute", bottom: 44, zIndex: 4,
             animationName: visible ? "ferry-cross" : "none",
             animationDuration: "50s", animationTimingFunction: "linear",
             animationIterationCount: "infinite",
           }}
         >
           <div onClick={handleHornClick} style={{ position: "relative", cursor: "pointer" }} title="Click for fog horn!">
+            {/* Animated water waves at hull waterline */}
+            <div style={{ position: "absolute", bottom: -6, left: -10, right: -10, height: 18, overflow: "hidden", pointerEvents: "none", zIndex: 1 }}>
+              {/* Wave layer 1 — repeating jagged pattern (first 150 = second 150 for seamless loop) */}
+              <svg
+                viewBox="0 0 300 18"
+                preserveAspectRatio="none"
+                style={{
+                  position: "absolute", bottom: 0, left: 0, width: "200%", height: "100%",
+                  animationName: visible ? "hull-wave" : "none",
+                  animationDuration: "4s", animationTimingFunction: "linear",
+                  animationIterationCount: "infinite",
+                }}
+              >
+                <path d="M0,5 L6,8 L12,4 L20,9 L28,3 L34,7 L42,2 L50,7 L56,4 L64,8 L72,3 L78,7 L86,2 L94,8 L100,4 L108,7 L114,3 L122,8 L130,4 L138,7 L144,3 L150,5 L156,8 L162,4 L170,9 L178,3 L184,7 L192,2 L200,7 L206,4 L214,8 L222,3 L228,7 L236,2 L244,8 L250,4 L258,7 L264,3 L272,8 L280,4 L288,7 L294,3 L300,5 L300,18 L0,18 Z" className="s-wave-a" opacity="0.55" />
+              </svg>
+              {/* Wave layer 2 — different wave spacing, slower */}
+              <svg
+                viewBox="0 0 300 18"
+                preserveAspectRatio="none"
+                style={{
+                  position: "absolute", bottom: 0, left: 0, width: "200%", height: "100%",
+                  animationName: visible ? "hull-wave" : "none",
+                  animationDuration: "5.5s", animationTimingFunction: "linear",
+                  animationIterationCount: "infinite",
+                  animationDirection: "reverse",
+                }}
+              >
+                <path d="M0,7 L8,4 L16,9 L26,5 L34,10 L44,4 L52,8 L62,3 L70,8 L78,5 L88,9 L96,4 L106,8 L114,3 L124,9 L132,5 L142,8 L150,7 L158,4 L166,9 L176,5 L184,10 L194,4 L202,8 L212,3 L220,8 L228,5 L238,9 L246,4 L256,8 L264,3 L274,9 L282,5 L292,8 L300,7 L300,18 L0,18 Z" className="s-wave-b" opacity="0.4" />
+              </svg>
+            </div>
+            <div style={{
+              animationName: visible ? "ferry-bob" : "none",
+              animationDuration: "3s", animationTimingFunction: "ease-in-out",
+              animationIterationCount: "infinite",
+            }}>
             <svg width="150" height="56" viewBox="0 0 150 56" fill="none">
               {/* Hull */}
               <path d="M3,40 L16,50 L134,50 L147,40 L144,38 L6,38 Z" fill="#1B4332" />
@@ -333,10 +397,8 @@ export function FooterScene() {
               <rect x="33" y="1.5" width="5.5" height="0.6" fill="#8A9AA5" />
               <rect x="106" y="1.5" width="5.5" height="0.6" fill="#8A9AA5" />
               <line x1="16" y1="15" x2="134" y2="15" stroke="#8A9AA5" strokeWidth="0.4" />
-              {/* Wake */}
-              <path d="M3,48 Q10,44 18,48" className="s-shimmer" strokeWidth="0.8" fill="none" opacity="0.4" />
-              <path d="M0,50 Q8,45 16,50" className="s-shimmer" strokeWidth="0.5" fill="none" opacity="0.3" />
             </svg>
+            </div>
 
             {/* Sound waves on horn */}
             {hornActive && (

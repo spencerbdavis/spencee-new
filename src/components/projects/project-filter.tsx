@@ -9,6 +9,7 @@ import {
   MORE_PROJECTS,
   SUPPORTING_PROJECTS,
 } from "@/lib/projects";
+import { SKILL_PROJECTS } from "@/lib/skills";
 
 const MAX_FILTERS = 8;
 
@@ -36,10 +37,17 @@ function getTopSkills(): string[] {
     .map(([skill]) => skill);
 }
 
-function matches(techStack: string[], filter: string): boolean {
-  return techStack.some(
-    (t) => t.toLowerCase() === filter.toLowerCase()
-  );
+function matches(slug: string, techStack: string[], filter: string): boolean {
+  // Check direct techStack match
+  if (techStack.some((t) => t.toLowerCase() === filter.toLowerCase())) {
+    return true;
+  }
+  // Check SKILL_PROJECTS mapping
+  const linked = SKILL_PROJECTS[filter];
+  if (linked) {
+    return linked.some((p) => p.slug === slug);
+  }
+  return false;
 }
 
 export function ProjectFilter() {
@@ -56,7 +64,7 @@ export function ProjectFilter() {
   const featured = useMemo(
     () =>
       active
-        ? FEATURED_PROJECTS.filter((p) => matches(p.techStack, active))
+        ? FEATURED_PROJECTS.filter((p) => matches(p.slug, p.techStack, active))
         : FEATURED_PROJECTS,
     [active]
   );
@@ -64,7 +72,7 @@ export function ProjectFilter() {
   const more = useMemo(
     () =>
       active
-        ? MORE_PROJECTS.filter((p) => matches(p.techStack, active))
+        ? MORE_PROJECTS.filter((p) => matches(p.slug, p.techStack, active))
         : MORE_PROJECTS,
     [active]
   );
@@ -72,7 +80,7 @@ export function ProjectFilter() {
   const supporting = useMemo(
     () =>
       active
-        ? SUPPORTING_PROJECTS.filter((p) => matches(p.techStack, active))
+        ? SUPPORTING_PROJECTS.filter((p) => matches("", p.techStack, active))
         : SUPPORTING_PROJECTS,
     [active]
   );

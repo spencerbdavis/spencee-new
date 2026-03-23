@@ -4,9 +4,9 @@ import { SpinningCard } from "@/components/projects/spinning-card";
 import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis — Auto-Generated Business Cards",
+  title: "Spencer D'Avis | Auto-Generated Business Cards",
   description:
-    "A templating system that auto-generates branded business cards with dynamic QR codes and vCard downloads — per employee, zero design work.",
+    "A templating system that auto-generates branded business cards with dynamic QR codes and vCard downloads. Per employee, zero design work.",
   alternates: { canonical: "https://spenc.ee/projects/business-card" },
 };
 
@@ -39,14 +39,14 @@ export default function BusinessCardPage() {
         </p>
         <FeatureList
           items={[
-            "Each employee gets a unique URL (e.g., cards.bonavistapm.com/SPNCE) — no manual card design needed",
+            "Each employee gets a unique URL (e.g., cards.bonavistapm.com/SPNCE) with no manual card design needed",
             "Template engine auto-generates cards from employee data: name, title, phone, email, photo, and assigned properties",
             "Dynamic QR code on the back links directly to the employee's digital card page",
             "vCard (.vcf) download for one-tap contact saving on any phone",
-            "Adheres to complex brand template requirements — consistent fonts, colors, logo placement, and spacing across all 100+ employee cards",
+            "Adheres to complex brand template requirements: consistent fonts, colors, logo placement, and spacing across all 100+ employee cards",
             "Property listing integration shows each employee's assigned buildings",
             "Dark/light theme support on the digital card page",
-            "Responsive mobile-first design — cards look correct on any screen size",
+            "Responsive mobile-first design; cards look correct on any screen size",
           ]}
         />
       </div>
@@ -59,8 +59,8 @@ export default function BusinessCardPage() {
           With 100+ employees across 60+ properties, maintaining individual business
           cards was a design bottleneck. New hires, title changes, and property
           reassignments meant constant manual updates. This system generates
-          pixel-perfect cards automatically from a single employee record — including
-          the QR code — so onboarding a new hire takes zero design time.
+          pixel-perfect cards automatically from a single employee record, including
+          the QR code, so onboarding a new hire takes zero design time.
         </p>
       </div>
     </ProjectLayout>

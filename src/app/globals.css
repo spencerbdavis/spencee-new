@@ -198,6 +198,16 @@ body {
   to { transform: translateY(180px) rotate(8deg); }
 }
 
+@keyframes ferry-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(0.3deg); }
+}
+
+@keyframes hull-wave {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @keyframes ferry-honk {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   25% { transform: translateY(-3px) rotate(-0.8deg); }

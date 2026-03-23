@@ -3,7 +3,7 @@ import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis — Floor Plan AI Extraction",
+  title: "Spencer D'Avis | Floor Plan AI Extraction",
   description:
     "A Python pipeline that extracts apartment units from architectural PDFs using SAM3, Gemini OCR, and OpenCV.",
   alternates: { canonical: "https://spenc.ee/projects/floorplan-ai" },
@@ -21,7 +21,7 @@ export default function FloorplanAIPage() {
     {
       num: "1",
       title: "Tiled Gemini OCR",
-      desc: "Adaptive tiling (768–1536px based on text density) with Gemini Flash Lite. Extracts unit labels, numbers, sqft, room labels, dimensions. Deduplicates across tile overlaps.",
+      desc: "Adaptive tiling (768 to 1536px based on text density) with Gemini Flash Lite. Extracts unit labels, numbers, sqft, room labels, dimensions. Deduplicates across tile overlaps.",
     },
     {
       num: "2",
@@ -87,7 +87,7 @@ export default function FloorplanAIPage() {
       <div style={{ borderRadius: 12, padding: 24, backgroundColor: "var(--muted)" }}>
         <p style={{ fontSize: 14, lineHeight: 1.6, fontStyle: "italic", color: "var(--muted-foreground)" }}>
           This project represents an exploration into ML and computer vision.
-          The pipeline works but proved extremely challenging — the variety of
+          The pipeline works but proved extremely challenging. The variety of
           architectural drawing styles makes reliable extraction a hard
           problem. Included to show willingness to tackle difficult technical
           challenges.

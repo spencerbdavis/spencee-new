@@ -23,9 +23,9 @@ export const FEATURED_PROJECTS: Project[] = [
     slug: "maintenance",
     title: "Bonavista Maintenance Suite",
     subtitle:
-      "Work order management, mobile execution, and Yardi integration — built in-house to replace a $30K/year vendor.",
+      "Work order management, mobile execution, and Yardi integration, built internally to replace a $30K/year vendor.",
     problem:
-      "HappyCo — the industry standard for property maintenance — charges ~$1/unit/month for their suite, plus $7/unit per inspection walk. Across 5,000 units with 2,000+ annual inspection walks, that's over $74,000/year. And they require full portfolio enrollment, even for small properties. We built our own.",
+      "HappyCo (the industry standard for property maintenance) charges ~$1/unit/month for their suite, plus $7/unit per inspection walk. Across 5,000 units with 2,000+ annual inspection walks, that's over $74,000/year. And they require full portfolio enrollment, even for small properties. We built our own.",
     techStack: [
       "Next.js",
       "React Native",
@@ -61,7 +61,7 @@ export const FEATURED_PROJECTS: Project[] = [
     slug: "admin-panel",
     title: "Bonavista Admin Panel",
     subtitle:
-      "The operations backbone for a 60+ property portfolio — receipts, mileage, Matterport, SEO, Google Reviews, and live property data, all in one place.",
+      "Operations platform with a custom AI powered SEO engine that replaced a $400/month vendor at $0.50/run, plus receipt automation, Google Reviews, Matterport, and mileage tracking across 60+ properties.",
     problem: undefined,
     techStack: [
       "Next.js",
@@ -72,11 +72,11 @@ export const FEATURED_PROJECTS: Project[] = [
       "Matterport API",
     ],
     stats: [
-      { value: "1,000/mo", label: "Receipts OCR" },
-      { value: "<60 sec", label: "Processing" },
-      { value: "20+", label: "Cron Jobs" },
-      { value: "60+", label: "Properties" },
-      { value: "239", label: "API Routes" },
+      { value: "99.7%", label: "SEO Cost Reduction" },
+      { value: "1,000/mo", label: "Receipts Auto-Processed" },
+      { value: "60+", label: "Properties Managed" },
+      { value: "20+", label: "Automated Cron Jobs" },
+      { value: "6", label: "Integrated Modules" },
     ],
     links: [],
     screenshotDir: "admin-panel",
@@ -86,9 +86,9 @@ export const FEATURED_PROJECTS: Project[] = [
     slug: "wordpress-plugin",
     title: "RentCafe × WordPress Plugin",
     subtitle:
-      "A custom WordPress plugin that syncs live RentCafe data to 60+ property websites — including Seattle's MFTE affordable housing filter that no existing plugin supports.",
+      "A custom WordPress plugin that syncs live RentCafe data to 60+ property websites, including Seattle's MFTE affordable housing filter that no existing plugin supports.",
     problem:
-      "RentPress, the closest competing plugin, charges $75/month + $6/property/month. Across 60+ properties, that's $483/month — $5,796/year. More importantly, it doesn't support Seattle's MFTE (Multifamily Tax Exemption) program, which requires properties to surface income-restricted units separately. Every Seattle plugin on the market failed this requirement.",
+      "RentPress, the closest competing plugin, charges $75/month + $6/property/month. Across 60+ properties, that's $483/month ($5,796/year). More importantly, it doesn't support Seattle's MFTE (Multifamily Tax Exemption) program, which requires properties to surface income restricted units separately. Every Seattle plugin on the market failed this requirement.",
     techStack: ["PHP", "WordPress", "RentCafe API", "MySQL", "Next.js", "Cloudinary"],
     stats: [
       { value: "60+", label: "Properties" },
@@ -105,9 +105,9 @@ export const FEATURED_PROJECTS: Project[] = [
     slug: "virtual-staging",
     title: "Virtual Staging App",
     subtitle:
-      "An in-house AI staging tool that generates furnished room images using Gemini — with Google Search grounding to reflect current furniture trends from real Seattle retailers.",
+      "An internal AI staging tool that generates furnished room images using Gemini, with Google Search grounding to reflect current furniture trends from real Seattle retailers.",
     problem:
-      "virtualstaging.ai was costing $500+/year for a workflow that could be automated. More importantly, it generated generic staged rooms that didn't reflect what real furniture actually looks like — making the staged images feel artificial to prospective residents.",
+      "virtualstaging.ai was costing $500+/year for a workflow that could be automated. More importantly, it generated generic staged rooms that didn't reflect what real furniture actually looks like, making the staged images feel artificial to prospective residents.",
     techStack: ["Next.js", "React", "Google Gemini", "AWS S3", "Vercel"],
     stats: [
       { value: "$500/yr", label: "Saved" },
@@ -126,9 +126,9 @@ export const MORE_PROJECTS: Project[] = [
     slug: "floorplan-ai",
     title: "Floor Plan AI Extraction",
     subtitle:
-      "A Python pipeline that extracts individual apartment units from architectural PDFs using Meta's SAM3, Gemini OCR, and OpenCV — with GPU inference on Modal H100s.",
+      "A Python pipeline that extracts individual apartment units from architectural PDFs using Meta's SAM3, Gemini OCR, and OpenCV, with GPU inference on Modal H100s.",
     problem:
-      "Extracting individual unit floor plans from full-building architectural PDFs is a manual, tedious process. Property managers need isolated unit images for marketing, leasing, and resident communication. No affordable off-the-shelf tool handles this reliably for multi-unit residential buildings.",
+      "Extracting individual unit floor plans from full building architectural PDFs is a manual, tedious process. Property managers need isolated unit images for marketing, leasing, and resident communication. No affordable existing tool handles this reliably for multi unit residential buildings.",
     techStack: ["Python", "PyTorch", "SAM3", "Gemini", "OpenCV", "Modal"],
     stats: [],
     links: [],
@@ -140,7 +140,7 @@ export const MORE_PROJECTS: Project[] = [
     slug: "tablo-news",
     title: "Tablo News",
     subtitle:
-      "An AI-powered local news search and archive interface for Seattle-area TV broadcasts — transcribed with Whisper, indexed with ChromaDB, and searchable via natural language RAG queries.",
+      "An AI powered local news search and archive interface for Seattle area TV broadcasts, transcribed with Whisper, indexed with ChromaDB, and searchable via natural language RAG queries.",
     problem: undefined,
     techStack: ["Next.js", "Python", "WhisperX", "ChromaDB", "Ollama", "Turso"],
     stats: [],
@@ -153,7 +153,7 @@ export const MORE_PROJECTS: Project[] = [
     slug: "business-card",
     title: "Auto-Generated Business Cards",
     subtitle:
-      "A templating system that auto-generates branded business cards with dynamic QR codes, vCard downloads, and property assignments — per employee, zero design work.",
+      "A templating system that auto-generates branded business cards with dynamic QR codes, vCard downloads, and property assignments. Per employee, zero design work.",
     problem: undefined,
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "QR Code API"],
     stats: [],
@@ -170,7 +170,7 @@ export const MORE_PROJECTS: Project[] = [
     slug: "creative",
     title: "Creative Work",
     subtitle:
-      "Photography, graphic design, and branding — including vaccine photos with 5.8M views and 80K downloads on Pixabay & Unsplash.",
+      "Photography, graphic design, and branding, including vaccine photos with 5.8M views and 80K downloads on Pixabay & Unsplash.",
     problem: undefined,
     techStack: ["Photography", "Graphic Design", "Branding", "Marketing"],
     stats: [
@@ -187,13 +187,13 @@ export const SUPPORTING_PROJECTS: SupportingProject[] = [
   {
     title: "Apple Business Connect Automation",
     description:
-      "Puppeteer-based automation for syncing property data, photos, and listings across 68 Apple Maps locations — Apple doesn't offer an API for portfolios under 500 locations.",
+      "Puppeteer-based automation for syncing property data, photos, and listings across 68 Apple Maps locations. Apple doesn't offer an API for portfolios under 500 locations.",
     techStack: ["TypeScript", "Puppeteer", "GraphQL"],
   },
   {
     title: "Brand Guidelines Hub",
     description:
-      "Centralized brand asset management — logo variants, color palette (Hex/RGB/CMYK/PMS), typography standards, and batch asset downloads.",
+      "Centralized brand asset management: logo variants, color palette (Hex/RGB/CMYK/PMS), typography standards, and batch asset downloads.",
     techStack: ["Next.js", "Sharp", "Tailwind CSS"],
     liveUrl: "https://brand.bonavistapm.com",
   },
@@ -206,7 +206,7 @@ export const SUPPORTING_PROJECTS: SupportingProject[] = [
   {
     title: "Cloudflare Email Worker",
     description:
-      "Intake layer for the receipt processing pipeline — parses incoming emails, extracts attachments, and forwards to the Admin Panel for Gemini OCR.",
+      "Intake layer for the receipt processing pipeline. Parses incoming emails, extracts attachments, and forwards to the Admin Panel for Gemini OCR.",
     techStack: ["Cloudflare Workers", "postal-mime"],
   },
 ];

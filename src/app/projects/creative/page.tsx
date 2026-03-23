@@ -5,9 +5,9 @@ import { ArrowLeft } from "lucide-react";
 import { TechPills } from "@/components/projects/tech-pills";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis — Creative Work",
+  title: "Spencer D'Avis | Creative Work",
   description:
-    "Graphic design, photography, and branding work — including vaccine photos with 5.8M views and 80K downloads.",
+    "Graphic design, photography, and branding work, including vaccine photos with 5.8M views and 80K downloads.",
   alternates: { canonical: "https://spenc.ee/projects/creative" },
 };
 
@@ -75,7 +75,7 @@ export default function CreativePage() {
             marginTop: 20,
           }}
         >
-          Graphic design, photography, and branding from before the dev era — proof that the visual eye came first.
+          Graphic design, photography, and branding from before the dev era. Proof that the visual eye came first.
         </p>
       </div>
 
@@ -91,7 +91,7 @@ export default function CreativePage() {
           </p>
 
           <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 20 }}>
-            As a COVID-19 Contact Tracer, I was tasked with creating a presentation outlining the differences between each vaccine type. I took an expired Xylocaine vial, created labels for each vaccine, and photographed them — left hand holding the vial, right hand on the shutter.
+            As a COVID-19 Contact Tracer, I was tasked with creating a presentation outlining the differences between each vaccine type. I took an expired Xylocaine vial, created labels for each vaccine, and photographed them, left hand holding the vial, right hand on the shutter.
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 12 }}>
             I released the photos royalty-free on Pixabay and Unsplash. They were used in news articles and research papers, including by the University of Arizona and the London School of Hygiene & Tropical Medicine.
@@ -121,7 +121,7 @@ export default function CreativePage() {
             <ImageGrid
               alt="COVID vaccine vial"
               images={[
-                { src: "/screenshots/creative/vaccine-pixabay.png", caption: "Pixabay stats — 5.8M views" },
+                { src: "/screenshots/creative/vaccine-pixabay.png", caption: "Pixabay stats, 5.8M views" },
                 { src: "/screenshots/creative/vaccine-london.png", caption: "London School of Hygiene & Tropical Medicine" },
                 { src: "/screenshots/creative/vaccine-article-1.png", caption: "Vaccine inequity article" },
                 { src: "/screenshots/creative/vaccine-article-2.png", caption: "Viral Vector Vaccine article" },
@@ -138,7 +138,7 @@ export default function CreativePage() {
             Ingallina&apos;s Box Lunch
           </h2>
           <p style={{ fontSize: 13, color: "var(--muted-foreground)", marginTop: 4 }}>
-            2019–2020 &middot; Social Media & Promotional Graphics
+            2019 to 2020 &middot; Social Media & Promotional Graphics
           </p>
 
           <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 20 }}>

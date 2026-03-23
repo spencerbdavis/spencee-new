@@ -113,7 +113,7 @@ export function Skills() {
                     flexShrink: 0,
                   }}
                 >
-                  {CATEGORY_ICONS[group.category] ?? "—"}
+                  {CATEGORY_ICONS[group.category] ?? "-"}
                 </span>
                 <p
                   style={{

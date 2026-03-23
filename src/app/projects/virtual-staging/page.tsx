@@ -4,7 +4,7 @@ import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis — Virtual Staging App",
+  title: "Spencer D'Avis | Virtual Staging App",
   description:
     "An in-house AI staging tool using Gemini with Google Search grounding for real Seattle furniture trends.",
   alternates: { canonical: "https://spenc.ee/projects/virtual-staging" },
@@ -44,7 +44,7 @@ export default function VirtualStagingPage() {
         <FeatureList
           items={[
             "Internal web app at staging.bonavista.work",
-            "Gemini Flash with Google Search grounding — searches current furniture trends from real Seattle retailers",
+            "Gemini Flash with Google Search grounding, searching current furniture trends from real Seattle retailers",
             'Multiple styling options including "Pacific Northwest" aesthetic',
             "Lighting mode selection: morning, noon, or evening ambiance",
             "Automatic room type classification and identification",
@@ -85,7 +85,7 @@ export default function VirtualStagingPage() {
           </div>
         </div>
         <p style={{ marginTop: 16, fontSize: 12, fontStyle: "italic", color: "var(--muted-foreground)" }}>
-          Live at staging.bonavista.work (internal — access restricted)
+          Live at staging.bonavista.work (internal, access restricted)
         </p>
       </div>
     </ProjectLayout>

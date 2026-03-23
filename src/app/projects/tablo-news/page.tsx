@@ -3,9 +3,9 @@ import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis — Tablo News",
+  title: "Spencer D'Avis | Tablo News",
   description:
-    "An AI-powered local news search and archive for Seattle TV broadcasts — Whisper, ChromaDB, and RAG queries.",
+    "An AI-powered local news search and archive for Seattle TV broadcasts. Whisper, ChromaDB, and RAG queries.",
   alternates: { canonical: "https://spenc.ee/projects/tablo-news" },
 };
 
@@ -51,7 +51,7 @@ export default function TabloNewsPage() {
             "Featured story display with AI-generated summaries",
             "Paginated broadcast archive grouped by date",
             "Natural language search via RAG-powered semantic search",
-            "Speaker filtering — query by specific anchors/reporters",
+            "Speaker filtering: query by specific anchors/reporters",
             "Full transcript viewer with timestamps and speaker ID",
             "Broadcast screenshots with AI-scored captions",
             "Speaker analytics: speaking time and segment counts",

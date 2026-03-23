@@ -3,9 +3,9 @@ import { Suspense } from "react";
 import { ProjectFilter } from "@/components/projects/project-filter";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis — Projects",
+  title: "Spencer D'Avis | Projects",
   description:
-    "Production systems built for a 60+ property portfolio — maintenance, admin tooling, AI integrations, and more.",
+    "Production systems built for a 60+ property portfolio: maintenance, admin tooling, AI integrations, and more.",
   alternates: { canonical: "https://spenc.ee/projects" },
 };
 
@@ -46,7 +46,7 @@ export default function ProjectsPage() {
             maxWidth: 520,
           }}
         >
-          End-to-end systems I designed, built, and shipped — each solving
+          End-to-end systems I designed, built, and shipped, each solving
           a real business problem across a 60+ property portfolio.
         </p>
       </div>

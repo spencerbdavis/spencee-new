@@ -1,7 +1,7 @@
 const CAPABILITIES = [
   {
     title: "Full-Stack Development",
-    description: "Next.js, React Native, iOS, Chrome Extensions — shipped to production across web, mobile, and browser.",
+    description: "Next.js, React Native, iOS, and Chrome Extensions, shipped to production across web, mobile, and browser.",
     highlight: "13 production apps",
   },
   {
@@ -11,7 +11,7 @@ const CAPABILITIES = [
   },
   {
     title: "AI Enablement & Adoption",
-    description: "Led ChatGPT Enterprise rollout across a 48-person org with no prior AI usage — built onboarding docs, custom workflows, and tracked adoption metrics.",
+    description: "Led ChatGPT Enterprise rollout across a 48-person org with no prior AI usage. Built onboarding docs, custom workflows, and tracked adoption metrics.",
     highlight: "0 → 48 users adopted",
   },
   {
@@ -60,7 +60,7 @@ export function About() {
             marginBottom: 40,
           }}
         >
-          I work best when I can own a problem end-to-end — understand the
+          I work best when I can own a problem end-to-end: understand the
           business need, architect the solution, and ship it.
         </p>
 

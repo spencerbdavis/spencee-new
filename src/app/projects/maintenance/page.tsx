@@ -5,9 +5,9 @@ import { Tabs } from "@/components/ui/tabs";
 import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis — Bonavista Maintenance Suite",
+  title: "Spencer D'Avis | Bonavista Maintenance Suite",
   description:
-    "Work order management, mobile execution, and Yardi integration — built in-house to replace a $30K/year vendor.",
+    "Work order management, mobile execution, and Yardi integration, built in-house to replace a $30K/year vendor.",
   alternates: { canonical: "https://spenc.ee/projects/maintenance" },
 };
 
@@ -61,9 +61,9 @@ const appFeatures = [
   "Technicians receive assigned work orders, turns, move-outs, and grounds jobs",
   "After-action reports route to property manager and supervisor for review",
   "Resident notifications at each stage: scheduling, arrival, and completion",
-  "Geofenced check-in with GPS property radius validation (configurable 1–5 miles)",
+  "Geofenced check-in with GPS property radius validation (configurable 1 to 5 miles)",
   "NFC equipment checkout/check-in with offline-first local SQLite storage",
-  "iOS Live Activities via native Swift ActivityKit — Dynamic Island and Lock Screen countdown",
+  "iOS Live Activities via native Swift ActivityKit: Dynamic Island and Lock Screen countdown",
   "Weekly performance reviews with question snapshot locking",
   "Receipt capture and OCR submission via camera and document scanner",
   "Offline-first: SQLite property cache (500+ properties), background sync on reconnect",
@@ -71,7 +71,7 @@ const appFeatures = [
 ];
 
 const extensionFeatures = [
-  "Injects into Yardi's web interface via content scripts — extracts work order and property data from the DOM",
+  "Injects into Yardi's web interface via content scripts, extracting work order and property data from the DOM",
   "Schedule work orders, turns, and move-out inspections from within Yardi without manual re-entry",
   "Calendar preview with real-time technician availability and busy-time percentage",
   "Automated PDF download from employee portal and upload to Yardi work orders",
@@ -103,7 +103,7 @@ export default function MaintenancePage() {
             content: (
               <>
                 <TabHeader
-                  description="The supervisor's command center — 1,295 commits, 252 API routes, 207 components."
+                  description="The supervisor's command center: 1,295 commits, 252 API routes, 207 components."
                   tech="Next.js 15 · TypeScript · Microsoft Graph API · MySQL · FullCalendar · Resend + Mailgun · AWS S3 · Puppeteer · APNs"
                 />
                 <FeatureList items={panelFeatures} />
@@ -129,7 +129,7 @@ export default function MaintenancePage() {
             content: (
               <>
                 <TabHeader
-                  description="The technician's field tool — published on the App Store. 108 commits, 34 screens."
+                  description="The technician's field tool, published on the App Store. 108 commits, 34 screens."
                   tech="React Native 0.76 · TypeScript · Swift (ActivityKit) · SQLite · PostHog Analytics"
                 />
                 <FeatureList items={appFeatures} />
@@ -141,7 +141,7 @@ export default function MaintenancePage() {
             content: (
               <>
                 <TabHeader
-                  description="The Yardi bridge — Chrome Extension (Manifest V3)."
+                  description="The Yardi bridge: Chrome Extension (Manifest V3)."
                   tech="React 19 · Vite · CRXJS · Zustand · TanStack React Query · Zod"
                 />
                 <FeatureList items={extensionFeatures} />
