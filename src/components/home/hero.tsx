@@ -8,10 +8,9 @@ export function Hero() {
     <section
       style={{
         background: "var(--hero-gradient)",
-        minHeight: "100dvh",
+        minHeight: "92dvh",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
         position: "relative",
         overflow: "hidden",
       }}
@@ -29,126 +28,146 @@ export function Hero() {
       />
 
       <div
+        className="hero-layout"
         style={{
-          maxWidth: 720,
+          maxWidth: 1080,
           margin: "0 auto",
           padding: "140px 32px 80px",
-          textAlign: "center",
+          paddingLeft: "calc(max(32px, 12vw))",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          gap: 56,
           position: "relative",
         }}
       >
-        {/* Headshot */}
-        <div
-          style={{
-            width: 120,
-            height: 120,
-            borderRadius: "50%",
-            margin: "0 auto 40px",
-            position: "relative",
-            overflow: "hidden",
-            background: "var(--muted)",
-            boxShadow: "0 0 0 3px var(--background), 0 0 0 5px var(--border), 0 8px 32px rgba(0,0,0,0.1)",
-          }}
-        >
-          <Image
-            src="/headshot.jpg"
-            alt="Spencer D'Avis"
-            fill
-            className="object-cover"
-            priority
-            sizes="120px"
-          />
+        {/* Left: Photo + name + currently */}
+        <div style={{ flexShrink: 0 }}>
+          <div
+            style={{
+              width: 160,
+              height: 160,
+              borderRadius: 16,
+              position: "relative",
+              overflow: "hidden",
+              background: "var(--muted)",
+              boxShadow: "0 0 0 3px var(--background), 0 0 0 5px var(--border), 0 12px 40px rgba(0,0,0,0.1)",
+            }}
+          >
+            <Image
+              src="/headshot.jpg"
+              alt="Spencer D'Avis"
+              fill
+              style={{ objectFit: "cover", objectPosition: "center 15%" }}
+              priority
+              sizes="160px"
+            />
+          </div>
+          <p
+            style={{
+              fontSize: 13,
+              fontWeight: 600,
+              color: "var(--accent)",
+              letterSpacing: "0.03em",
+              textTransform: "uppercase",
+              marginTop: 16,
+              textAlign: "center",
+            }}
+          >
+            Spencer D&apos;Avis
+          </p>
+          <p
+            style={{
+              fontSize: 11,
+              color: "var(--muted-foreground)",
+              marginTop: 4,
+              textAlign: "center",
+            }}
+          >
+            Currently at Bonavista
+          </p>
         </div>
 
-        {/* Name label */}
-        <p
-          style={{
-            fontSize: 13,
-            fontWeight: 500,
-            color: "var(--accent)",
-            letterSpacing: "0.04em",
-            textTransform: "uppercase",
-            marginBottom: 16,
-          }}
-        >
-          Spencer D&apos;Avis
-        </p>
-
-        {/* Headline */}
-        <h1
-          style={{
-            fontSize: "clamp(28px, 5vw, 48px)",
-            fontWeight: 700,
-            lineHeight: 1.1,
-            letterSpacing: "-0.035em",
-            color: "var(--foreground)",
-            margin: "0 auto",
-            maxWidth: 640,
-          }}
-        >
-          {HEADLINES[HEADLINE_OPTION]}
-        </h1>
-
-        {/* Sub */}
-        <p
-          style={{
-            fontSize: 17,
-            lineHeight: 1.6,
-            color: "var(--muted-foreground)",
-            marginTop: 24,
-            maxWidth: 520,
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
-          {SUB_HEADLINE}
-        </p>
-
-        {/* Buttons */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 12,
-            marginTop: 40,
-            flexWrap: "wrap",
-          }}
-        >
-          <Link
-            href="/projects"
-            className="btn-primary"
+        {/* Right: Headline + sub + CTAs */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <h1
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "14px 28px",
-              borderRadius: 100,
-              fontSize: 15,
-              fontWeight: 500,
-              textDecoration: "none",
+              fontSize: "clamp(26px, 4vw, 44px)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: "-0.035em",
+              color: "var(--foreground)",
+              maxWidth: 580,
             }}
           >
-            View Projects <ArrowRight size={16} />
-          </Link>
-          <a
-            href="/spencer-davis-resume.pdf"
-            download
-            className="btn-secondary"
+            {HEADLINES[HEADLINE_OPTION]}
+          </h1>
+
+          <p
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "14px 28px",
-              borderRadius: 100,
-              fontSize: 15,
-              fontWeight: 500,
-              textDecoration: "none",
+              fontSize: 17,
+              lineHeight: 1.6,
+              color: "var(--muted-foreground)",
+              marginTop: 20,
+              maxWidth: 480,
             }}
           >
-            Resume <Download size={16} />
-          </a>
+            {SUB_HEADLINE}
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              gap: 12,
+              marginTop: 32,
+              flexWrap: "wrap",
+            }}
+          >
+            <Link
+              href="/projects"
+              className="btn-primary"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "14px 28px",
+                borderRadius: 100,
+                fontSize: 15,
+                fontWeight: 500,
+                textDecoration: "none",
+              }}
+            >
+              View Projects <ArrowRight size={16} />
+            </Link>
+            <a
+              href="/spencer-davis-resume.pdf"
+              download
+              className="btn-secondary"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "14px 28px",
+                borderRadius: 100,
+                fontSize: 15,
+                fontWeight: 500,
+                textDecoration: "none",
+              }}
+            >
+              Resume <Download size={16} />
+            </a>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .hero-layout {
+            flex-direction: column !important;
+            text-align: center !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -305,7 +305,7 @@ export function FooterScene() {
             <rect x="90" y="6" width="34" height="8" rx="1" fill="#F5F5F0" />
             <rect x="89" y="4" width="36" height="3" rx="0.8" fill="#1B4332" />
             <rect x="92" y="7.5" width="30" height="4.5" rx="0.5" fill="#6A9BB5" opacity="0.5" />
-            <text x="107" y="5.8" textAnchor="middle" fontSize="3" fill="#F5F5F0" fontFamily="var(--font-mono)" fontWeight="600">SALISH</text>
+            <text x="107" y="5.8" textAnchor="middle" fontSize="3" fill="#F5F5F0" fontFamily="var(--font-mono)" fontWeight="600">HYAK</text>
             {/* Masts */}
             <rect x="35" y="0" width="1.2" height="5" fill="#8A9AA5" />
             <rect x="108" y="0" width="1.2" height="5" fill="#8A9AA5" />

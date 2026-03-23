@@ -1,6 +1,7 @@
 import { Hero } from "@/components/home/hero";
 import { StatsBar } from "@/components/home/stats-bar";
 import { About } from "@/components/home/about";
+import { FeaturedProjects } from "@/components/home/featured-projects";
 import { Skills } from "@/components/home/skills";
 import { Contact } from "@/components/home/contact";
 import { SITE_CONFIG } from "@/lib/config";
@@ -24,6 +25,7 @@ export default function Home() {
       <Hero />
       <StatsBar />
       <About />
+      <FeaturedProjects />
       <Skills />
       <Contact />
     </>

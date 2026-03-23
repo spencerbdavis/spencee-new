@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
-import { ProjectCard } from "@/components/projects/project-card";
-import { SupportingProjectCard } from "@/components/projects/supporting-project";
-import {
-  FEATURED_PROJECTS,
-  MORE_PROJECTS,
-  SUPPORTING_PROJECTS,
-} from "@/lib/projects";
+import { ProjectFilter } from "@/components/projects/project-filter";
 
 export const metadata: Metadata = {
   title: "Spencer D'Avis — Projects",
@@ -18,7 +12,7 @@ export default function ProjectsPage() {
   return (
     <div style={{ maxWidth: 1080, margin: "0 auto", padding: "120px 32px 128px" }}>
       {/* Header */}
-      <div style={{ marginBottom: 64 }}>
+      <div style={{ marginBottom: 48 }}>
         <p
           style={{
             fontSize: 13,
@@ -56,72 +50,7 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      {/* Featured — 2x2 */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))",
-          gap: 20,
-        }}
-      >
-        {FEATURED_PROJECTS.map((p) => (
-          <ProjectCard key={p.slug} project={p} />
-        ))}
-      </div>
-
-      {/* More Projects */}
-      <div style={{ marginTop: 80 }}>
-        <p
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: "var(--muted-foreground)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-            marginBottom: 32,
-          }}
-        >
-          More Projects
-        </p>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-            gap: 20,
-          }}
-        >
-          {MORE_PROJECTS.map((p) => (
-            <ProjectCard key={p.slug} project={p} compact />
-          ))}
-        </div>
-      </div>
-
-      {/* Supporting Tools */}
-      <div style={{ marginTop: 80 }}>
-        <p
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: "var(--muted-foreground)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-            marginBottom: 32,
-          }}
-        >
-          Supporting Tools
-        </p>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))",
-            gap: 20,
-          }}
-        >
-          {SUPPORTING_PROJECTS.map((p) => (
-            <SupportingProjectCard key={p.title} project={p} />
-          ))}
-        </div>
-      </div>
+      <ProjectFilter />
     </div>
   );
 }

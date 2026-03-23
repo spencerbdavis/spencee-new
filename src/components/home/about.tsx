@@ -1,3 +1,26 @@
+const CAPABILITIES = [
+  {
+    title: "Full-Stack Development",
+    description: "Next.js, React Native, iOS, Chrome Extensions — shipped to production across web, mobile, and browser.",
+    highlight: "13 production apps",
+  },
+  {
+    title: "AI & Automation",
+    description: "Gemini OCR pipelines, RAG search with ChromaDB, prompt engineering, and serverless GPU compute on Modal.",
+    highlight: "1,000 receipts/mo processed",
+  },
+  {
+    title: "AI Enablement & Adoption",
+    description: "Led ChatGPT Enterprise rollout across a 48-person org with no prior AI usage — built onboarding docs, custom workflows, and tracked adoption metrics.",
+    highlight: "0 → 48 users adopted",
+  },
+  {
+    title: "Systems Integration",
+    description: "Connected Yardi, Microsoft Graph, Matterport, Google Business Profile, and Apple Business Connect into unified platforms.",
+    highlight: "10+ APIs integrated",
+  },
+];
+
 export function About() {
   return (
     <section
@@ -11,7 +34,7 @@ export function About() {
         style={{
           maxWidth: 1080,
           margin: "0 auto",
-          padding: "96px 32px",
+          padding: "80px 32px",
         }}
       >
         <p
@@ -24,60 +47,71 @@ export function About() {
             marginBottom: 12,
           }}
         >
-          About
+          What I Do
         </p>
         <p
           style={{
-            fontSize: 13,
-            color: "var(--muted-foreground)",
-            marginBottom: 24,
-          }}
-        >
-          Currently at Bonavista Property Management
-        </p>
-        <p
-          style={{
-            fontSize: 24,
+            fontSize: 20,
             fontWeight: 600,
             lineHeight: 1.4,
             letterSpacing: "-0.02em",
             color: "var(--foreground)",
-            maxWidth: 640,
+            maxWidth: 540,
+            marginBottom: 40,
           }}
         >
-          I started in marketing, taught myself to code, and in under two
-          years built the full technical stack for a 60+ property real estate
-          portfolio.
+          I work best when I can own a problem end-to-end — understand the
+          business need, architect the solution, and ship it.
         </p>
-        <p
+
+        <div
           style={{
-            fontSize: 17,
-            lineHeight: 1.65,
-            color: "var(--muted-foreground)",
-            maxWidth: 640,
-            marginTop: 24,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            gap: 16,
           }}
         >
-          I&apos;ve shipped an iOS app to the App Store, built a Chrome extension
-          that bridges a legacy property management system with no public API,
-          automated receipt processing with Gemini, and rolled out ChatGPT
-          Enterprise to 48 users at a company that had never touched AI. I work
-          best when I can own a problem end-to-end — understand the business
-          need, architect the solution, and ship it.
-        </p>
-        <p
-          style={{
-            fontSize: 17,
-            lineHeight: 1.65,
-            color: "var(--muted-foreground)",
-            maxWidth: 640,
-            marginTop: 16,
-          }}
-        >
-          I&apos;m looking for a role where technical depth meets real customer
-          impact. My best work happens when I&apos;m close to the users —
-          building, training, and iterating based on what they actually need.
-        </p>
+          {CAPABILITIES.map((cap) => (
+            <div
+              key={cap.title}
+              className="card"
+              style={{ padding: 24, display: "flex", flexDirection: "column" }}
+            >
+              <p
+                style={{
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: "var(--foreground)",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {cap.title}
+              </p>
+              <p
+                style={{
+                  fontSize: 13,
+                  lineHeight: 1.55,
+                  color: "var(--muted-foreground)",
+                  marginTop: 8,
+                  flex: 1,
+                }}
+              >
+                {cap.description}
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 12,
+                  fontWeight: 600,
+                  color: "var(--accent)",
+                  marginTop: 16,
+                }}
+              >
+                {cap.highlight}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
