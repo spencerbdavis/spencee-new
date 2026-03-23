@@ -34,10 +34,22 @@ export function ElevationBar() {
         right: 0,
         height: 3,
         zIndex: 100,
-        background: "var(--border)",
+        background: "var(--background)",
         overflow: "visible",
       }}
     >
+      {/* Background panel to prevent text bleed */}
+      <div
+        style={{
+          position: "absolute",
+          top: -22,
+          left: 0,
+          right: 0,
+          height: 25,
+          background: "var(--background)",
+          zIndex: -1,
+        }}
+      />
       {/* Filled trail */}
       <div
         style={{

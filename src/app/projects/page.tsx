@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ProjectFilter } from "@/components/projects/project-filter";
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export default function ProjectsPage() {
             color: "var(--foreground)",
           }}
         >
-          What I&apos;ve Built
+          Production Portfolio
         </h1>
         <p
           style={{
@@ -45,12 +46,14 @@ export default function ProjectsPage() {
             maxWidth: 520,
           }}
         >
-          Production systems built to replace vendor contracts and automate
-          operations across a 60+ property portfolio.
+          End-to-end systems I designed, built, and shipped — each solving
+          a real business problem across a 60+ property portfolio.
         </p>
       </div>
 
-      <ProjectFilter />
+      <Suspense>
+        <ProjectFilter />
+      </Suspense>
     </div>
   );
 }

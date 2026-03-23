@@ -6,7 +6,6 @@ export function Footer() {
   return (
     <footer
       style={{
-        borderTop: "1px solid var(--border)",
         overflow: "hidden",
       }}
     >

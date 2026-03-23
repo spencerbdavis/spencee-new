@@ -4,8 +4,7 @@ import { ProjectCard } from "@/components/projects/project-card";
 import { FEATURED_PROJECTS } from "@/lib/projects";
 
 export function FeaturedProjects() {
-  // Show top 3 featured projects
-  const projects = FEATURED_PROJECTS.slice(0, 3);
+  const projects = FEATURED_PROJECTS.slice(0, 4);
 
   return (
     <section style={{ background: "var(--section-alt)" }}>
@@ -16,7 +15,7 @@ export function FeaturedProjects() {
           padding: "80px 32px",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 40 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 40, flexWrap: "wrap", gap: 16 }}>
           <div>
             <p
               style={{
@@ -38,7 +37,7 @@ export function FeaturedProjects() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Production systems, not side projects
+              Systems I designed, built, and shipped to production
             </p>
           </div>
           <Link
@@ -62,12 +61,12 @@ export function FeaturedProjects() {
           className="featured-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: 16,
           }}
         >
           {projects.map((p) => (
-            <ProjectCard key={p.slug} project={p} compact />
+            <ProjectCard key={p.slug} project={{ ...p, badge: undefined }} compact />
           ))}
         </div>
 

@@ -26,7 +26,7 @@ export function About() {
     <section
       id="about"
       style={{
-        background: "var(--section-alt)",
+        background: "var(--background)",
         scrollMarginTop: 80,
       }}
     >

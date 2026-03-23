@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { ProjectCard } from "./project-card";
 import { SupportingProjectCard } from "./supporting-project";
 import {
@@ -8,7 +9,6 @@ import {
   MORE_PROJECTS,
   SUPPORTING_PROJECTS,
 } from "@/lib/projects";
-import type { Project, SupportingProject } from "@/lib/projects";
 
 const MAX_FILTERS = 8;
 
@@ -43,8 +43,15 @@ function matches(techStack: string[], filter: string): boolean {
 }
 
 export function ProjectFilter() {
+  const searchParams = useSearchParams();
   const topSkills = useMemo(getTopSkills, []);
   const [active, setActive] = useState<string | null>(null);
+
+  // Read ?skill= from URL on mount
+  useEffect(() => {
+    const skillParam = searchParams.get("skill");
+    if (skillParam) setActive(skillParam);
+  }, [searchParams]);
 
   const featured = useMemo(
     () =>
@@ -94,6 +101,22 @@ export function ProjectFilter() {
         >
           All
         </button>
+        {/* Show active skill first if not in top list */}
+        {active && !topSkills.includes(active) && (
+          <button
+            onClick={() => setActive(null)}
+            className="pill"
+            style={{
+              cursor: "pointer",
+              background: "var(--accent)",
+              color: "#fff",
+              borderColor: "var(--accent)",
+              transition: "all 0.15s",
+            }}
+          >
+            {active} ✕
+          </button>
+        )}
         {topSkills.map((skill) => (
           <button
             key={skill}
