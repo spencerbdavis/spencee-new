@@ -83,6 +83,31 @@ export const FEATURED_PROJECTS: Project[] = [
     featured: true,
   },
   {
+    slug: "rentcafe-mcp",
+    title: "RentCafe MCP Server",
+    subtitle:
+      "A Model Context Protocol server that lets Claude (or any MCP client) query RentCafe Site Manager directly. Built on Anthropic's MCP SDK with a browser-authenticated headless Puppeteer session, because RentCafe doesn't expose a public API.",
+    problem:
+      "RentCafe Site Manager has no public API for portfolios under enterprise tier, so leasing data is locked behind a session-authenticated UI. I built an MCP server that maintains a headless browser session and exposes RentCafe's Site Manager actions as MCP tools, so an agent can read and act on live portfolio data without scraping or vendor-side integrations.",
+    techStack: [
+      "Node.js",
+      "TypeScript",
+      "MCP SDK",
+      "Anthropic SDK",
+      "Puppeteer",
+      "Headless Chrome",
+    ],
+    stats: [
+      { value: "MCP", label: "Server Protocol" },
+      { value: "60+", label: "Properties Accessible" },
+      { value: "Browser", label: "Authenticated Session" },
+      { value: "0", label: "Public API Required" },
+    ],
+    links: [],
+    screenshotDir: "rentcafe-mcp",
+    featured: true,
+  },
+  {
     slug: "wordpress-plugin",
     title: "RentCafe × WordPress Plugin",
     subtitle:
@@ -144,7 +169,13 @@ export const MORE_PROJECTS: Project[] = [
     problem: undefined,
     techStack: ["Next.js", "Python", "WhisperX", "ChromaDB", "Ollama", "Turso"],
     stats: [],
-    links: [],
+    links: [
+      {
+        label: "Source on GitHub",
+        url: "https://github.com/spencerbdavis/tablo-news",
+        icon: "github",
+      },
+    ],
     screenshotDir: "tablo-news",
     featured: false,
     badge: "In Progress",
@@ -170,14 +201,20 @@ export const MORE_PROJECTS: Project[] = [
     slug: "creative",
     title: "Creative Work",
     subtitle:
-      "Photography, graphic design, and branding, including vaccine photos with 5.8M views and 80K downloads on Pixabay & Unsplash.",
+      "Photography, graphic design, and branding, including a Pixabay Editor's Choice COVID vaccine photo set with 182K views and 126K downloads, picked up by news outlets and research institutions.",
     problem: undefined,
     techStack: ["Photography", "Graphic Design", "Branding", "Marketing"],
     stats: [
-      { value: "5.8M", label: "Views" },
-      { value: "80K+", label: "Downloads" },
+      { value: "182K", label: "Pixabay Views" },
+      { value: "126K", label: "Downloads" },
+      { value: "1", label: "Editor's Choice" },
     ],
-    links: [],
+    links: [
+      {
+        label: "Pixabay Profile",
+        url: "https://pixabay.com/users/spencerbdavis1-21090082/",
+      },
+    ],
     screenshotDir: "creative",
     featured: false,
   },

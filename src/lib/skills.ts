@@ -19,7 +19,7 @@ export const SKILLS: SkillGroup[] = [
   },
   {
     category: "Backend",
-    items: ["Node.js", "FastAPI", "REST APIs", "OAuth 2.0", "Webhooks", "Cloudflare Workers"],
+    items: ["Node.js", "FastAPI", "REST APIs", "OAuth 2.0", "Webhooks", "Cloudflare Workers", "Puppeteer"],
   },
   {
     category: "Databases",
@@ -214,6 +214,13 @@ export const SKILL_PROJECTS: Record<string, SkillProject[]> = {
   ],
   RentCafe: [
     { name: "WordPress Plugin", slug: "wordpress-plugin" },
+    { name: "RentCafe MCP Server", slug: "rentcafe-mcp" },
+  ],
+  MCP: [
+    { name: "RentCafe MCP Server", slug: "rentcafe-mcp" },
+  ],
+  Puppeteer: [
+    { name: "RentCafe MCP Server", slug: "rentcafe-mcp" },
   ],
   Matterport: [
     { name: "Admin Panel", slug: "admin-panel" },

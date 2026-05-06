@@ -7,7 +7,7 @@ import { TechPills } from "@/components/projects/tech-pills";
 export const metadata: Metadata = {
   title: "Spencer D'Avis | Creative Work",
   description:
-    "Graphic design, photography, and branding work, including vaccine photos with 5.8M views and 80K downloads.",
+    "Graphic design, photography, and branding work, including royalty-free COVID vaccine photos used by news outlets and research institutions.",
   alternates: { canonical: "https://spenc.ee/projects/creative" },
 };
 
@@ -94,22 +94,43 @@ export default function CreativePage() {
             As a COVID-19 Contact Tracer, I was tasked with creating a presentation outlining the differences between each vaccine type. I took an expired Xylocaine vial, created labels for each vaccine, and photographed them, left hand holding the vial, right hand on the shutter.
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 12 }}>
-            I released the photos royalty-free on Pixabay and Unsplash. They were used in news articles and research papers, including by the University of Arizona and the London School of Hygiene & Tropical Medicine.
+            I released the photos royalty-free on{" "}
+            <a
+              href="https://pixabay.com/users/spencerbdavis1-21090082/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--accent)", textDecoration: "underline", textDecorationThickness: 1, textUnderlineOffset: 3 }}
+            >
+              Pixabay
+            </a>{" "}
+            and Unsplash. They were used in news articles and research papers, including by the University of Arizona and the London School of Hygiene & Tropical Medicine. One image was named a Pixabay Editor&apos;s Choice.
           </p>
 
           {/* Stats */}
           <div style={{ display: "flex", gap: 40, marginTop: 28, flexWrap: "wrap" }}>
             <div>
               <p style={{ fontFamily: "var(--font-mono)", fontSize: 28, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-                5.8M
+                182K
               </p>
-              <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Views</p>
+              <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Views on Pixabay</p>
             </div>
             <div>
               <p style={{ fontFamily: "var(--font-mono)", fontSize: 28, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-                80K+
+                126K
               </p>
               <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Downloads</p>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 28, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+                146
+              </p>
+              <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Likes</p>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 28, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+                1
+              </p>
+              <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Editor&apos;s Choice</p>
             </div>
           </div>
 
@@ -121,7 +142,7 @@ export default function CreativePage() {
             <ImageGrid
               alt="COVID vaccine vial"
               images={[
-                { src: "/screenshots/creative/vaccine-pixabay.png", caption: "Pixabay stats, 5.8M views" },
+                { src: "/screenshots/creative/vaccine-pixabay.png", caption: "Pixabay portfolio: 182K views, 126K downloads" },
                 { src: "/screenshots/creative/vaccine-london.png", caption: "London School of Hygiene & Tropical Medicine" },
                 { src: "/screenshots/creative/vaccine-article-1.png", caption: "Vaccine inequity article" },
                 { src: "/screenshots/creative/vaccine-article-2.png", caption: "Viral Vector Vaccine article" },

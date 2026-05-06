@@ -295,25 +295,93 @@ export function FooterScene() {
 
         {/* ===== Rain ===== */}
         {isRaining && (
-          <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 2 }}>
-            {Array.from({ length: 24 }).map((_, i) => (
-              <div
-                key={i}
-                style={{
-                  position: "absolute",
-                  left: `${(i / 24) * 100 + Math.random() * 4}%`,
-                  top: -10, width: 1, height: 14 + Math.random() * 8,
-                  background: "var(--rain-color)", opacity: 0.2 + Math.random() * 0.1,
-                  animationName: visible ? "rain-fall" : "none",
-                  animationDuration: `${0.5 + Math.random() * 0.4}s`,
-                  animationTimingFunction: "linear",
-                  animationIterationCount: "infinite",
-                  animationDelay: `${Math.random() * 2}s`,
-                  transform: "rotate(8deg)",
-                }}
-              />
-            ))}
-          </div>
+          <>
+            {/* Overcast overlay — darkens the sky */}
+            <div style={{
+              position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.12) 100%)",
+            }} />
+
+            {/* Rain drops — multiple layers for depth */}
+            <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 6 }}>
+              {/* Far rain — thin, slow, faint */}
+              {Array.from({ length: 20 }).map((_, i) => (
+                <div
+                  key={`rf${i}`}
+                  style={{
+                    position: "absolute",
+                    left: `${(i / 20) * 100 + ((i * 7) % 4)}%`,
+                    top: -16, width: 0.5, height: 10 + (i % 5) * 2,
+                    background: "var(--rain-color)", opacity: 0.1 + (i % 3) * 0.03,
+                    animationName: visible ? "rain-fall-far" : "none",
+                    animationDuration: `${0.8 + (i % 4) * 0.15}s`,
+                    animationTimingFunction: "linear",
+                    animationIterationCount: "infinite",
+                    animationDelay: `${(i * 0.13) % 1.5}s`,
+                  }}
+                />
+              ))}
+              {/* Mid rain — medium streaks */}
+              {Array.from({ length: 30 }).map((_, i) => (
+                <div
+                  key={`rm${i}`}
+                  style={{
+                    position: "absolute",
+                    left: `${(i / 30) * 100 + ((i * 13) % 3)}%`,
+                    top: -20, width: 1, height: 14 + (i % 6) * 2,
+                    background: "var(--rain-color)", opacity: 0.15 + (i % 4) * 0.04,
+                    borderRadius: "0 0 1px 1px",
+                    animationName: visible ? "rain-fall-mid" : "none",
+                    animationDuration: `${0.55 + (i % 5) * 0.1}s`,
+                    animationTimingFunction: "linear",
+                    animationIterationCount: "infinite",
+                    animationDelay: `${(i * 0.09) % 1.8}s`,
+                  }}
+                />
+              ))}
+              {/* Near rain — thicker, faster, brighter */}
+              {Array.from({ length: 14 }).map((_, i) => (
+                <div
+                  key={`rn${i}`}
+                  style={{
+                    position: "absolute",
+                    left: `${(i / 14) * 100 + ((i * 11) % 5)}%`,
+                    top: -24, width: 1.5, height: 18 + (i % 4) * 3,
+                    background: "var(--rain-color)", opacity: 0.22 + (i % 3) * 0.06,
+                    borderRadius: "0 0 1px 1px",
+                    animationName: visible ? "rain-fall-near" : "none",
+                    animationDuration: `${0.35 + (i % 3) * 0.08}s`,
+                    animationTimingFunction: "linear",
+                    animationIterationCount: "infinite",
+                    animationDelay: `${(i * 0.17) % 1.2}s`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Rain splashes / ripples on water surface */}
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 60, overflow: "hidden", pointerEvents: "none", zIndex: 3 }}>
+              {Array.from({ length: 10 }).map((_, i) => (
+                <div
+                  key={`sp${i}`}
+                  style={{
+                    position: "absolute",
+                    left: `${(i / 10) * 100 + ((i * 17) % 8)}%`,
+                    bottom: 10 + (i % 4) * 12,
+                    width: 6, height: 2,
+                    borderRadius: "50%",
+                    border: "0.5px solid var(--rain-color)",
+                    opacity: 0,
+                    animationName: visible ? "rain-ripple" : "none",
+                    animationDuration: `${1 + (i % 3) * 0.3}s`,
+                    animationTimingFunction: "ease-out",
+                    animationIterationCount: "infinite",
+                    animationDelay: `${(i * 0.31) % 2}s`,
+                  }}
+                />
+              ))}
+            </div>
+          </>
         )}
 
         {/* ===== Ferry ===== */}

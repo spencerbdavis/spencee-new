@@ -19,12 +19,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Spencer D'Avis | Full-Stack Developer & AI Systems Builder",
   description:
-    "Self-taught full-stack developer with 1,670+ production commits across billing, maintenance, staging, and AI automation systems for a 60+ property portfolio.",
+    "Self-taught full-stack developer with 2,600+ production commits across maintenance, billing, AI staging, an MCP server, an iOS app, and a Chrome extension for a 60+ property portfolio.",
   metadataBase: new URL("https://spenc.ee"),
   openGraph: {
     title: "Spencer D'Avis | Full-Stack Developer & AI Systems Builder",
     description:
-      "Self-taught full-stack developer with 1,670+ production commits across billing, maintenance, staging, and AI automation systems for a 60+ property portfolio.",
+      "Self-taught full-stack developer with 2,600+ production commits across maintenance, billing, AI staging, an MCP server, an iOS app, and a Chrome extension for a 60+ property portfolio.",
     url: "https://spenc.ee",
     siteName: "Spencer D'Avis",
     type: "website",

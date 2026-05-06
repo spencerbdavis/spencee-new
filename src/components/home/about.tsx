@@ -16,8 +16,8 @@ const CAPABILITIES = [
   },
   {
     title: "Systems Integration",
-    description: "Connected Yardi, Microsoft Graph, Matterport, Google Business Profile, and Apple Business Connect into unified platforms.",
-    highlight: "10+ APIs integrated",
+    description: "Connected Yardi, RentCafe, Microsoft Graph, Matterport, Google Business Profile, Apple Business Connect, and 12+ others into unified platforms.",
+    highlight: "18+ APIs integrated",
   },
 ];
 

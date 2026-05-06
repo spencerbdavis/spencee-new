@@ -79,11 +79,29 @@ export function Footer() {
           >
             GitHub
           </a>
+          <a
+            href={SITE_CONFIG.pixabay}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link"
+            style={{ fontSize: 13, textDecoration: "none" }}
+          >
+            Pixabay
+          </a>
         </div>
 
-        {/* Copyright */}
-        <p style={{ fontSize: 12, color: "var(--muted-foreground)" }}>
-          &copy; {new Date().getFullYear()} Spencer D&apos;Avis &middot; Seattle, WA
+        {/* Copyright + source */}
+        <p style={{ fontSize: 12, color: "var(--muted-foreground)", textAlign: "center" }}>
+          &copy; {new Date().getFullYear()} Spencer D&apos;Avis &middot; Seattle, WA &middot;{" "}
+          <a
+            href={SITE_CONFIG.githubSourceRepo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link"
+            style={{ fontSize: 12, textDecoration: "none" }}
+          >
+            Source
+          </a>
         </p>
       </div>
     </footer>
