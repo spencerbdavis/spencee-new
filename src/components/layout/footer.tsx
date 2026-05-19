@@ -41,6 +41,13 @@ export function Footer() {
             Projects
           </Link>
           <Link
+            href="/projects/wordpress-sites"
+            className="nav-link"
+            style={{ fontSize: 13, textDecoration: "none" }}
+          >
+            WordPress
+          </Link>
+          <Link
             href="/#about"
             className="nav-link"
             style={{ fontSize: 13, textDecoration: "none" }}

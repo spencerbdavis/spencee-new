@@ -5,9 +5,9 @@ import { ArrowLeft } from "lucide-react";
 import { TechPills } from "@/components/projects/tech-pills";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis | Creative Work",
+  title: "Spencer D'Avis | Creative Work — Print, Signage & Photography",
   description:
-    "Graphic design, photography, and branding work, including royalty-free COVID vaccine photos used by news outlets and research institutions.",
+    "Large-format print and signage design (window clings, A-boards, yard signs) in Adobe Illustrator and Photoshop, plus royalty-free COVID vaccine photography used by news outlets and research institutions.",
   alternates: { canonical: "https://spenc.ee/projects/creative" },
 };
 
@@ -75,11 +75,62 @@ export default function CreativePage() {
             marginTop: 20,
           }}
         >
-          Graphic design, photography, and branding from before the dev era. Proof that the visual eye came first.
+          Large-format print and signage design alongside photography and
+          branding work. Adobe Illustrator and Photoshop, applied to real
+          properties across Seattle.
         </p>
       </div>
 
       <div style={{ marginTop: 72, display: "flex", flexDirection: "column", gap: 80 }}>
+        {/* ===== Print & Signage Design ===== */}
+        <section>
+          <SectionLabel>Print & Signage Design</SectionLabel>
+          <h2 style={{ fontSize: 24, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.02em" }}>
+            Window Clings, A-Boards & Yard Signs
+          </h2>
+          <p style={{ fontSize: 13, color: "var(--muted-foreground)", marginTop: 4 }}>
+            Ongoing &middot; Bonavista Property Management portfolio
+          </p>
+
+          <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 20 }}>
+            Large-format print design for the 60+ property portfolio: window
+            clings, A-board sandwich signs, yard signs, leasing banners, and
+            digital ad creative. Designed in Adobe Illustrator and Photoshop,
+            prepped for print with proper bleeds, color profiles, and
+            production-ready vector files.
+          </p>
+
+          <div style={{ marginTop: 28 }}>
+            <TechPills
+              items={[
+                "Adobe Illustrator",
+                "Adobe Photoshop",
+                "Window Clings",
+                "A-Boards",
+                "Yard Signs",
+                "Large-Format Print",
+                "Brand Identity",
+              ]}
+            />
+          </div>
+
+          <div style={{ marginTop: 32 }}>
+            <ImageGrid
+              alt="Print and signage design"
+              images={[
+                { src: "/screenshots/creative/print/fremont-village-book-a-tour.png", caption: "Fremont Village — Book a Tour window cling" },
+                { src: "/screenshots/creative/print/ondine-book-a-tour.png", caption: "Ondine Eastlake — Book a Tour window cling" },
+                { src: "/screenshots/creative/print/ondine-fremont-aboards.png", caption: "Ondine & Fremont Village — A-board / banner set" },
+                { src: "/screenshots/creative/print/5902-ballard-aboard.png", caption: "5902 Ballard — Studios A-board" },
+                { src: "/screenshots/creative/print/509-1st-aboard.png", caption: "509 1st — Now Leasing A-board" },
+                { src: "/screenshots/creative/print/alt-capitol-hill-banners.png", caption: "Alt Capitol Hill — banner system" },
+                { src: "/screenshots/creative/print/509-1st-month-free.png", caption: "509 1st — 1 Month Free digital ad" },
+                { src: "/screenshots/creative/print/no-dumping-sign.png", caption: "No Dumping — High-Report Zone yard sign" },
+              ]}
+            />
+          </div>
+        </section>
+
         {/* ===== COVID Vaccine Vial Photos ===== */}
         <section>
           <SectionLabel>Photography</SectionLabel>

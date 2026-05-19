@@ -87,9 +87,18 @@ export default function WordPressPluginPage() {
           ]}
         />
 
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 32, marginBottom: 16 }}>
-          Live Sites
-        </p>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: 32, marginBottom: 16, gap: 16, flexWrap: "wrap" }}>
+          <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+            Live Sites
+          </p>
+          <Link
+            href="/projects/wordpress-sites"
+            className="nav-link"
+            style={{ fontSize: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}
+          >
+            See all 14+ WordPress sites →
+          </Link>
+        </div>
         <div style={{ display: "grid", gap: 10, gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
           {[
             { name: "Vibe Fremont", url: "https://vibefremont.com/", loc: "Fremont, Seattle" },

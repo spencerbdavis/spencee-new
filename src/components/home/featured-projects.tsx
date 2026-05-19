@@ -4,7 +4,7 @@ import { ProjectCard } from "@/components/projects/project-card";
 import { FEATURED_PROJECTS } from "@/lib/projects";
 
 export function FeaturedProjects() {
-  const projects = FEATURED_PROJECTS.slice(0, 4);
+  const projects = FEATURED_PROJECTS.slice(0, 6);
 
   return (
     <section style={{ background: "var(--section-alt)" }}>

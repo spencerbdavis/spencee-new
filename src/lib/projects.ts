@@ -108,6 +108,42 @@ export const FEATURED_PROJECTS: Project[] = [
     featured: true,
   },
   {
+    slug: "wordpress-sites",
+    title: "WordPress Sites",
+    subtitle:
+      "14+ live sites I've built, designed, hosted, and maintained, from Elementor and Astra builds to bespoke custom themes. Available for new WordPress projects.",
+    techStack: ["WordPress", "Elementor", "Astra", "PHP", "Custom Themes", "Hosting"],
+    stats: [
+      { value: "14+", label: "Live Sites" },
+      { value: "Elementor", label: "Astra · Bespoke" },
+      { value: "Available", label: "For Side Work" },
+    ],
+    links: [],
+    screenshotDir: "wordpress-sites",
+    featured: true,
+    badge: "Side Work Available",
+  },
+  {
+    slug: "creative",
+    title: "Creative Work",
+    subtitle:
+      "Large-format print and signage design (window clings, A-boards, yard signs) in Illustrator and Photoshop, plus a Pixabay Editor's Choice COVID vaccine photo set with 182K views and 126K downloads picked up by news outlets and research institutions.",
+    techStack: ["Adobe Illustrator", "Adobe Photoshop", "Print Design", "Signage", "Photography", "Branding"],
+    stats: [
+      { value: "182K", label: "Pixabay Views" },
+      { value: "126K", label: "Downloads" },
+      { value: "1", label: "Editor's Choice" },
+    ],
+    links: [
+      {
+        label: "Pixabay Profile",
+        url: "https://pixabay.com/users/spencerbdavis1-21090082/",
+      },
+    ],
+    screenshotDir: "creative",
+    featured: true,
+  },
+  {
     slug: "wordpress-plugin",
     title: "RentCafe × WordPress Plugin",
     subtitle:
@@ -195,27 +231,6 @@ export const MORE_PROJECTS: Project[] = [
       },
     ],
     screenshotDir: "business-card",
-    featured: false,
-  },
-  {
-    slug: "creative",
-    title: "Creative Work",
-    subtitle:
-      "Photography, graphic design, and branding, including a Pixabay Editor's Choice COVID vaccine photo set with 182K views and 126K downloads, picked up by news outlets and research institutions.",
-    problem: undefined,
-    techStack: ["Photography", "Graphic Design", "Branding", "Marketing"],
-    stats: [
-      { value: "182K", label: "Pixabay Views" },
-      { value: "126K", label: "Downloads" },
-      { value: "1", label: "Editor's Choice" },
-    ],
-    links: [
-      {
-        label: "Pixabay Profile",
-        url: "https://pixabay.com/users/spencerbdavis1-21090082/",
-      },
-    ],
-    screenshotDir: "creative",
     featured: false,
   },
 ];
