@@ -4,6 +4,7 @@ import { WeatherProvider } from "@/components/providers/weather-provider";
 import { ElevationBar } from "@/components/layout/elevation-bar";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geist = Geist({
@@ -47,6 +48,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </WeatherProvider>
+        <Analytics />
       </body>
     </html>
   );
