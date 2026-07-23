@@ -9,75 +9,37 @@ export function ProjectCard({ project, compact }: { project: Project; compact?: 
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="card group"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: compact ? 28 : 32,
-        textDecoration: "none",
-        height: "100%",
-      }}
+      className={`group invert-hover flex h-full flex-col border border-hairline ${compact ? "p-6" : "p-7"}`}
     >
-      {project.badge && (
-        <span
-          className="pill"
-          style={{ alignSelf: "flex-start", marginBottom: 16, fontSize: 10, fontWeight: 600 }}
-        >
-          {project.badge}
-        </span>
-      )}
+      <div className="flex items-start justify-between gap-3">
+        <span className="label-mono group-hover:text-paper">{project.category}</span>
+        {project.badge && <span className="tag">{project.badge}</span>}
+      </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+      <div className="mt-4 flex items-start justify-between gap-3">
         <h3
-          style={{
-            fontSize: compact ? 18 : 20,
-            fontWeight: 600,
-            color: "var(--foreground)",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.3,
-          }}
+          className={`font-semibold tracking-tight text-ink group-hover:text-paper ${compact ? "text-lg" : "text-xl"}`}
         >
           {project.title}
         </h3>
         <ArrowUpRight
           size={16}
-          style={{ color: "var(--muted-foreground)", opacity: 0, transition: "opacity 0.2s", flexShrink: 0, marginTop: 4 }}
-          className="group-hover:opacity-60"
+          className="mt-1 shrink-0 opacity-0 transition-opacity duration-100 group-hover:opacity-100"
         />
       </div>
 
-      <p
-        style={{
-          fontSize: 14,
-          lineHeight: 1.6,
-          color: "var(--muted-foreground)",
-          marginTop: 10,
-        }}
-      >
-        {project.subtitle}
-      </p>
+      <p className="mt-2 text-sm leading-relaxed text-ink-muted group-hover:text-paper">{project.outcome}</p>
 
-      <div style={{ marginTop: 20 }}>
+      <div className="mt-5">
         <TechPills items={project.techStack} max={4} />
       </div>
 
       {stat && (
-        <div style={{ marginTop: "auto", paddingTop: 28 }}>
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 28,
-              fontWeight: 600,
-              color: "var(--foreground)",
-              letterSpacing: "-0.03em",
-              lineHeight: 1,
-            }}
-          >
+        <div className="mt-auto pt-7">
+          <p className="font-mono text-2xl leading-none font-semibold tracking-tight text-ink group-hover:text-paper">
             {stat.value}
           </p>
-          <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>
-            {stat.label}
-          </p>
+          <p className="label-mono mt-1 group-hover:text-paper">{stat.label}</p>
         </div>
       )}
     </Link>

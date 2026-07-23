@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 
 function FeatureList({ items }: { items: string[] }) {
   return (
-    <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 14 }}>
+    <ul className="flex flex-col gap-3.5">
       {items.map((item) => (
-        <li key={item} style={{ display: "flex", gap: 12, fontSize: 14, lineHeight: 1.6, color: "var(--muted-foreground)" }}>
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--border)", marginTop: 8, flexShrink: 0 }} />
+        <li key={item} className="flex gap-3 text-sm leading-relaxed text-ink-muted">
+          <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 bg-ink-muted" />
           {item}
         </li>
       ))}
@@ -29,14 +29,12 @@ export default function BusinessCardPage() {
   return (
     <ProjectLayout project={project}>
       {/* Interactive card */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className="flex justify-center">
         <SpinningCard />
       </div>
 
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          How It Works
-        </p>
+        <p className="label-mono mb-6">How It Works</p>
         <FeatureList
           items={[
             "Each employee gets a unique URL (e.g., cards.bonavistapm.com/SPNCE) with no manual card design needed",
@@ -52,10 +50,8 @@ export default function BusinessCardPage() {
       </div>
 
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          Why Build It
-        </p>
-        <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640 }}>
+        <p className="label-mono mb-6">Why Build It</p>
+        <p className="max-w-xl text-[15px] leading-relaxed text-ink-muted">
           With 100+ employees across 60+ properties, maintaining individual business
           cards was a design bottleneck. New hires, title changes, and property
           reassignments meant constant manual updates. This system generates

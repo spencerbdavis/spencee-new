@@ -50,6 +50,29 @@ function matches(slug: string, techStack: string[], filter: string): boolean {
   return false;
 }
 
+function FilterPill({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`tag transition-colors duration-100 ${
+        active
+          ? "border-accent bg-accent text-paper"
+          : "hover:border-accent hover:text-accent"
+      }`}
+    >
+      {label}
+    </button>
+  );
+}
+
 export function ProjectFilter() {
   const searchParams = useSearchParams();
   const topSkills = useMemo(getTopSkills, []);
@@ -88,98 +111,39 @@ export function ProjectFilter() {
   return (
     <>
       {/* Filter pills */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 8,
-          marginBottom: 48,
-        }}
-      >
-        <button
-          onClick={() => setActive(null)}
-          className="pill"
-          style={{
-            cursor: "pointer",
-            background: active === null ? "var(--accent)" : undefined,
-            color: active === null ? "#fff" : undefined,
-            borderColor: active === null ? "var(--accent)" : undefined,
-            transition: "all 0.15s",
-          }}
-        >
-          All
-        </button>
+      <div className="mb-12 flex flex-wrap gap-2">
+        <FilterPill label="All" active={active === null} onClick={() => setActive(null)} />
         {/* Show active skill first if not in top list */}
         {active && !topSkills.includes(active) && (
-          <button
-            onClick={() => setActive(null)}
-            className="pill"
-            style={{
-              cursor: "pointer",
-              background: "var(--accent)",
-              color: "#fff",
-              borderColor: "var(--accent)",
-              transition: "all 0.15s",
-            }}
-          >
-            {active} ✕
-          </button>
+          <FilterPill label={`${active} ✕`} active onClick={() => setActive(null)} />
         )}
         {topSkills.map((skill) => (
-          <button
+          <FilterPill
             key={skill}
+            label={skill}
+            active={active === skill}
             onClick={() => setActive(active === skill ? null : skill)}
-            className="pill"
-            style={{
-              cursor: "pointer",
-              background: active === skill ? "var(--accent)" : undefined,
-              color: active === skill ? "#fff" : undefined,
-              borderColor: active === skill ? "var(--accent)" : undefined,
-              transition: "all 0.15s",
-            }}
-          >
-            {skill}
-          </button>
+          />
         ))}
       </div>
 
       {/* Featured */}
       {featured.length > 0 && (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))",
-            gap: 20,
-          }}
-        >
-          {featured.map((p) => (
-            <ProjectCard key={p.slug} project={p} />
-          ))}
+        <div>
+          <p className="label-mono hairline mb-8 pt-4">Featured</p>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            {featured.map((p) => (
+              <ProjectCard key={p.slug} project={p} />
+            ))}
+          </div>
         </div>
       )}
 
       {/* More Projects */}
       {more.length > 0 && (
-        <div style={{ marginTop: featured.length > 0 ? 80 : 0 }}>
-          <p
-            style={{
-              fontSize: 11,
-              fontWeight: 600,
-              color: "var(--muted-foreground)",
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              marginBottom: 32,
-            }}
-          >
-            More Projects
-          </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-              gap: 20,
-            }}
-          >
+        <div className={featured.length > 0 ? "mt-20" : ""}>
+          <p className="label-mono hairline mb-8 pt-4">More Projects</p>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {more.map((p) => (
               <ProjectCard key={p.slug} project={p} compact />
             ))}
@@ -189,26 +153,9 @@ export function ProjectFilter() {
 
       {/* Supporting Tools */}
       {supporting.length > 0 && (
-        <div style={{ marginTop: (featured.length > 0 || more.length > 0) ? 80 : 0 }}>
-          <p
-            style={{
-              fontSize: 11,
-              fontWeight: 600,
-              color: "var(--muted-foreground)",
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              marginBottom: 32,
-            }}
-          >
-            Supporting Tools
-          </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 440px), 1fr))",
-              gap: 20,
-            }}
-          >
+        <div className={featured.length > 0 || more.length > 0 ? "mt-20" : ""}>
+          <p className="label-mono hairline mb-8 pt-4">Supporting Tools</p>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {supporting.map((p) => (
               <SupportingProjectCard key={p.title} project={p} />
             ))}
@@ -218,16 +165,7 @@ export function ProjectFilter() {
 
       {/* Empty state */}
       {featured.length === 0 && more.length === 0 && supporting.length === 0 && (
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--muted-foreground)",
-            fontSize: 15,
-            padding: "64px 0",
-          }}
-        >
-          No projects match that filter.
-        </p>
+        <p className="py-16 text-center text-ink-muted">No projects match that filter.</p>
       )}
     </>
   );

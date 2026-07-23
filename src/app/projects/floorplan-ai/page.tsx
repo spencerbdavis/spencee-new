@@ -48,49 +48,32 @@ export default function FloorplanAIPage() {
   return (
     <ProjectLayout project={project}>
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          The Problem
-        </p>
-        <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--muted-foreground)", maxWidth: 640 }}>
-          {project.problem}
-        </p>
+        <p className="label-mono mb-6">The Problem</p>
+        <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">{project.problem}</p>
       </div>
 
       {/* Pipeline */}
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 32 }}>
-          The Pipeline
-        </p>
+        <p className="label-mono mb-8">The Pipeline</p>
         <div className="grid gap-4 sm:grid-cols-2">
           {stages.map((stage) => (
-            <div
-              key={stage.num}
-              style={{ borderRadius: 12, padding: 24, backgroundColor: "var(--muted)" }}
-            >
-              <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 24, fontWeight: 600, lineHeight: 1, color: "var(--foreground)", opacity: 0.15 }}>
-                  {stage.num}
-                </span>
-                <p style={{ fontSize: 15, fontWeight: 600, color: "var(--foreground)" }}>
-                  {stage.title}
-                </p>
+            <div key={stage.num} className="border border-hairline p-6">
+              <div className="flex items-baseline gap-3">
+                <span className="font-mono text-2xl leading-none font-semibold text-ink-muted">{stage.num}</span>
+                <p className="text-sm font-semibold text-ink">{stage.title}</p>
               </div>
-              <p style={{ marginTop: 12, fontSize: 13, lineHeight: 1.55, color: "var(--muted-foreground)" }}>
-                {stage.desc}
-              </p>
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted">{stage.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Note */}
-      <div style={{ borderRadius: 12, padding: 24, backgroundColor: "var(--muted)" }}>
-        <p style={{ fontSize: 14, lineHeight: 1.6, fontStyle: "italic", color: "var(--muted-foreground)" }}>
-          This project represents an exploration into ML and computer vision.
-          The pipeline works but proved extremely challenging. The variety of
-          architectural drawing styles makes reliable extraction a hard
-          problem. Included to show willingness to tackle difficult technical
-          challenges.
+      <div className="border border-hairline p-6">
+        <p className="text-sm leading-relaxed text-ink-muted italic">
+          This project represents an exploration into ML and computer vision. The pipeline works but proved
+          extremely challenging. The variety of architectural drawing styles makes reliable extraction a hard
+          problem. Included to show willingness to tackle difficult technical challenges.
         </p>
       </div>
     </ProjectLayout>

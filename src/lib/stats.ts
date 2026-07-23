@@ -1,7 +1,9 @@
 export const PORTFOLIO_STATS = [
-  { value: "2,600+", label: "Production Commits Across Tracked Repos" },
-  { value: "$103K/yr", label: "In Vendor Contracts Replaced with In House Code" },
-  { value: "18+", label: "External APIs Integrated in Production" },
-  { value: "4", label: "AI Pipelines Running Against 60+ Properties" },
-  { value: "1,000/mo", label: "Receipts Automatically Processed (Previously Manual)" },
+  { value: "$103K/yr", label: "Vendor spend replaced with in-house systems" },
+  { value: "60+", label: "Properties marketed end to end" },
+  { value: "18+", label: "Marketing & operations APIs in production" },
+  { value: "4", label: "AI pipelines powering marketing content" },
+  { value: "1,000/mo", label: "Documents auto-processed" },
 ] as const;
+
+export const COMMITS_STAT = { value: "2,600+", label: "Production commits behind it all" };

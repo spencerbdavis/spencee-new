@@ -68,14 +68,8 @@ export function SpinningCard() {
 
   return (
     <div
-      style={{
-        perspective: 800,
-        width: "100%",
-        maxWidth: 480,
-        cursor: isDragging ? "grabbing" : "grab",
-        userSelect: "none",
-        WebkitUserSelect: "none",
-      }}
+      className="w-full max-w-[30rem] select-none [perspective:800px]"
+      style={{ cursor: isDragging ? "grabbing" : "grab" }}
     >
       <div
         ref={containerRef}
@@ -83,72 +77,43 @@ export function SpinningCard() {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
+        className="relative aspect-[3.5/2] w-full [transform-style:preserve-3d]"
         style={{
-          position: "relative",
-          width: "100%",
-          aspectRatio: "3.5 / 2",
-          transformStyle: "preserve-3d",
           transform: `rotateY(${rotateY}deg)`,
           transition: isDragging ? "none" : undefined,
         }}
       >
         {/* Front */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            borderRadius: 12,
-            overflow: "hidden",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1)",
-          }}
-        >
+        <div className="absolute inset-0 overflow-hidden border border-hairline [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
           <Image
-            src="/screenshots/business-card/card-1.png"
+            src="/screenshots/business-card/card-1.webp"
             alt="Business card front"
             fill
             sizes="480px"
-            style={{ objectFit: "cover" }}
+            className="object-cover"
             priority
           />
         </div>
 
         {/* Back */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-            borderRadius: 12,
-            overflow: "hidden",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1)",
-          }}
-        >
+        <div className="absolute inset-0 overflow-hidden border border-hairline [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)]">
           <Image
-            src="/screenshots/business-card/card-2.png"
+            src="/screenshots/business-card/card-2.webp"
             alt="Business card back with QR code"
             fill
             sizes="480px"
-            style={{ objectFit: "cover" }}
+            className="object-cover"
           />
         </div>
       </div>
 
       {/* Hint text */}
       <p
-        style={{
-          textAlign: "center",
-          marginTop: 16,
-          fontSize: 12,
-          color: "var(--muted-foreground)",
-          opacity: showingBack ? 0.6 : 0.4,
-          transition: "opacity 0.3s",
-        }}
+        className={`label-mono mt-4 text-center transition-opacity duration-100 ${
+          showingBack ? "opacity-70" : "opacity-50"
+        }`}
       >
-        {isDragging ? "↔ Drag to spin" : showingBack ? "QR code side" : "Drag to flip"}
+        {isDragging ? "Drag to spin" : showingBack ? "QR code side" : "Drag to flip"}
       </p>
     </div>
   );

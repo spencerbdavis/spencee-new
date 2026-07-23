@@ -13,10 +13,9 @@ export const metadata: Metadata = {
 
 function FeatureList({ items }: { items: string[] }) {
   return (
-    <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 14 }}>
+    <ul className="divide-y divide-hairline border-t border-hairline">
       {items.map((item) => (
-        <li key={item} style={{ display: "flex", gap: 12, fontSize: 14, lineHeight: 1.6, color: "var(--muted-foreground)" }}>
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--border)", marginTop: 8, flexShrink: 0 }} />
+        <li key={item} className="py-3 text-sm leading-relaxed text-ink-muted">
           {item}
         </li>
       ))}
@@ -24,21 +23,11 @@ function FeatureList({ items }: { items: string[] }) {
   );
 }
 
-function TabHeader({
-  description,
-  tech,
-}: {
-  description: string;
-  tech: string;
-}) {
+function TabHeader({ description, tech }: { description: string; tech: string }) {
   return (
-    <div style={{ marginBottom: 32 }}>
-      <p style={{ fontSize: 15, fontWeight: 600, color: "var(--foreground)" }}>
-        {description}
-      </p>
-      <p style={{ marginTop: 8, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted-foreground)" }}>
-        {tech}
-      </p>
+    <div className="mb-8">
+      <p className="text-base font-semibold text-ink">{description}</p>
+      <p className="label-mono mt-2">{tech}</p>
     </div>
   );
 }
@@ -80,6 +69,17 @@ const extensionFeatures = [
   "Multi-phase OAuth authentication with Microsoft Graph integration",
 ];
 
+function Plate({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div>
+      <div className="relative aspect-video border border-hairline">
+        <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
+      </div>
+      <p className="label-mono mt-2">{alt}</p>
+    </div>
+  );
+}
+
 export default function MaintenancePage() {
   const project = ALL_PROJECTS.find((p) => p.slug === "maintenance")!;
 
@@ -87,12 +87,8 @@ export default function MaintenancePage() {
     <ProjectLayout project={project}>
       {/* Problem */}
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          The Problem
-        </p>
-        <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--muted-foreground)", maxWidth: 640 }}>
-          {project.problem}
-        </p>
+        <p className="label-mono mb-6">The Problem</p>
+        <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">{project.problem}</p>
       </div>
 
       {/* Tabs */}
@@ -107,19 +103,14 @@ export default function MaintenancePage() {
                   tech="Next.js 15 · TypeScript · Microsoft Graph API · MySQL · FullCalendar · Resend + Mailgun · AWS S3 · Puppeteer · APNs"
                 />
                 <FeatureList items={panelFeatures} />
-                <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 12 }}>
-                  <div style={{ borderRadius: 12, overflow: "hidden", background: "var(--muted)" }}>
-                    <Image src="/screenshots/maintenance/panel-homepage.png" alt="Maintenance Panel homepage" width={600} height={400} style={{ width: "100%", height: "auto" }} />
-                  </div>
-                  <div style={{ borderRadius: 12, overflow: "hidden", background: "var(--muted)" }}>
-                    <Image src="/screenshots/maintenance/panel-work-order.png" alt="Work order view" width={600} height={400} style={{ width: "100%", height: "auto" }} />
-                  </div>
-                  <div style={{ borderRadius: 12, overflow: "hidden", background: "var(--muted)" }}>
-                    <Image src="/screenshots/maintenance/panel-work-order-pdf.png" alt="Work order PDF export" width={600} height={400} style={{ width: "100%", height: "auto" }} />
-                  </div>
-                  <div style={{ borderRadius: 12, overflow: "hidden", background: "var(--muted)" }}>
-                    <Image src="/screenshots/maintenance/panel-extension-schedule.png" alt="Schedule view with Graph API" width={600} height={400} style={{ width: "100%", height: "auto" }} />
-                  </div>
+                <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <Plate src="/screenshots/maintenance/panel-homepage.webp" alt="Maintenance Panel homepage" />
+                  <Plate src="/screenshots/maintenance/panel-work-order.webp" alt="Work order view" />
+                  <Plate src="/screenshots/maintenance/panel-work-order-pdf.webp" alt="Work order PDF export" />
+                  <Plate
+                    src="/screenshots/maintenance/panel-extension-schedule.webp"
+                    alt="Schedule view with Graph API"
+                  />
                 </div>
               </>
             ),

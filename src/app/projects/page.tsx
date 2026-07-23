@@ -11,43 +11,14 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div style={{ maxWidth: 1080, margin: "0 auto", padding: "120px 32px 128px" }}>
+    <div className="container-site rule-thick pt-16 pb-28 md:pt-20 md:pb-32">
       {/* Header */}
-      <div style={{ marginBottom: 48 }}>
-        <p
-          style={{
-            fontSize: 13,
-            fontWeight: 600,
-            color: "var(--accent)",
-            textTransform: "uppercase",
-            letterSpacing: "0.04em",
-            marginBottom: 16,
-          }}
-        >
-          Projects
-        </p>
-        <h1
-          style={{
-            fontSize: "clamp(28px, 4vw, 44px)",
-            fontWeight: 700,
-            lineHeight: 1.1,
-            letterSpacing: "-0.035em",
-            color: "var(--foreground)",
-          }}
-        >
-          Production Portfolio
-        </h1>
-        <p
-          style={{
-            fontSize: 17,
-            lineHeight: 1.6,
-            color: "var(--muted-foreground)",
-            marginTop: 16,
-            maxWidth: 520,
-          }}
-        >
-          End-to-end systems I designed, built, and shipped, each solving
-          a real business problem across a 60+ property portfolio.
+      <div className="mb-16">
+        <p className="label-mono mb-4">Work</p>
+        <h1 className="text-h2 text-ink">Work</h1>
+        <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-muted">
+          Selected projects across web, design, and marketing systems — built for a 60-property portfolio and
+          freelance clients.
         </p>
       </div>
 

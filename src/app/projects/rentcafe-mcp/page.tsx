@@ -11,28 +11,9 @@ export const metadata: Metadata = {
 
 function FeatureList({ items }: { items: string[] }) {
   return (
-    <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 14 }}>
+    <ul className="divide-y divide-hairline border-t border-hairline">
       {items.map((item) => (
-        <li
-          key={item}
-          style={{
-            display: "flex",
-            gap: 12,
-            fontSize: 14,
-            lineHeight: 1.6,
-            color: "var(--muted-foreground)",
-          }}
-        >
-          <span
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: "50%",
-              background: "var(--border)",
-              marginTop: 8,
-              flexShrink: 0,
-            }}
-          />
+        <li key={item} className="py-3 text-sm leading-relaxed text-ink-muted">
           {item}
         </li>
       ))}
@@ -42,26 +23,12 @@ function FeatureList({ items }: { items: string[] }) {
 
 function PipelineStep({ step, title, desc }: { step: string; title: string; desc: string }) {
   return (
-    <div className="card" style={{ padding: 20, position: "relative", overflow: "hidden" }}>
-      <span
-        style={{
-          position: "absolute",
-          top: 12,
-          right: 16,
-          fontFamily: "var(--font-mono)",
-          fontSize: 48,
-          fontWeight: 700,
-          color: "var(--accent)",
-          opacity: 0.06,
-          lineHeight: 1,
-        }}
-      >
-        {step}
-      </span>
-      <p style={{ fontSize: 14, fontWeight: 600, color: "var(--foreground)", marginBottom: 6 }}>
-        {title}
-      </p>
-      <p style={{ fontSize: 13, lineHeight: 1.55, color: "var(--muted-foreground)" }}>{desc}</p>
+    <div className="border border-hairline p-5">
+      <div className="flex items-baseline gap-3">
+        <span className="font-mono text-xl leading-none font-semibold text-ink-muted">{step}</span>
+        <p className="text-sm font-semibold text-ink">{title}</p>
+      </div>
+      <p className="mt-3 text-sm leading-relaxed text-ink-muted">{desc}</p>
     </div>
   );
 }
@@ -72,51 +39,19 @@ export default function RentCafeMcpPage() {
   return (
     <ProjectLayout project={project}>
       <div>
-        <p
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: "var(--muted-foreground)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-            marginBottom: 24,
-          }}
-        >
-          Why this exists
-        </p>
-        <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--muted-foreground)", maxWidth: 640 }}>
-          RentCafe is the system of record for leasing data across the portfolio,
-          but Site Manager has no public API at our tier. Day-to-day questions
-          (which units are vacant, what notices were sent, what rent changes are
-          pending) require manual lookup. I built an MCP server that holds an
-          authenticated browser session and exposes those same actions to any
-          Model Context Protocol client, so an agent can answer them live.
+        <p className="label-mono mb-6">Why this exists</p>
+        <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">
+          RentCafe is the system of record for leasing data across the portfolio, but Site Manager has no public API
+          at our tier. Day-to-day questions (which units are vacant, what notices were sent, what rent changes are
+          pending) require manual lookup. I built an MCP server that holds an authenticated browser session and
+          exposes those same actions to any Model Context Protocol client, so an agent can answer them live.
         </p>
       </div>
 
       {/* Architecture */}
       <div>
-        <p
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: "var(--muted-foreground)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-            marginBottom: 24,
-          }}
-        >
-          Architecture
-        </p>
-
-        <div
-          style={{
-            display: "grid",
-            gap: 12,
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            marginBottom: 32,
-          }}
-        >
+        <p className="label-mono mb-6">Architecture</p>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <PipelineStep
             step="1"
             title="Browser Auth"
@@ -142,18 +77,7 @@ export default function RentCafeMcpPage() {
 
       {/* What it exposes */}
       <div>
-        <p
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: "var(--muted-foreground)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-            marginBottom: 24,
-          }}
-        >
-          What the agent can do
-        </p>
+        <p className="label-mono mb-6">What the agent can do</p>
         <FeatureList
           items={[
             "Query unit availability, lease status, and notices across 60+ properties",
@@ -167,18 +91,7 @@ export default function RentCafeMcpPage() {
 
       {/* Engineering notes */}
       <div>
-        <p
-          style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: "var(--muted-foreground)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-            marginBottom: 24,
-          }}
-        >
-          Engineering notes
-        </p>
+        <p className="label-mono mb-6">Engineering notes</p>
         <FeatureList
           items={[
             "Anthropic SDK + @modelcontextprotocol/sdk over stdio transport",
@@ -190,17 +103,10 @@ export default function RentCafeMcpPage() {
         />
       </div>
 
-      <div
-        style={{
-          borderRadius: 12,
-          padding: "16px 20px",
-          backgroundColor: "var(--muted)",
-        }}
-      >
-        <p style={{ fontSize: 13, color: "var(--muted-foreground)" }}>
-          <span style={{ fontWeight: 500, color: "var(--foreground)" }}>Status:</span> Internal,
-          unpublished. Built before MCP became mainstream tooling. Available to walk through on a
-          screen-share.
+      <div className="border border-hairline p-5">
+        <p className="text-sm leading-relaxed text-ink-muted">
+          <span className="font-semibold text-ink">Status:</span> Internal, unpublished. Built before MCP became
+          mainstream tooling. Available to walk through on a screen-share.
         </p>
       </div>
     </ProjectLayout>

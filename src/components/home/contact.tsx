@@ -1,58 +1,49 @@
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Reveal } from "@/components/shared/reveal";
 import { SITE_CONFIG } from "@/lib/config";
 
-const CONTACTS = [
-  { label: "Email", href: `mailto:${SITE_CONFIG.email}`, icon: Mail, display: SITE_CONFIG.email },
-  { label: "LinkedIn", href: SITE_CONFIG.linkedin, icon: Linkedin, display: "LinkedIn" },
-  { label: "GitHub", href: SITE_CONFIG.github, icon: Github, display: "GitHub" },
+const LINKS = [
+  { label: "LinkedIn", href: SITE_CONFIG.linkedin },
+  { label: "GitHub", href: SITE_CONFIG.github },
 ];
 
 export function Contact() {
   return (
-    <section
-      id="contact"
-      style={{ background: "var(--section-alt)", scrollMarginTop: 80 }}
-    >
-      <div
-        style={{
-          maxWidth: 1080,
-          margin: "0 auto",
-          padding: "96px 32px",
-        }}
-      >
-        <p
-          style={{
-            fontSize: 13,
-            fontWeight: 600,
-            color: "var(--accent)",
-            textTransform: "uppercase",
-            letterSpacing: "0.04em",
-            marginBottom: 32,
-          }}
-        >
-          Contact
-        </p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 32 }}>
-          {CONTACTS.map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target={c.label !== "Email" ? "_blank" : undefined}
-              rel={c.label !== "Email" ? "noopener noreferrer" : undefined}
-              className="contact-link"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 10,
-                fontSize: 15,
-                textDecoration: "none",
-              }}
-            >
-              <c.icon size={18} strokeWidth={1.5} />
-              {c.display}
-            </a>
-          ))}
-        </div>
+    <section id="contact" className="scroll-mt-24 bg-paper">
+      <div className="container-site py-24 md:py-32">
+        <Reveal className="reveal-rule">
+          <div aria-hidden className="h-[3px] w-full bg-ink" />
+        </Reveal>
+        <Reveal className="reveal-rise" delay={120}>
+          <p className="label-mono pt-4">Contact</p>
+        </Reveal>
+
+        <Reveal className="reveal-rise" delay={80}>
+          <a
+            href={`mailto:${SITE_CONFIG.email}`}
+            className="mt-10 block text-h2 font-sans text-ink underline-offset-4 hover:underline"
+          >
+            {SITE_CONFIG.email}
+          </a>
+        </Reveal>
+
+        <Reveal className="reveal-rise" delay={160}>
+          <div className="mt-16 max-w-[34rem]">
+            {LINKS.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group contact-link label-mono flex min-h-[44px] items-center justify-between border-t border-hairline"
+              >
+                <span>{l.label}</span>
+                <span aria-hidden className="text-hairline transition-colors duration-100 group-hover:text-accent">
+                  &#8599;
+                </span>
+              </a>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

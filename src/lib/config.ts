@@ -1,24 +1,17 @@
-// =============================================
-// HEADLINE OPTION - swap A, B, or C
-// =============================================
-export const HEADLINE_OPTION: "A" | "B" | "C" = "A";
-
-export const HEADLINES = {
-  A: "I build production systems that replace six-figure vendor contracts.",
-  B: "Full stack developer. AI integrations. 60+ properties. Zero vendors.",
-  C: "I build the infrastructure. Then I deploy the AI on top of it.",
-} as const;
+export const HEADLINE = "Marketing, engineered.";
 
 export const SUB_HEADLINE =
-  "Seattle-based developer with 2,600+ production commits across maintenance, billing, AI staging, an MCP server, an iOS app, and a Chrome extension. No CS degree, just shipped code.";
+  "I'm Spencer D'Avis, a Seattle marketing operations specialist. I plan the strategy, design the creative, build the websites, and automate the systems that run them — for a 60-property portfolio and freelance clients.";
 
-export const HERO_PILLS = [
-  "2,600+ commits shipped",
-  "18+ APIs integrated",
-  "iOS · Chrome ext · MCP",
+export const HERO_META = [
+  "Seattle, WA",
+  "60+ properties marketed",
+  "55 sites hosted in-house",
+  "Print · Web · AI",
 ] as const;
 
-export const AVAILABILITY = "Open to SE / FDE / AI Agent Ops · Seattle or remote";
+export const AVAILABILITY =
+  "Available for WordPress builds, design & marketing systems · Seattle or remote";
 
 export const SITE_CONFIG = {
   name: "Spencer D'Avis",

@@ -1,271 +1,322 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { TechPills } from "@/components/projects/tech-pills";
+import { Reveal } from "@/components/shared/reveal";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis | Creative Work — Print, Signage & Photography",
+  title: "Spencer D'Avis | Design — Print, Signage, Brand & Photography",
   description:
-    "Large-format print and signage design (window clings, A-boards, yard signs) in Adobe Illustrator and Photoshop, plus royalty-free COVID vaccine photography used by news outlets and research institutions.",
+    "A design portfolio: large-format signage and print, brand identity, and photography. Illustrator and Photoshop work produced for real Seattle properties, plus a Pixabay Editor's Choice photo set with 182K views used by news outlets and research institutions.",
   alternates: { canonical: "https://spenc.ee/projects/creative" },
 };
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+interface PlateProps {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption: string;
+  sizes: string;
+  span?: string;
+  delay?: number;
+  priority?: boolean;
+}
+
+function Plate({ src, alt, width, height, caption, sizes, span, delay = 0, priority }: PlateProps) {
   return (
-    <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-      {children}
-    </p>
+    <Reveal className={`reveal-clip min-w-0 ${span ?? ""}`} delay={delay}>
+      <figure>
+        <div className="border border-hairline bg-paper p-2 md:p-3">
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes={sizes}
+            priority={priority}
+            className="block h-auto w-full"
+          />
+        </div>
+        <figcaption className="label-mono mt-3">{caption}</figcaption>
+      </figure>
+    </Reveal>
   );
 }
 
-function ImageGrid({ images, alt }: { images: { src: string; caption?: string }[]; alt: string }) {
+function SectionHead({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children?: React.ReactNode;
+}) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 12 }}>
-      {images.map((img, i) => (
-        <div key={img.src} style={{ position: "relative", borderRadius: 12, overflow: "hidden", background: "var(--muted)" }}>
-          <Image
-            src={img.src}
-            alt={`${alt} ${i + 1}`}
-            width={600}
-            height={400}
-            style={{ width: "100%", height: "auto", display: "block" }}
-            sizes="(max-width: 640px) 100vw, 33vw"
-          />
-          {img.caption && (
-            <p style={{ fontSize: 11, color: "var(--muted-foreground)", padding: "8px 12px", fontStyle: "italic" }}>
-              {img.caption}
-            </p>
-          )}
-        </div>
-      ))}
+    <div className="rule-thick pt-6">
+      <p className="label-mono">{eyebrow}</p>
+      <h2 className="text-h2 mt-3">{title}</h2>
+      {children && <p className="mt-5 max-w-2xl text-ink-muted leading-relaxed">{children}</p>}
     </div>
   );
 }
 
 export default function CreativePage() {
   return (
-    <div style={{ maxWidth: 1080, margin: "0 auto", padding: "120px 32px 128px" }}>
-      <Link
-        href="/projects"
-        className="nav-link"
-        style={{ fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6, textDecoration: "none" }}
-      >
-        <ArrowLeft size={14} /> All Projects
+    <div className="container-site py-28 md:py-36">
+      <Link href="/projects" className="nav-link inline-flex items-center gap-2 font-mono text-sm">
+        <span aria-hidden="true">&larr;</span>
+        All work
       </Link>
 
-      <div style={{ marginTop: 48 }}>
-        <h1
-          style={{
-            fontSize: "clamp(28px, 4vw, 44px)",
-            fontWeight: 700,
-            lineHeight: 1.1,
-            letterSpacing: "-0.035em",
-            color: "var(--foreground)",
-          }}
-        >
-          Creative Work
-        </h1>
-        <p
-          style={{
-            fontSize: 17,
-            lineHeight: 1.6,
-            color: "var(--muted-foreground)",
-            maxWidth: 640,
-            marginTop: 20,
-          }}
-        >
-          Large-format print and signage design alongside photography and
-          branding work. Adobe Illustrator and Photoshop, applied to real
-          properties across Seattle.
+      <header className="mt-12 md:mt-16">
+        <p className="label-mono">Design</p>
+        <h1 className="text-display mt-4 font-extrabold">Made in Seattle</h1>
+        <p className="mt-6 max-w-2xl text-lg text-ink-muted leading-relaxed">
+          Large-format signage, brand identity, and photography — the print-side
+          counterpart to the systems work. Drawn in Illustrator and Photoshop,
+          produced for real Seattle properties, and picked up well beyond them.
         </p>
-      </div>
+      </header>
 
-      <div style={{ marginTop: 72, display: "flex", flexDirection: "column", gap: 80 }}>
-        {/* ===== Print & Signage Design ===== */}
-        <section>
-          <SectionLabel>Print & Signage Design</SectionLabel>
-          <h2 style={{ fontSize: 24, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.02em" }}>
-            Window Clings, A-Boards & Yard Signs
-          </h2>
-          <p style={{ fontSize: 13, color: "var(--muted-foreground)", marginTop: 4 }}>
-            Ongoing &middot; Bonavista Property Management portfolio
-          </p>
+      {/* ===== Print & Signage ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="Print & Signage" title="Large-format leasing signage">
+          Window clings, A-boards, banners, and yard signs for the Bonavista
+          portfolio — designed with print bleeds, spot color, and
+          production-ready vector files.
+        </SectionHead>
 
-          <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 20 }}>
-            Large-format print design for the 60+ property portfolio: window
-            clings, A-board sandwich signs, yard signs, leasing banners, and
-            digital ad creative. Designed in Adobe Illustrator and Photoshop,
-            prepped for print with proper bleeds, color profiles, and
-            production-ready vector files.
-          </p>
+        <div className="mt-12 md:mt-16">
+          <Plate
+            src="/screenshots/creative/print/alt-capitol-hill-banners.webp"
+            alt="Alt Capitol Hill leasing banner system in two colorways"
+            width={1794}
+            height={1284}
+            caption="Banner System · Alt Capitol Hill"
+            sizes="(min-width: 1080px) 1024px, 100vw"
+          />
+        </div>
 
-          <div style={{ marginTop: 28 }}>
-            <TechPills
-              items={[
-                "Adobe Illustrator",
-                "Adobe Photoshop",
-                "Window Clings",
-                "A-Boards",
-                "Yard Signs",
-                "Large-Format Print",
-                "Brand Identity",
-              ]}
+        <div className="mt-8 grid grid-cols-2 gap-6 md:mt-12 md:grid-cols-4 md:gap-8">
+          <Plate
+            src="/screenshots/creative/print/509-1st-aboard.webp"
+            alt="509 1st Now Leasing A-board sign"
+            width={1144}
+            height={1620}
+            caption="A-Board · 509 1st"
+            sizes="(min-width: 768px) 25vw, 50vw"
+            delay={0}
+          />
+          <Plate
+            src="/screenshots/creative/print/5902-ballard-aboard.webp"
+            alt="5902 Ballard studios A-board sign"
+            width={916}
+            height={1376}
+            caption="A-Board · 5902 Ballard"
+            sizes="(min-width: 768px) 25vw, 50vw"
+            delay={70}
+          />
+          <Plate
+            src="/screenshots/creative/print/ondine-fremont-aboards.webp"
+            alt="Ondine and Fremont Village Now Leasing A-board set"
+            width={1380}
+            height={1770}
+            caption="A-Board Set · Ondine / Fremont Village"
+            sizes="(min-width: 768px) 25vw, 50vw"
+            delay={140}
+          />
+          <Plate
+            src="/screenshots/creative/print/no-dumping-sign.webp"
+            alt="No dumping high-report zone yard sign"
+            width={1032}
+            height={1514}
+            caption="Yard Sign · No Dumping"
+            sizes="(min-width: 768px) 25vw, 50vw"
+            delay={210}
+          />
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-3 md:gap-8">
+          <Plate
+            src="/screenshots/creative/print/fremont-village-book-a-tour.webp"
+            alt="Fremont Village Book a Tour window cling"
+            width={1412}
+            height={1048}
+            caption="Window Cling · Fremont Village"
+            sizes="(min-width: 768px) 33vw, 100vw"
+            delay={0}
+          />
+          <Plate
+            src="/screenshots/creative/print/ondine-book-a-tour.webp"
+            alt="Ondine Eastlake Book a Tour window cling"
+            width={1166}
+            height={870}
+            caption="Window Cling · Ondine Eastlake"
+            sizes="(min-width: 768px) 33vw, 100vw"
+            delay={70}
+          />
+          <Plate
+            src="/screenshots/creative/print/509-1st-month-free.webp"
+            alt="509 1st one month free digital leasing ad"
+            width={1758}
+            height={1764}
+            caption="Digital Ad · 509 1st"
+            sizes="(min-width: 768px) 33vw, 100vw"
+            delay={140}
+          />
+        </div>
+      </section>
+
+      {/* ===== Brand & Identity ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="Brand & Identity" title="Risdon Middle School">
+          A wolf-motif identity for a new school in Renton, developed with
+          district staff and built as a system — full color, single-color, and
+          real-world application across signage, uniforms, and merchandise.
+        </SectionHead>
+
+        <div className="mt-12 flex flex-col gap-6 md:mt-16 md:gap-8">
+          <Plate
+            src="/screenshots/creative/risdon-full-color.webp"
+            alt="Risdon Middle School full-color wolf logo lockup"
+            width={2000}
+            height={889}
+            caption="Logo · Full Color"
+            sizes="(min-width: 1080px) 1024px, 100vw"
+            delay={0}
+          />
+          <Plate
+            src="/screenshots/creative/risdon-grayscale.webp"
+            alt="Risdon Middle School grayscale logo variant"
+            width={2000}
+            height={891}
+            caption="Logo · Single Color"
+            sizes="(min-width: 1080px) 1024px, 100vw"
+            delay={70}
+          />
+          <Plate
+            src="/screenshots/creative/risdon-application.webp"
+            alt="Risdon Middle School logo shown in application"
+            width={2000}
+            height={907}
+            caption="Logo · Application"
+            sizes="(min-width: 1080px) 1024px, 100vw"
+            delay={140}
+          />
+        </div>
+      </section>
+
+      {/* ===== Ingallina's ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="Brand & Campaign" title="Ingallina's Box Lunch">
+          Social and promotional graphics for a Seattle catering brand — a
+          cohesive campaign system built from a single visual identity.
+        </SectionHead>
+
+        <div className="mt-12 grid grid-cols-2 gap-6 md:mt-16 md:grid-cols-3 md:gap-8">
+          {[1, 2, 3, 4, 5, 6].map((n, i) => (
+            <Plate
+              key={n}
+              src={`/screenshots/creative/ingallinas-${n}.webp`}
+              alt={`Ingallina's Box Lunch promotional graphic ${n}`}
+              width={1264}
+              height={1266}
+              caption="Promo Graphic · Ingallina's"
+              sizes="(min-width: 768px) 33vw, 50vw"
+              delay={(i % 3) * 70}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* ===== Photography ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="Photography" title="COVID vaccine vial">
+          Shot as a contact tracer to explain vaccine types, then released
+          royalty-free on Pixabay and Unsplash. It was picked up by news outlets
+          and research institutions, including the University of Arizona and the
+          London School of Hygiene & Tropical Medicine.
+        </SectionHead>
+
+        <div className="mt-12 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-12 md:gap-10">
+          <div className="min-w-0 md:col-span-8">
+            <Plate
+              src="/screenshots/creative/vaccine-pixabay.webp"
+              alt="Gloved hand holding an mRNA COVID-19 vaccine vial"
+              width={1824}
+              height={1204}
+              caption="mRNA Vaccine Vial · Pixabay Editor's Choice"
+              sizes="(min-width: 768px) 66vw, 100vw"
             />
           </div>
 
-          <div style={{ marginTop: 32 }}>
-            <ImageGrid
-              alt="Print and signage design"
-              images={[
-                { src: "/screenshots/creative/print/fremont-village-book-a-tour.png", caption: "Fremont Village — Book a Tour window cling" },
-                { src: "/screenshots/creative/print/ondine-book-a-tour.png", caption: "Ondine Eastlake — Book a Tour window cling" },
-                { src: "/screenshots/creative/print/ondine-fremont-aboards.png", caption: "Ondine & Fremont Village — A-board / banner set" },
-                { src: "/screenshots/creative/print/5902-ballard-aboard.png", caption: "5902 Ballard — Studios A-board" },
-                { src: "/screenshots/creative/print/509-1st-aboard.png", caption: "509 1st — Now Leasing A-board" },
-                { src: "/screenshots/creative/print/alt-capitol-hill-banners.png", caption: "Alt Capitol Hill — banner system" },
-                { src: "/screenshots/creative/print/509-1st-month-free.png", caption: "509 1st — 1 Month Free digital ad" },
-                { src: "/screenshots/creative/print/no-dumping-sign.png", caption: "No Dumping — High-Report Zone yard sign" },
-              ]}
-            />
-          </div>
-        </section>
-
-        {/* ===== COVID Vaccine Vial Photos ===== */}
-        <section>
-          <SectionLabel>Photography</SectionLabel>
-          <h2 style={{ fontSize: 24, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.02em" }}>
-            COVID Vaccine Vial Photos
-          </h2>
-          <p style={{ fontSize: 13, color: "var(--muted-foreground)", marginTop: 4 }}>
-            2021 &middot; COVID-19 Contact Tracer, Department of Health
-          </p>
-
-          <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 20 }}>
-            As a COVID-19 Contact Tracer, I was tasked with creating a presentation outlining the differences between each vaccine type. I took an expired Xylocaine vial, created labels for each vaccine, and photographed them, left hand holding the vial, right hand on the shutter.
-          </p>
-          <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 12 }}>
-            I released the photos royalty-free on{" "}
-            <a
+          <div className="min-w-0 md:col-span-4">
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-1">
+              <div>
+                <dt className="font-mono text-4xl leading-none">182K</dt>
+                <dd className="label-mono mt-2">Views on Pixabay</dd>
+              </div>
+              <div>
+                <dt className="font-mono text-4xl leading-none">126K</dt>
+                <dd className="label-mono mt-2">Downloads</dd>
+              </div>
+              <div>
+                <dt className="font-mono text-4xl leading-none">1</dt>
+                <dd className="label-mono mt-2">Editor&apos;s Choice</dd>
+              </div>
+            </dl>
+            <Link
               href="https://pixabay.com/users/spencerbdavis1-21090082/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "var(--accent)", textDecoration: "underline", textDecorationThickness: 1, textUnderlineOffset: 3 }}
+              className="contact-link mt-8 inline-flex items-center gap-2 font-mono text-sm underline underline-offset-4"
             >
-              Pixabay
-            </a>{" "}
-            and Unsplash. They were used in news articles and research papers, including by the University of Arizona and the London School of Hygiene & Tropical Medicine. One image was named a Pixabay Editor&apos;s Choice.
-          </p>
-
-          {/* Stats */}
-          <div style={{ display: "flex", gap: 40, marginTop: 28, flexWrap: "wrap" }}>
-            <div>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: 28, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-                182K
-              </p>
-              <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Views on Pixabay</p>
-            </div>
-            <div>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: 28, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-                126K
-              </p>
-              <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Downloads</p>
-            </div>
-            <div>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: 28, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-                146
-              </p>
-              <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Likes</p>
-            </div>
-            <div>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: 28, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-                1
-              </p>
-              <p style={{ fontSize: 12, color: "var(--muted-foreground)", marginTop: 4 }}>Editor&apos;s Choice</p>
-            </div>
+              Pixabay profile
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
+        </div>
 
-          <div style={{ marginTop: 28 }}>
-            <TechPills items={["Photography", "Pixabay", "Unsplash", "Royalty-Free"]} />
-          </div>
-
-          <div style={{ marginTop: 32 }}>
-            <ImageGrid
-              alt="COVID vaccine vial"
-              images={[
-                { src: "/screenshots/creative/vaccine-pixabay.png", caption: "Pixabay portfolio: 182K views, 126K downloads" },
-                { src: "/screenshots/creative/vaccine-london.png", caption: "London School of Hygiene & Tropical Medicine" },
-                { src: "/screenshots/creative/vaccine-article-1.png", caption: "Vaccine inequity article" },
-                { src: "/screenshots/creative/vaccine-article-2.png", caption: "Viral Vector Vaccine article" },
-                { src: "/screenshots/creative/vaccine-article-3.png", caption: "Cancer patients & COVID vaccine" },
-              ]}
-            />
-          </div>
-        </section>
-
-        {/* ===== Ingallina's Box Lunch ===== */}
-        <section>
-          <SectionLabel>Graphic Design</SectionLabel>
-          <h2 style={{ fontSize: 24, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.02em" }}>
-            Ingallina&apos;s Box Lunch
-          </h2>
-          <p style={{ fontSize: 13, color: "var(--muted-foreground)", marginTop: 4 }}>
-            2019 to 2020 &middot; Social Media & Promotional Graphics
-          </p>
-
-          <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 20 }}>
-            Developed graphic design elements for Ingallina&apos;s Box Lunch including social media and promotional graphics. Transformed initial ideas into marketable campaigns through visually appealing designs, establishing a cohesive visual identity across all marketing platforms.
-          </p>
-
-          <div style={{ marginTop: 28 }}>
-            <TechPills items={["Graphic Design", "Social Media", "Brand Identity", "Marketing"]} />
-          </div>
-
-          <div style={{ marginTop: 32 }}>
-            <ImageGrid
-              alt="Ingallina's Box Lunch"
-              images={[
-                { src: "/screenshots/creative/ingallinas-1.png" },
-                { src: "/screenshots/creative/ingallinas-2.png" },
-                { src: "/screenshots/creative/ingallinas-3.png" },
-                { src: "/screenshots/creative/ingallinas-4.png" },
-                { src: "/screenshots/creative/ingallinas-5.png" },
-                { src: "/screenshots/creative/ingallinas-6.png" },
-              ]}
-            />
-          </div>
-        </section>
-
-        {/* ===== Risdon Middle School Logo ===== */}
-        <section>
-          <SectionLabel>Branding</SectionLabel>
-          <h2 style={{ fontSize: 24, fontWeight: 600, color: "var(--foreground)", letterSpacing: "-0.02em" }}>
-            Risdon Middle School
-          </h2>
-          <p style={{ fontSize: 13, color: "var(--muted-foreground)", marginTop: 4 }}>
-            2018 &middot; Logo Design &middot; Renton, WA
-          </p>
-
-          <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 640, marginTop: 20 }}>
-            Designed the logo for Risdon Middle School, a new school in Renton, WA. Through consultation with district staff and future administration, created a wolf-motif logo embodying the school&apos;s values of integrity, collaboration, and resilience. The logo was implemented across signage, uniforms, digital media, and merchandise.
-          </p>
-
-          <div style={{ marginTop: 28 }}>
-            <TechPills items={["Logo Design", "Branding", "Print", "Signage"]} />
-          </div>
-
-          <div style={{ marginTop: 32 }}>
-            <ImageGrid
-              alt="Risdon Middle School"
-              images={[
-                { src: "/screenshots/creative/risdon-full-color.png", caption: "Full color logo" },
-                { src: "/screenshots/creative/risdon-grayscale.png", caption: "Grayscale variant" },
-                { src: "/screenshots/creative/risdon-application.png", caption: "Logo application" },
-              ]}
-            />
-          </div>
-        </section>
-      </div>
+        <div className="mt-8 grid grid-cols-2 gap-6 md:mt-12 md:grid-cols-4 md:gap-8">
+          <Plate
+            src="/screenshots/creative/vaccine-london.webp"
+            alt="London School of Hygiene & Tropical Medicine using the vaccine photo"
+            width={1856}
+            height={1716}
+            caption="Press · London School of Hygiene & Tropical Medicine"
+            sizes="(min-width: 768px) 25vw, 50vw"
+            delay={0}
+          />
+          <Plate
+            src="/screenshots/creative/vaccine-article-1.webp"
+            alt="News article using the vaccine photo"
+            width={2000}
+            height={1093}
+            caption="Press · Vaccine Inequity"
+            sizes="(min-width: 768px) 25vw, 50vw"
+            delay={70}
+          />
+          <Plate
+            src="/screenshots/creative/vaccine-article-2.webp"
+            alt="News article using the vaccine photo"
+            width={2000}
+            height={1624}
+            caption="Press · Viral Vector Vaccine"
+            sizes="(min-width: 768px) 25vw, 50vw"
+            delay={140}
+          />
+          <Plate
+            src="/screenshots/creative/vaccine-article-3.webp"
+            alt="News article using the vaccine photo"
+            width={2000}
+            height={1586}
+            caption="Press · Cancer Patients & COVID"
+            sizes="(min-width: 768px) 25vw, 50vw"
+            delay={210}
+          />
+        </div>
+      </section>
     </div>
   );
 }

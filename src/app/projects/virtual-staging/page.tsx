@@ -12,14 +12,28 @@ export const metadata: Metadata = {
 
 function FeatureList({ items }: { items: string[] }) {
   return (
-    <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 14 }}>
+    <ul className="divide-y divide-hairline border-t border-hairline">
       {items.map((item) => (
-        <li key={item} style={{ display: "flex", gap: 12, fontSize: 14, lineHeight: 1.6, color: "var(--muted-foreground)" }}>
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--border)", marginTop: 8, flexShrink: 0 }} />
+        <li key={item} className="py-3 text-sm leading-relaxed text-ink-muted">
           {item}
         </li>
       ))}
     </ul>
+  );
+}
+
+function BeforeAfterPair({ before, after }: { before: string; after: string }) {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      <div className="relative aspect-video border border-hairline">
+        <Image src={before} alt="Empty room before staging" fill className="object-cover" sizes="(max-width: 640px) 50vw, 25vw" />
+        <span className="label-mono absolute top-2 left-2 bg-ink px-2 py-1 text-paper">Before</span>
+      </div>
+      <div className="relative aspect-video border border-hairline">
+        <Image src={after} alt="AI staged room" fill className="object-cover" sizes="(max-width: 640px) 50vw, 25vw" />
+        <span className="label-mono absolute top-2 left-2 bg-ink px-2 py-1 text-paper">After</span>
+      </div>
+    </div>
   );
 }
 
@@ -29,18 +43,12 @@ export default function VirtualStagingPage() {
   return (
     <ProjectLayout project={project}>
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          The Problem
-        </p>
-        <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--muted-foreground)", maxWidth: 640 }}>
-          {project.problem}
-        </p>
+        <p className="label-mono mb-6">The Problem</p>
+        <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">{project.problem}</p>
       </div>
 
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          What I Built
-        </p>
+        <p className="label-mono mb-6">What I Built</p>
         <FeatureList
           items={[
             "Internal web app at staging.bonavista.work",
@@ -59,34 +67,12 @@ export default function VirtualStagingPage() {
 
       {/* Before/After */}
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          Before & After
-        </p>
-        {/* Pair 1 */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-          <div style={{ borderRadius: 12, overflow: "hidden", background: "var(--muted)", position: "relative" }}>
-            <Image src="/screenshots/virtual-staging/before-1.png" alt="Empty room before staging" width={600} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
-            <span style={{ position: "absolute", top: 8, left: 8, background: "rgba(0,0,0,0.5)", color: "#fff", fontSize: 10, padding: "3px 8px", borderRadius: 4, fontWeight: 600 }}>BEFORE</span>
-          </div>
-          <div style={{ borderRadius: 12, overflow: "hidden", background: "var(--muted)", position: "relative" }}>
-            <Image src="/screenshots/virtual-staging/after-1.png" alt="AI staged room" width={600} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
-            <span style={{ position: "absolute", top: 8, left: 8, background: "var(--accent)", color: "#fff", fontSize: 10, padding: "3px 8px", borderRadius: 4, fontWeight: 600 }}>AFTER</span>
-          </div>
+        <p className="label-mono mb-6">Before & After</p>
+        <div className="flex flex-col gap-3">
+          <BeforeAfterPair before="/screenshots/virtual-staging/before-1.webp" after="/screenshots/virtual-staging/after-1.webp" />
+          <BeforeAfterPair before="/screenshots/virtual-staging/before-2.webp" after="/screenshots/virtual-staging/after-2.webp" />
         </div>
-        {/* Pair 2 */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 12 }}>
-          <div style={{ borderRadius: 12, overflow: "hidden", background: "var(--muted)", position: "relative" }}>
-            <Image src="/screenshots/virtual-staging/before-2.png" alt="Empty room before staging" width={600} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
-            <span style={{ position: "absolute", top: 8, left: 8, background: "rgba(0,0,0,0.5)", color: "#fff", fontSize: 10, padding: "3px 8px", borderRadius: 4, fontWeight: 600 }}>BEFORE</span>
-          </div>
-          <div style={{ borderRadius: 12, overflow: "hidden", background: "var(--muted)", position: "relative" }}>
-            <Image src="/screenshots/virtual-staging/after-2.png" alt="AI staged room" width={600} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
-            <span style={{ position: "absolute", top: 8, left: 8, background: "var(--accent)", color: "#fff", fontSize: 10, padding: "3px 8px", borderRadius: 4, fontWeight: 600 }}>AFTER</span>
-          </div>
-        </div>
-        <p style={{ marginTop: 16, fontSize: 12, fontStyle: "italic", color: "var(--muted-foreground)" }}>
-          Live at staging.bonavista.work (internal, access restricted)
-        </p>
+        <p className="mt-4 text-sm text-ink-muted italic">Live at staging.bonavista.work (internal, access restricted)</p>
       </div>
     </ProjectLayout>
   );

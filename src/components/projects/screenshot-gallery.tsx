@@ -16,21 +16,19 @@ export function ScreenshotGallery({ images, alt }: ScreenshotGalleryProps) {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         {images.map((src, i) => (
-          <button
-            key={src}
-            onClick={() => setSelected(src)}
-            className="relative aspect-video overflow-hidden rounded-lg border transition-opacity hover:opacity-90"
-            style={{ borderColor: "var(--border)" }}
-          >
-            <Image
-              src={src}
-              alt={`${alt} screenshot ${i + 1}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 50vw, 33vw"
-            />
+          <button key={src} onClick={() => setSelected(src)} className="group text-left">
+            <span className="relative block aspect-video overflow-hidden border border-hairline">
+              <Image
+                src={src}
+                alt={`${alt} screenshot ${i + 1}`}
+                fill
+                className="object-cover transition-opacity duration-100 group-hover:opacity-80"
+                sizes="(max-width: 640px) 50vw, 33vw"
+              />
+            </span>
+            <span className="label-mono mt-2 block">Fig. {String(i + 1).padStart(2, "0")}</span>
           </button>
         ))}
       </div>
@@ -38,25 +36,23 @@ export function ScreenshotGallery({ images, alt }: ScreenshotGalleryProps) {
       {/* Lightbox */}
       {selected && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/95 p-4"
           onClick={() => setSelected(null)}
         >
           <button
-            className="absolute right-4 top-4 text-white/70 transition-colors hover:text-white"
+            className="absolute top-4 right-4 text-paper/70 transition-colors duration-100 hover:text-paper"
             onClick={() => setSelected(null)}
             aria-label="Close"
           >
             <X size={24} />
           </button>
-          <div className="relative max-h-[85vh] max-w-[90vw]">
+          <div className="relative max-h-[85vh] max-w-[90vw] border border-hairline">
             <Image
               src={selected}
               alt={alt}
               width={1200}
               height={800}
-              className="rounded-lg object-contain"
-              style={{ maxHeight: "85vh", width: "auto" }}
+              className="max-h-[85vh] w-auto object-contain"
             />
           </div>
         </div>

@@ -11,10 +11,9 @@ export const metadata: Metadata = {
 
 function FeatureList({ items }: { items: string[] }) {
   return (
-    <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 14 }}>
+    <ul className="divide-y divide-hairline border-t border-hairline">
       {items.map((item) => (
-        <li key={item} style={{ display: "flex", gap: 12, fontSize: 14, lineHeight: 1.6, color: "var(--muted-foreground)" }}>
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--border)", marginTop: 8, flexShrink: 0 }} />
+        <li key={item} className="py-3 text-sm leading-relaxed text-ink-muted">
           {item}
         </li>
       ))}
@@ -28,24 +27,17 @@ export default function TabloNewsPage() {
   return (
     <ProjectLayout project={project}>
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          Overview
-        </p>
-        <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--muted-foreground)", maxWidth: 640 }}>
-          An automated pipeline that records Seattle local news from a Tablo
-          DVR, transcribes with WhisperX, identifies speakers via voice
-          fingerprinting, summarizes with Ollama, and indexes in ChromaDB for
+        <p className="label-mono mb-6">Overview</p>
+        <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">
+          An automated pipeline that records Seattle local news from a Tablo DVR, transcribes with WhisperX,
+          identifies speakers via voice fingerprinting, summarizes with Ollama, and indexes in ChromaDB for
           semantic search.
         </p>
       </div>
 
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          Frontend
-        </p>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted-foreground)", marginBottom: 24 }}>
-          Next.js 16 &middot; React 19 &middot; TypeScript &middot; Cloudinary
-        </p>
+        <p className="label-mono mb-6">Frontend</p>
+        <p className="label-mono mb-6">Next.js 16 &middot; React 19 &middot; TypeScript &middot; Cloudinary</p>
         <FeatureList
           items={[
             "Featured story display with AI-generated summaries",
@@ -61,13 +53,8 @@ export default function TabloNewsPage() {
       </div>
 
       <div>
-        <p style={{ fontSize: 11, fontWeight: 600, color: "var(--muted-foreground)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 24 }}>
-          Backend Pipeline
-        </p>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted-foreground)", marginBottom: 24 }}>
-          Python &middot; WhisperX &middot; ChromaDB &middot; Ollama &middot;
-          SQLite / Turso
-        </p>
+        <p className="label-mono mb-6">Backend Pipeline</p>
+        <p className="label-mono mb-6">Python &middot; WhisperX &middot; ChromaDB &middot; Ollama &middot; SQLite / Turso</p>
         <FeatureList
           items={[
             "WhisperX transcription pipeline for broadcast audio",
@@ -79,13 +66,10 @@ export default function TabloNewsPage() {
         />
       </div>
 
-      <div style={{ borderRadius: 12, padding: "16px 20px", backgroundColor: "var(--muted)" }}>
-        <p style={{ fontSize: 13, color: "var(--muted-foreground)" }}>
-          <span style={{ fontWeight: 500, color: "var(--foreground)" }}>
-            Coverage:
-          </span>{" "}
-          KING 5 News &middot; KOMO 4 News &middot; KIRO 7 News &middot; Local
-          Programming
+      <div className="border border-hairline p-5">
+        <p className="text-sm leading-relaxed text-ink-muted">
+          <span className="font-semibold text-ink">Coverage:</span> KING 5 News &middot; KOMO 4 News &middot; KIRO
+          7 News &middot; Local Programming
         </p>
       </div>
     </ProjectLayout>

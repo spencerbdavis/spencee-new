@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Geist_Mono } from "next/font/google";
 import { WeatherProvider } from "@/components/providers/weather-provider";
-import { ElevationBar } from "@/components/layout/elevation-bar";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
 });
 
@@ -17,21 +16,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const TITLE = "Spencer D'Avis — Marketing Operations: Strategy, Design, Web & Systems";
+const DESCRIPTION =
+  "Seattle marketing operations specialist. Strategy, design, web, and the systems behind them — WordPress builds, print & brand design, SEO and marketing automation for a 60-property portfolio and freelance clients.";
+
 export const metadata: Metadata = {
-  title: "Spencer D'Avis | Full-Stack Developer & AI Systems Builder",
-  description:
-    "Self-taught full-stack developer with 2,600+ production commits across maintenance, billing, AI staging, an MCP server, an iOS app, and a Chrome extension for a 60+ property portfolio.",
+  title: TITLE,
+  description: DESCRIPTION,
   metadataBase: new URL("https://spenc.ee"),
   openGraph: {
-    title: "Spencer D'Avis | Full-Stack Developer & AI Systems Builder",
-    description:
-      "Self-taught full-stack developer with 2,600+ production commits across maintenance, billing, AI staging, an MCP server, an iOS app, and a Chrome extension for a 60+ property portfolio.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: "https://spenc.ee",
     siteName: "Spencer D'Avis",
     type: "website",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://spenc.ee" },
+  other: { "color-scheme": "light" },
 };
 
 export default function RootLayout({
@@ -40,10 +42,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+    // suppressHydrationWarning: the inline script in <body> adds the "js"
+    // class to <html> before hydration — an intentional mutation.
+    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${geistMono.variable}`}>
       <body>
+        {/* Scopes entrance-animation hiding to JS-capable browsers */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         <WeatherProvider>
-          <ElevationBar />
           <Navbar />
           <main>{children}</main>
           <Footer />

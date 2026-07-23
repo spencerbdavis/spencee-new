@@ -8,15 +8,13 @@ export function TechPills({ items, max }: TechPillsProps) {
   const remaining = max ? items.length - max : 0;
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+    <div className="flex flex-wrap gap-2">
       {visible.map((item) => (
-        <span key={item} className="pill">{item}</span>
-      ))}
-      {remaining > 0 && (
-        <span style={{ fontSize: 11, color: "var(--muted-foreground)", padding: "5px 4px" }}>
-          +{remaining}
+        <span key={item} className="tag">
+          {item}
         </span>
-      )}
+      ))}
+      {remaining > 0 && <span className="label-mono inline-flex items-center px-1">+{remaining}</span>}
     </div>
   );
 }

@@ -12,28 +12,20 @@ export function Tabs({ tabs }: { tabs: Tab[] }) {
 
   return (
     <div>
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div className="flex flex-wrap gap-6 border-b border-hairline">
         {tabs.map((tab, i) => (
           <button
             key={tab.label}
             onClick={() => setActive(i)}
-            style={{
-              padding: "10px 20px",
-              borderRadius: 100,
-              fontSize: 13,
-              fontWeight: 500,
-              border: "none",
-              cursor: "pointer",
-              transition: "all 0.2s",
-              background: active === i ? "var(--accent)" : "var(--muted)",
-              color: active === i ? "#fff" : "var(--muted-foreground)",
-            }}
+            className={`label-mono -mb-px border-b-2 pb-3 transition-colors duration-100 ${
+              active === i ? "border-ink text-ink" : "border-transparent hover:text-ink"
+            }`}
           >
             {tab.label}
           </button>
         ))}
       </div>
-      <div style={{ marginTop: 40 }}>{tabs[active].content}</div>
+      <div className="mt-10">{tabs[active].content}</div>
     </div>
   );
 }

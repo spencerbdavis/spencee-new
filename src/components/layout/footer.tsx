@@ -2,114 +2,61 @@ import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { FooterScene } from "./footer-scene";
 
+const linkClass =
+  "label-mono transition-colors duration-100 hover:text-ink focus-visible:text-ink";
+
 export function Footer() {
   return (
-    <footer
-      style={{
-        overflow: "hidden",
-      }}
-    >
-      {/* Scene — full bleed */}
+    <footer className="overflow-hidden">
+      {/* Scene — full bleed; owned by another workstream, left as-is */}
       <FooterScene />
 
-      {/* Footer content below scene */}
-      <div
-        style={{
-          maxWidth: 1080,
-          margin: "0 auto",
-          padding: "32px 32px 40px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 16,
-        }}
-      >
-        {/* Links row */}
-        <div
-          style={{
-            display: "flex",
-            gap: 24,
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          <Link
-            href="/projects"
-            className="nav-link"
-            style={{ fontSize: 13, textDecoration: "none" }}
-          >
-            Projects
-          </Link>
-          <Link
-            href="/projects/wordpress-sites"
-            className="nav-link"
-            style={{ fontSize: 13, textDecoration: "none" }}
-          >
-            WordPress
-          </Link>
-          <Link
-            href="/#about"
-            className="nav-link"
-            style={{ fontSize: 13, textDecoration: "none" }}
-          >
-            About
-          </Link>
-          <Link
-            href="/#skills"
-            className="nav-link"
-            style={{ fontSize: 13, textDecoration: "none" }}
-          >
-            Skills
-          </Link>
-          <a
-            href={`mailto:${SITE_CONFIG.email}`}
-            className="nav-link"
-            style={{ fontSize: 13, textDecoration: "none" }}
-          >
-            Contact
-          </a>
-          <a
-            href={SITE_CONFIG.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-link"
-            style={{ fontSize: 13, textDecoration: "none" }}
-          >
-            LinkedIn
-          </a>
-          <a
-            href={SITE_CONFIG.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-link"
-            style={{ fontSize: 13, textDecoration: "none" }}
-          >
-            GitHub
-          </a>
-          <a
-            href={SITE_CONFIG.pixabay}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-link"
-            style={{ fontSize: 13, textDecoration: "none" }}
-          >
-            Pixabay
-          </a>
-        </div>
+      <div className="hairline">
+        <div className="container-site grid grid-cols-1 gap-10 py-16 md:grid-cols-3 md:py-20">
+          <div>
+            <p className="label-mono">Spencer D&apos;Avis</p>
+            <p className="label-mono mt-2">
+              &copy; {new Date().getFullYear()} &middot; Seattle, WA
+            </p>
+          </div>
 
-        {/* Copyright + source */}
-        <p style={{ fontSize: 12, color: "var(--muted-foreground)", textAlign: "center" }}>
-          &copy; {new Date().getFullYear()} Spencer D&apos;Avis &middot; Seattle, WA &middot;{" "}
-          <a
-            href={SITE_CONFIG.githubSourceRepo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-link"
-            style={{ fontSize: 12, textDecoration: "none" }}
-          >
-            Source
-          </a>
-        </p>
+          <nav aria-label="Footer navigation" className="flex flex-col gap-3">
+            <Link href="/projects" className={linkClass}>
+              Work
+            </Link>
+            <Link href="/#services" className={linkClass}>
+              Services
+            </Link>
+            <Link href="/#about" className={linkClass}>
+              About
+            </Link>
+            <Link href="/#contact" className={linkClass}>
+              Contact
+            </Link>
+          </nav>
+
+          <div className="flex flex-col gap-3">
+            <a
+              href={SITE_CONFIG.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
+              LinkedIn
+            </a>
+            <a
+              href={SITE_CONFIG.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
+              GitHub
+            </a>
+            <a href={`mailto:${SITE_CONFIG.email}`} className={linkClass}>
+              Email
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

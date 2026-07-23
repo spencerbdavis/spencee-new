@@ -5,25 +5,28 @@ import type { SupportingProject } from "@/lib/projects";
 export function SupportingProjectCard({ project }: { project: SupportingProject }) {
   const inner = (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-        <h4 style={{ fontSize: 15, fontWeight: 600, color: "var(--foreground)" }}>
-          {project.title}
-        </h4>
-        {project.liveUrl && <ArrowUpRight size={14} style={{ color: "var(--muted-foreground)", flexShrink: 0 }} />}
+      <div className="flex items-start justify-between gap-2">
+        <h4 className="text-base font-semibold text-ink group-hover:text-paper">{project.title}</h4>
+        {project.liveUrl && <ArrowUpRight size={14} className="mt-1 shrink-0" />}
       </div>
-      <p style={{ fontSize: 13, lineHeight: 1.6, color: "var(--muted-foreground)", marginTop: 8 }}>
-        {project.description}
-      </p>
-      <div style={{ marginTop: 14 }}>
+      <p className="mt-2 text-sm leading-relaxed text-ink-muted group-hover:text-paper">{project.description}</p>
+      <div className="mt-4">
         <TechPills items={project.techStack} />
       </div>
     </>
   );
 
-  const s = { display: "flex" as const, flexDirection: "column" as const, padding: 24, textDecoration: "none" as const, height: "100%" as const };
-
   if (project.liveUrl) {
-    return <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="card" style={s}>{inner}</a>;
+    return (
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group invert-hover flex h-full flex-col border border-hairline p-6"
+      >
+        {inner}
+      </a>
+    );
   }
-  return <div className="card" style={{ ...s, cursor: "default" }}>{inner}</div>;
+  return <div className="flex h-full flex-col border border-hairline p-6">{inner}</div>;
 }

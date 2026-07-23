@@ -1,268 +1,347 @@
 @import "tailwindcss";
 @source "../../src";
 
+/* ==========================================================
+   spenc.ee — Swiss-Seattle
+   Warm ink on cream. One Salish-blue mark. Hairline structure.
+   Tokens are the single source of truth — no hex elsewhere.
+   ========================================================== */
+
 @theme {
-  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, monospace;
-}
+  --font-sans: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 
-/* ============================
-   Sound & Summit — PNW Palette
-   ============================ */
+  /* Ink & paper — the whole palette */
+  --color-paper: #fbf9f4;
+  --color-paper-tint: #f4f1e9;
+  --color-ink: #131210;
+  --color-ink-muted: #5f594e;
+  --color-hairline: #e7e3d8;
+  --color-accent: #0077b6;
 
-:root {
-  --background: #FAFCFB;
-  --foreground: #162228;
-  --muted: #E4EBE8;
-  --muted-foreground: #4D6068;
-  --border: rgba(22, 34, 40, 0.12);
-  --card: #FFFFFF;
-  --accent: #18796C;
-  --accent-hover: #14655A;
-  --accent-soft: rgba(24, 121, 108, 0.07);
-  --salmon: #CB4F35;
-  --sound-blue: #2570A0;
-  --section-alt: #EFF4F2;
-  --nav-bg: rgba(250, 252, 251, 0.78);
-  --hero-gradient: linear-gradient(180deg, #FAFCFB 0%, #E8F0EC 50%, #DDE8E2 100%);
-  --card-shadow: 0 1px 3px rgba(22, 34, 40, 0.06), 0 4px 12px rgba(22, 34, 40, 0.04);
-  --card-shadow-hover: 0 4px 12px rgba(22, 34, 40, 0.08), 0 12px 32px rgba(22, 34, 40, 0.08);
-  --stat-value: #12333E;
-  --fog-color: #C5D5E5;
-  --rain-color: #88B5D0;
-}
+  /* Layout */
+  --container-site: 67.5rem; /* 1080px */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0D1311;
-    --foreground: #E8EFEC;
-    --muted: #1A2420;
-    --muted-foreground: #94A8A0;
-    --border: rgba(232, 239, 236, 0.12);
-    --card: #162019;
-    --accent: #48CCBA;
-    --accent-hover: #5DD8C8;
-    --accent-soft: rgba(72, 204, 186, 0.08);
-    --salmon: #F08060;
-    --sound-blue: #5AACDC;
-    --section-alt: #111A16;
-    --nav-bg: rgba(13, 19, 17, 0.78);
-    --hero-gradient: linear-gradient(180deg, #0D1311 0%, #121E1A 50%, #152420 100%);
-    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.25);
-    --card-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.5), 0 12px 32px rgba(0, 0, 0, 0.35);
-    --stat-value: #D4E2DC;
-    --fog-color: #1A2830;
-    --rain-color: #2A5070;
-  }
+  /* Type scale */
+  --text-display: clamp(3rem, 7.5vw, 6.5rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 750;
+  --text-h2: clamp(2rem, 4vw, 3.25rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 700;
+  --text-h3: 1.375rem;
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 600;
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.08em;
+
+  /* Motion */
+  --ease-swiss: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ============================
    Base
    ============================ */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 html {
+  color-scheme: light;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: var(--accent-soft);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+/* Anchor targets clear the fixed navbar */
+[id] {
+  scroll-margin-top: 5.5rem;
 }
 
 /* ============================
-   Component Classes
+   Structure utilities
    ============================ */
 
-.nav-link {
-  color: var(--muted-foreground);
-  transition: color 0.15s;
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
 }
-.nav-link:hover {
-  color: var(--foreground);
+
+@utility rule-thick {
+  border-top: 3px solid var(--color-ink);
+}
+
+@utility hairline {
+  border-top: 1px solid var(--color-hairline);
+}
+
+@utility hairline-y {
+  border-left: 1px solid var(--color-hairline);
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+@utility tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--color-hairline);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-muted);
+  background: var(--color-paper);
+}
+
+/* Subtle paper grain — opt-in, at most once per page */
+@utility texture-noise {
+  position: relative;
+}
+.texture-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================
+   Interactive components
+   ============================ */
+
+.btn-solid,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 100ms linear, color 100ms linear, border-color 100ms linear;
+}
+
+.btn-solid {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: 1px solid var(--color-ink);
+}
+.btn-solid:hover,
+.btn-solid:focus-visible,
+.btn-solid:active {
+  background: var(--color-accent);
+  color: var(--color-paper);
+  border-color: var(--color-accent);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+}
+.btn-outline:hover,
+.btn-outline:focus-visible,
+.btn-outline:active {
+  background: var(--color-accent);
+  color: var(--color-paper);
+  border-color: var(--color-accent);
+}
+
+.invert-hover {
+  transition: background-color 100ms linear, color 100ms linear;
+}
+.invert-hover:hover,
+.invert-hover:focus-visible,
+.invert-hover:focus-within,
+.invert-hover:active {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+.nav-link {
+  color: var(--color-ink-muted);
+  text-decoration: none;
+  transition: color 100ms linear;
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-accent);
 }
 
 .contact-link {
-  color: var(--muted-foreground);
-  transition: color 0.15s;
+  color: var(--color-ink-muted);
+  transition: color 100ms linear;
 }
-.contact-link:hover {
-  color: var(--accent);
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-  transition: all 0.2s;
-}
-.btn-primary:hover {
-  filter: brightness(1.15);
-}
-
-.btn-secondary {
-  background: var(--muted);
-  color: var(--foreground);
-  transition: all 0.2s;
-}
-.btn-secondary:hover {
-  background: var(--border);
-}
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: var(--card-shadow);
-  transition: box-shadow 0.3s, transform 0.3s;
-}
-.card:hover {
-  box-shadow: var(--card-shadow-hover);
-  transform: translateY(-3px);
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 12px;
-  border-radius: 100px;
-  font-size: 11px;
-  line-height: 1;
-  font-family: var(--font-mono);
-  background: var(--muted);
-  color: var(--muted-foreground);
-  border: 1px solid var(--border);
+.contact-link:hover,
+.contact-link:focus-visible {
+  color: var(--color-accent);
 }
 
 /* ============================
-   Keyframe Animations
+   Motion — entrances
+   Two registers: interactions ≤120ms linear (Tailwind utilities),
+   entrances below. Desktop gets choreography; touch/small screens
+   get a plain 200ms fade; reduced motion gets nothing.
+   Hiding is scoped to html.js so content is never withheld
+   without JavaScript.
    ============================ */
 
-@keyframes summit-pulse {
-  0% { opacity: 0.2; transform: translateX(-50%) scale(0.9); }
-  100% { opacity: 0.5; transform: translateX(-50%) scale(1.2); }
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal-rise,
+  html.js .reveal-clip,
+  html.js .reveal-rule {
+    opacity: 0;
+    transition: opacity 200ms linear;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  html.js .reveal-rise.is-in,
+  html.js .reveal-clip.is-in,
+  html.js .reveal-rule.is-in {
+    opacity: 1;
+  }
+
+  @media (pointer: fine) and (min-width: 768px) {
+    html.js .reveal-rise {
+      transform: translateY(20px);
+      transition:
+        opacity 500ms var(--ease-swiss),
+        transform 500ms var(--ease-swiss);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    html.js .reveal-rise.is-in {
+      transform: none;
+    }
+
+    /* Clip/scale the CHILD, never the observed wrapper: a fully clipped or
+       zero-scaled element has no visible area, so IntersectionObserver
+       would never fire and the reveal would deadlock. */
+    html.js .reveal-clip {
+      opacity: 1;
+    }
+    html.js .reveal-clip > * {
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 500ms var(--ease-swiss);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    html.js .reveal-clip.is-in > * {
+      clip-path: inset(0 0 0 0);
+    }
+
+    html.js .reveal-rule {
+      opacity: 1;
+    }
+    html.js .reveal-rule > * {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 600ms var(--ease-swiss);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    html.js .reveal-rule.is-in > * {
+      transform: scaleX(1);
+    }
+
+    /* Load-time choreography (hero only — no observer) */
+    html.js .load-rise {
+      animation: load-rise 600ms var(--ease-swiss) both;
+      animation-delay: var(--reveal-delay, 0ms);
+    }
+  }
 }
 
-@keyframes tooltip-in {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes load-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-@keyframes wave-drift-1 {
-  from { transform: translateX(0%); }
-  to { transform: translateX(-50%); }
+/* Hero accent period — cursor-style blink. Gated to no-preference so
+   the period stays solid (and visible) under reduced motion. */
+@keyframes blink {
+  0%,
+  62% {
+    opacity: 1;
+  }
+  62.01%,
+  100% {
+    opacity: 0;
+  }
 }
 
-@keyframes wave-drift-2 {
-  from { transform: translateX(0%); }
-  to { transform: translateX(-50%); }
+/* Weather pill "live" dot — gentle breathing pulse. */
+@keyframes live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }
 
-@keyframes wave-drift-3 {
-  from { transform: translateX(0%); }
-  to { transform: translateX(-50%); }
-}
-
-@keyframes ferry-cross {
-  0% { transform: translateX(85vw); }
-  92% { transform: translateX(-120px); }
-  100% { transform: translateX(-120px); }
-}
-
-@keyframes salmon-jump {
-  0%   { transform: translate(0, 20px) rotate(30deg); opacity: 0; }
-  8%   { transform: translate(15px, 5px) rotate(15deg); opacity: 1; }
-  30%  { transform: translate(50px, -40px) rotate(-15deg); opacity: 1; }
-  50%  { transform: translate(80px, -50px) rotate(-25deg); opacity: 1; }
-  70%  { transform: translate(110px, -30px) rotate(-5deg); opacity: 1; }
-  88%  { transform: translate(135px, 10px) rotate(20deg); opacity: 1; }
-  95%  { transform: translate(145px, 20px) rotate(35deg); opacity: 0; }
-  100% { transform: translate(145px, 20px) rotate(35deg); opacity: 0; }
-}
-
-@keyframes rain-fall-far {
-  from { transform: translateY(-16px) rotate(6deg); }
-  to { transform: translateY(230px) rotate(6deg); }
-}
-
-@keyframes rain-fall-mid {
-  from { transform: translateY(-20px) rotate(10deg); }
-  to { transform: translateY(240px) rotate(10deg); }
-}
-
-@keyframes rain-fall-near {
-  from { transform: translateY(-24px) rotate(12deg); }
-  to { transform: translateY(250px) rotate(12deg); }
-}
-
-@keyframes rain-ripple {
-  0% { transform: scale(0.5); opacity: 0.35; }
-  50% { opacity: 0.2; }
-  100% { transform: scale(3.5, 1.5); opacity: 0; }
-}
-
-@keyframes ferry-bob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-2px) rotate(0.3deg); }
-}
-
-@keyframes hull-wave {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-@keyframes ferry-honk {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-3px) rotate(-0.8deg); }
-  75% { transform: translateY(-2px) rotate(0.8deg); }
-}
-
-@keyframes sound-wave {
-  0% { opacity: 0; transform: translateX(0) scale(0.6); }
-  20% { opacity: 0.7; transform: translateX(4px) scale(1); }
-  80% { opacity: 0.3; transform: translateX(14px) scale(1.3); }
-  100% { opacity: 0; transform: translateX(20px) scale(1.5); }
-}
-
-@keyframes fog-drift-1 {
-  from { transform: translateX(-5%); }
-  to { transform: translateX(15%); }
-}
-
-@keyframes fog-drift-2 {
-  from { transform: translateX(5%); }
-  to { transform: translateX(-10%); }
-}
-
-@keyframes horn-blast {
-  0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.8); }
-  15% { opacity: 1; transform: translateX(-50%) translateY(-5px) scale(1.1); }
-  60% { opacity: 1; transform: translateX(-50%) translateY(-10px) scale(1); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.9); }
-}
-
-@keyframes kraken-pop {
-  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-blink {
+    animation: blink 1.2s step-end infinite;
+  }
+  .live-dot {
+    animation: live-pulse 2.4s ease-in-out infinite;
+  }
 }
 
 /* ============================
-   Reduced Motion
+   Ambient — footer scene
+   ============================ */
+
+@keyframes ferry-cross {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-160px);
+  }
+}
+
+/* ============================
+   Reduced motion
    ============================ */
 
 @media (prefers-reduced-motion: reduce) {

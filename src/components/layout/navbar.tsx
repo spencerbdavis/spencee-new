@@ -1,82 +1,67 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { WeatherPill } from "./weather-pill";
 
 const LINKS = [
-  { label: "Projects", href: "/projects" },
+  { label: "Work", href: "/projects" },
+  { label: "Services", href: "/#services" },
   { label: "About", href: "/#about" },
-  { label: "Skills", href: "/#skills" },
   { label: "Contact", href: "/#contact" },
+  { label: "Resume", href: "/spencer-davis-resume.pdf" },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header
-      style={{
-        position: "fixed",
-        top: 3,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        background: "var(--nav-bg)",
-        backdropFilter: "saturate(180%) blur(20px)",
-        WebkitBackdropFilter: "saturate(180%) blur(20px)",
-      }}
+      className={`fixed inset-x-0 top-0 z-50 bg-paper transition-colors duration-100 ${
+        scrolled ? "border-b border-hairline" : "border-b border-transparent"
+      }`}
     >
       <nav
-        style={{
-          maxWidth: 1080,
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "14px 32px",
-          borderBottom: "1px solid var(--border)",
-        }}
+        className={`container-site flex items-center justify-between transition-[padding] duration-100 ${
+          scrolled ? "py-3" : "py-5"
+        }`}
       >
         <Link
           href="/"
-          style={{
-            fontSize: 15,
-            fontWeight: 600,
-            color: "var(--foreground)",
-            textDecoration: "none",
-            letterSpacing: "-0.02em",
-          }}
+          className="font-mono text-sm font-medium uppercase tracking-[0.08em] text-ink"
         >
           Spencer D&apos;Avis
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex" style={{ gap: 28, alignItems: "center" }}>
+        <div className="hidden items-center gap-7 md:flex">
           {LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className="nav-link" style={{ fontSize: 13 }}>
+            <Link key={l.href} href={l.href} className="nav-link label-mono">
               {l.label}
             </Link>
           ))}
-          <a
-            href="/spencer-davis-resume.pdf"
-            download
-            className="nav-link"
-            style={{ fontSize: 13, display: "inline-flex", alignItems: "center", gap: 4 }}
-          >
-            Resume <Download size={12} />
-          </a>
           <WeatherPill />
         </div>
 
         {/* Mobile */}
-        <div className="flex md:hidden" style={{ gap: 12, alignItems: "center" }}>
+        <div className="flex items-center gap-3 md:hidden">
           <WeatherPill />
           <button
+            type="button"
             onClick={() => setOpen(!open)}
-            aria-label="Menu"
-            style={{ color: "var(--foreground)", background: "none", border: "none", cursor: "pointer" }}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            className="-mr-2 flex h-11 w-11 items-center justify-center text-ink transition-colors duration-100 hover:text-ink-muted"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -84,26 +69,20 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="md:hidden" style={{ background: "var(--background)", padding: "8px 32px 32px" }}>
+        <div
+          id="mobile-menu"
+          className="container-site flex flex-col border-t border-hairline pb-6 md:hidden"
+        >
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="nav-link"
-              style={{ display: "block", padding: "12px 0", fontSize: 15 }}
+              className="nav-link label-mono flex min-h-[44px] items-center border-b border-hairline"
             >
               {l.label}
             </Link>
           ))}
-          <a
-            href="/spencer-davis-resume.pdf"
-            download
-            className="nav-link"
-            style={{ display: "flex", alignItems: "center", gap: 6, padding: "12px 0", fontSize: 15 }}
-          >
-            Resume <Download size={14} />
-          </a>
         </div>
       )}
     </header>
