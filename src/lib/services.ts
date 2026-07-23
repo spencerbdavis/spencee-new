@@ -5,6 +5,8 @@ export interface Service {
   deliverables: string[];
   clients?: string[];
   relatedSlugs: string[]; // project slugs
+  href?: string; // overrides the default /projects/<relatedSlugs[0]> link
+  linkLabel?: string; // overrides the default "See work" label
 }
 
 export const SERVICES: Service[] = [
@@ -38,8 +40,15 @@ export const SERVICES: Service[] = [
     number: "04",
     title: "Listings & Local Presence",
     description:
-      "Keeping 60+ locations accurate and competitive everywhere renters look: listing syndication, Google Business Profile, Apple Maps, and Seattle MFTE compliance.",
-    deliverables: ["Listing syndication", "Google Business Profile", "Apple Business Connect", "MFTE compliance"],
-    relatedSlugs: ["rentcafe-mcp", "wordpress-plugin"],
+      "A custom AI engine that runs local search for 60+ communities — SEO and generative-engine optimization, Google and Apple listings, AI review responses, and the live Yardi/RentCafe data that keeps every surface consistent.",
+    deliverables: [
+      "AI SEO & GEO engine",
+      "Google Business Profile",
+      "Apple Maps listings",
+      "Reviews & reputation",
+    ],
+    relatedSlugs: ["admin-panel", "wordpress-plugin"],
+    href: "/services/local-seo",
+    linkLabel: "Explore the system",
   },
 ];

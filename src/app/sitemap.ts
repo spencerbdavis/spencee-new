@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE, lastModified: now, changeFrequency: "monthly", priority: 1.0 },
     { url: `${BASE}/projects`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/services/local-seo`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ...projectRoutes,
   ];
 }

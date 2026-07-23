@@ -36,10 +36,10 @@ export function Services() {
                   )}
 
                   <Link
-                    href={`/projects/${service.relatedSlugs[0]}`}
+                    href={service.href ?? `/projects/${service.relatedSlugs[0]}`}
                     className="nav-link mt-6 inline-flex items-center gap-2 font-mono text-sm"
                   >
-                    See work
+                    {service.linkLabel ?? "See work"}
                     <span aria-hidden="true">&rarr;</span>
                   </Link>
                 </div>

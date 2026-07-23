@@ -5,6 +5,7 @@ import { FeaturedProjects } from "@/components/home/featured-projects";
 import { GalleryBand } from "@/components/home/gallery-band";
 import { About } from "@/components/home/about";
 import { Skills } from "@/components/home/skills";
+import { Engagements } from "@/components/home/engagements";
 import { Contact } from "@/components/home/contact";
 import { SITE_CONFIG } from "@/lib/config";
 
@@ -32,6 +33,7 @@ export default function Home() {
       <GalleryBand />
       <About />
       <Skills />
+      <Engagements />
       <Contact />
     </>
   );

@@ -11,7 +11,7 @@ export const HERO_META = [
 ] as const;
 
 export const AVAILABILITY =
-  "Available for WordPress builds, design & marketing systems · Seattle or remote";
+  "Open to marketing-ops & engineering roles — and freelance web, design & SEO projects · Seattle or remote";
 
 export const SITE_CONFIG = {
   name: "Spencer D'Avis",
