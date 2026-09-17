@@ -7,7 +7,7 @@ import { ALL_PROJECTS } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Spencer D'Avis | Bonavista Maintenance Suite",
   description:
-    "Work order management, mobile execution, and Yardi integration, built in-house to replace a $30K/year vendor.",
+    "A field-operations platform spanning web, iOS, and Yardi automation, built from an original PHP system.",
   alternates: { canonical: "https://spenc.ee/projects/maintenance" },
 };
 
@@ -85,6 +85,20 @@ export default function MaintenancePage() {
 
   return (
     <ProjectLayout project={project}>
+      <section className="swiss-grid gap-y-6">
+        <p className="label-mono col-span-4 md:col-span-2">My role</p>
+        <div className="col-span-4 max-w-3xl text-lg leading-relaxed text-ink-muted md:col-span-8">
+          <p>
+            I built the original application alone as 14,000 lines of PHP over nine months, then founded the web and
+            mobile successor repositories and worked solo on each before contractors joined.
+          </p>
+          <p className="mt-5">
+            I architected the rewrite, defined milestones and acceptance criteria, reviewed the work, and continued to own
+            the integrations and production result. The later React codebase includes substantial contractor implementation.
+          </p>
+        </div>
+      </section>
+
       {/* Problem */}
       <div>
         <p className="label-mono mb-6">The Problem</p>
@@ -99,7 +113,7 @@ export default function MaintenancePage() {
             content: (
               <>
                 <TabHeader
-                  description="The supervisor's command center: 1,295 commits, 252 API routes, 207 components."
+                  description="The supervisor's command center for work orders, scheduling, reports, and field activity."
                   tech="Next.js 15 · TypeScript · Microsoft Graph API · MySQL · FullCalendar · Resend + Mailgun · AWS S3 · Puppeteer · APNs"
                 />
                 <FeatureList items={panelFeatures} />
@@ -120,7 +134,7 @@ export default function MaintenancePage() {
             content: (
               <>
                 <TabHeader
-                  description="The technician's field tool, published on the App Store. 108 commits, 34 screens."
+                  description="The technician's field tool, published on the App Store."
                   tech="React Native 0.76 · TypeScript · Swift (ActivityKit) · SQLite · PostHog Analytics"
                 />
                 <FeatureList items={appFeatures} />

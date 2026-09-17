@@ -6,9 +6,9 @@ import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis | Bonavista Admin Panel",
+  title: "Spencer D'Avis | Expense Reconciliation System",
   description:
-    "The operations backbone for a 60+ property portfolio: receipts, mileage, Matterport, SEO, Google Reviews, and live property data.",
+    "A production receipt pipeline with AI extraction, deterministic rules, human verification, and Yardi write-back.",
   alternates: { canonical: "https://spenc.ee/projects/admin-panel" },
 };
 
@@ -29,7 +29,7 @@ function ModuleHeader({ index, title, tech }: { index: number; title: string; te
     <div className="mb-7 flex items-baseline gap-4">
       <span className="label-mono">{String(index).padStart(2, "0")}</span>
       <div>
-        <h3 className="text-h3 text-ink">{title}</h3>
+        <h2 className="text-h3 text-ink">{title}</h2>
         <p className="label-mono mt-2">{tech}</p>
       </div>
     </div>
@@ -85,10 +85,12 @@ function CrossLink({ href, title, desc }: { href: string; title: string; desc: s
 }
 
 const pipelineFlow = [
-  { label: "Email received", sub: "receipts@ inbox" },
-  { label: "Cloudflare Worker", sub: "Parse & extract" },
-  { label: "Gemini Flash", sub: "OCR & classify" },
-  { label: "Store & Confirm", sub: "MySQL + R2 + email" },
+  { label: "Ingest", sub: "Email worker" },
+  { label: "Extract", sub: "Content routing + vision" },
+  { label: "Classify", sub: "Property + GL rules" },
+  { label: "Verify", sub: "Signed human review" },
+  { label: "Write back", sub: "Yardi extension" },
+  { label: "Learn", sub: "Corrections + tests" },
 ];
 
 const generatedContent = [
@@ -105,6 +107,60 @@ export default function AdminPanelPage() {
 
   return (
     <ProjectLayout project={project}>
+      <section className="swiss-grid gap-y-6">
+        <p className="label-mono col-span-4 md:col-span-2">Constraint</p>
+        <div className="col-span-4 md:col-span-8">
+        <p className="max-w-3xl text-lg leading-relaxed text-ink-muted">
+          {project.problem} The safest automation boundary was explicit: extract and match what the evidence supports,
+          send uncertain cases to a person, and record corrections for the next run.
+        </p>
+        <div className="mt-8 grid grid-cols-2 gap-px bg-hairline sm:grid-cols-4">
+          {[
+            ["463 / 464", "Commits authored"],
+            ["200,500", "Lines of TypeScript"],
+            ["102", "Database migrations"],
+            ["75", "Test files"],
+          ].map(([value, label]) => (
+            <div key={label} className="bg-paper py-5 pr-4">
+              <p className="font-mono text-xl font-semibold">{value}</p>
+              <p className="label-mono mt-2">{label}</p>
+            </div>
+          ))}
+        </div>
+        </div>
+      </section>
+
+      <section>
+        <ModuleHeader index={1} title="Reconciliation pipeline" tech="Cloudflare Email Workers · Gemini · MySQL · R2 · Signed Links · Chrome Extension" />
+        <div className="grid grid-cols-1 gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-6">
+          {pipelineFlow.map((step, i) => (
+            <div key={step.label} className="bg-paper p-4">
+              <p className="label-mono text-accent">{String(i + 1).padStart(2, "0")}</p>
+              <p className="mt-4 text-sm font-semibold text-ink">{step.label}</p>
+              <p className="mt-1 text-sm leading-relaxed text-ink-muted">{step.sub}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-ink p-6 text-paper md:p-10">
+        <div className="swiss-grid gap-y-6">
+          <p className="label-mono col-span-4 !text-paper/60 md:col-span-2">Failure / 359 receipts</p>
+          <div className="col-span-4 md:col-span-8">
+            <h2 className="text-3xl font-semibold tracking-tight">The matcher found a valid address—in the wrong place.</h2>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-paper/70">
+              A property matcher routed 359 receipts to the head-office property code because that address appeared in
+              every email signature. The office was also a rentable property, so the match looked valid to the original rule.
+            </p>
+            <p className="mt-5 max-w-3xl text-lg leading-relaxed text-paper/70">
+              I removed signature fields from property evidence, encoded the accounting distinction between fleet and utility
+              GL codes, added a regression test for the incident, and changed ambiguous matches to return no answer instead of
+              selecting the most plausible one.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Screenshots */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {[
@@ -121,45 +177,26 @@ export default function AdminPanelPage() {
         ))}
       </div>
 
-      {/* ===== MODULE 1: Receipt Processor ===== */}
+      {/* Supporting modules in the larger platform */}
       <section>
-        <ModuleHeader index={1} title="Receipt Processor" tech="Cloudflare Email Workers · Browser Rendering · R2 · Gemini Flash · MySQL · Resend" />
-
-        {/* Pipeline */}
-        <div className="mb-7 grid grid-cols-1 gap-2 sm:grid-cols-4">
-          {pipelineFlow.map((step, i) => (
-            <div key={step.label} className="flex items-center gap-2">
-              <div className="flex-1 border border-hairline p-4 text-center">
-                <p className="text-sm font-semibold text-ink">{step.label}</p>
-                <p className="label-mono mt-1">{step.sub}</p>
-              </div>
-              {i < pipelineFlow.length - 1 && (
-                <span className="hidden font-mono text-ink-muted sm:inline">→</span>
-              )}
-            </div>
-          ))}
-        </div>
-
+        <ModuleHeader index={2} title="Extraction and review" tech="PDF · HEIC · JPEG · PNG · Text Email · Human Verification" />
         <FeatureList
           items={[
             "Accepts receipts via email forwarding or direct UI upload",
             "Handles PDF, image (HEIC/JPEG/PNG), and text-only emails (Amazon order confirmations)",
             "Gemini Flash extracts structured JSON: total, merchant, description, GL code, date, OCR text",
-            "Rule-based learning engine improves merchant recognition and GL code accuracy over time",
-            "Accuracy tracking system measures extraction quality per merchant",
-            "Files stored in Cloudflare R2, confirmation email sent via Resend",
+            "Deterministic property and GL rules run after extraction; ambiguous classifications fail closed",
+            "A signed review link keeps a person in the loop before accounting write-back",
+            "Corrections feed merchant rules and regression coverage",
           ]}
         />
-        <p className="mt-6 font-mono text-sm font-semibold text-ink">
-          1,000 receipts/month &middot; {"<"}60 second processing
-        </p>
       </section>
 
       <div className="hairline" />
 
       {/* ===== MODULE 2: SEO Engine ===== */}
       <section>
-        <ModuleHeader index={2} title="SEO Engine" tech="Gemini 3.1 Pro · Google Search Console · DataForSEO · Foursquare · Google Places" />
+        <ModuleHeader index={3} title="SEO Engine" tech="Gemini 3.1 Pro · Google Search Console · DataForSEO · Foursquare · Google Places" />
 
         {/* Problem callout */}
         <div className="mb-8 border-l border-ink py-1 pl-6">
@@ -212,7 +249,7 @@ export default function AdminPanelPage() {
 
       {/* ===== MODULE 3: GBP & Listings Sync ===== */}
       <section>
-        <ModuleHeader index={3} title="GBP & Listings Sync" tech="Google Business Profile · Foursquare · Google Places · ILS Platforms" />
+        <ModuleHeader index={4} title="GBP & Listings Sync" tech="Google Business Profile · Foursquare · Google Places · ILS Platforms" />
         <FeatureList
           items={[
             "20+ automated cron jobs sync property data, media, reviews, and listings across GBP, Foursquare, Google Places, and ILS platforms",
@@ -228,7 +265,7 @@ export default function AdminPanelPage() {
 
       {/* ===== MODULE 4: Google Reviews ===== */}
       <section>
-        <ModuleHeader index={4} title="Google Reviews" tech="Google Business Profile · Gemini · Sentiment Analysis" />
+        <ModuleHeader index={5} title="Google Reviews" tech="Google Business Profile · Gemini · Sentiment Analysis" />
         <FeatureList
           items={[
             "Automated review retrieval from Google Business Profile across all 60+ properties",
@@ -243,7 +280,7 @@ export default function AdminPanelPage() {
 
       {/* ===== MODULE 5: Matterport ===== */}
       <section>
-        <ModuleHeader index={5} title="Matterport 3D Tours" tech="Matterport GraphQL API · Yardi · RentCafe" />
+        <ModuleHeader index={6} title="Matterport 3D Tours" tech="Matterport GraphQL API · Yardi · RentCafe" />
         <FeatureList
           items={[
             "Bonavista-owned iPhones checked out by property managers for 3D tour capture via Matterport app",
@@ -258,7 +295,7 @@ export default function AdminPanelPage() {
 
       {/* ===== MODULE 6: Mileage ===== */}
       <section>
-        <ModuleHeader index={6} title="Mileage Tracking" tech="Google Maps Distance API · CSV Export · Payroll Integration" />
+        <ModuleHeader index={7} title="Mileage Tracking" tech="Google Maps Distance API · CSV Export · Payroll Integration" />
         <FeatureList
           items={[
             "Property origin and destination input with automatic distance calculation",

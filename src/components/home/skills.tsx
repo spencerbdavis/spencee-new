@@ -41,17 +41,19 @@ export function Skills() {
     <section id="skills" className="scroll-mt-20 rule-thick">
       <div className="container-site py-24 md:py-32">
         <Reveal className="reveal-rise">
-          <p className="label-mono">Capabilities</p>
-          <h2 className="mt-4 text-h2">Capabilities</h2>
+          <div className="swiss-grid">
+            <p className="label-mono col-span-4 md:col-span-2">03 / Capabilities</p>
+            <h2 className="col-span-4 mt-4 text-h2 md:col-span-8 md:mt-0">What I use to ship</h2>
+          </div>
 
           <div className="mt-12 divide-y divide-hairline md:mt-16">
             {SKILLS.map((group) => (
               <div
                 key={group.category}
-                className="grid grid-cols-1 gap-3 py-6 md:grid-cols-[12rem_1fr] md:gap-8 md:py-8"
+                className="swiss-grid gap-y-4 py-7 md:py-8"
               >
-                <p className="label-mono">{group.category}</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="label-mono col-span-4 md:col-span-3">{group.category}</p>
+                <div className="col-span-4 flex flex-wrap gap-2 md:col-span-9">
                   {group.items.map((skill) => (
                     <SkillChip key={skill} skill={skill} />
                   ))}

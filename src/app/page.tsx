@@ -8,14 +8,15 @@ import { Skills } from "@/components/home/skills";
 import { Engagements } from "@/components/home/engagements";
 import { Contact } from "@/components/home/contact";
 import { SITE_CONFIG } from "@/lib/config";
+import { FREELANCE_MODE } from "@/lib/config";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: SITE_CONFIG.name,
   url: SITE_CONFIG.url,
-  jobTitle: "Marketing Operations & Web Systems",
-  knowsAbout: ["Marketing Operations", "Web Design", "WordPress", "Graphic Design", "Print Design", "SEO", "Marketing Automation", "AI Systems"],
+  jobTitle: "Applied AI & Integrations Engineer",
+  knowsAbout: ["Applied AI", "Model Evaluation", "API Integration", "Internal Tools", "TypeScript", "Next.js", "Browser Automation", "MCP"],
   sameAs: [SITE_CONFIG.linkedin, SITE_CONFIG.github],
 };
 
@@ -28,12 +29,12 @@ export default function Home() {
       />
       <Hero />
       <StatsBar />
-      <Services />
       <FeaturedProjects />
-      <GalleryBand />
       <About />
       <Skills />
-      <Engagements />
+      <GalleryBand />
+      {FREELANCE_MODE === "secondary" && <Services />}
+      {FREELANCE_MODE === "secondary" && <Engagements />}
       <Contact />
     </>
   );

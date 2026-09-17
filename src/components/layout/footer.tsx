@@ -1,41 +1,35 @@
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
-import { FooterScene } from "./footer-scene";
 
 const linkClass =
   "label-mono transition-colors duration-100 hover:text-ink focus-visible:text-ink";
 
 export function Footer() {
   return (
-    <footer className="overflow-hidden">
-      {/* Scene — full bleed; owned by another workstream, left as-is */}
-      <FooterScene />
-
-      <div className="hairline">
-        <div className="container-site grid grid-cols-1 gap-10 py-16 md:grid-cols-3 md:py-20">
-          <div>
+    <footer className="border-t-[3px] border-ink">
+      <div>
+        <div className="container-site swiss-grid gap-y-10 py-16 md:py-20">
+          <div className="col-span-4 md:col-span-4">
             <p className="label-mono">Spencer D&apos;Avis</p>
             <p className="label-mono mt-2">
               &copy; {new Date().getFullYear()} &middot; Seattle, WA
             </p>
           </div>
 
-          <nav aria-label="Footer navigation" className="flex flex-col gap-3">
+          <nav aria-label="Footer navigation" className="col-span-2 flex flex-col gap-3 md:col-span-3 md:col-start-7">
             <Link href="/projects" className={linkClass}>
               Work
             </Link>
-            <Link href="/#services" className={linkClass}>
-              Services
-            </Link>
-            <Link href="/#about" className={linkClass}>
+            <Link href="/about" className={linkClass}>
               About
             </Link>
+            <Link href="/#skills" className={linkClass}>Capabilities</Link>
             <Link href="/#contact" className={linkClass}>
               Contact
             </Link>
           </nav>
 
-          <div className="flex flex-col gap-3">
+          <div className="col-span-2 flex flex-col gap-3 md:col-span-3 md:col-start-10">
             <a
               href={SITE_CONFIG.linkedin}
               target="_blank"

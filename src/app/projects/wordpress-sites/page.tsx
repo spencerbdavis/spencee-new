@@ -6,7 +6,7 @@ import { ScrollingSiteTile } from "@/components/projects/scrolling-site-tile";
 export const metadata: Metadata = {
   title: "WordPress Sites | Spencer D'Avis — Elementor, Astra & Custom Themes",
   description:
-    "55 of 60 Bonavista property websites hosted and managed in-house — self-hosted WordPress on our own VPS or Vercel by stack. Elementor, Astra, and bespoke custom themes. Available for new projects.",
+    "A mixed WordPress and Next.js web estate spanning 73 Cloudflare zones, with 65 zones serving live traffic.",
   keywords: [
     "WordPress developer Seattle",
     "Elementor developer",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WordPress Sites | Spencer D'Avis",
     description:
-      "55 of 60 property sites hosted & managed in-house — Elementor, Astra, and bespoke custom themes. Available for new projects.",
+      "A mixed WordPress and Next.js web estate spanning 73 Cloudflare zones, with 65 serving live traffic.",
     url: "https://spenc.ee/projects/wordpress-sites",
     type: "website",
     images: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WordPress Sites | Spencer D'Avis",
     description:
-      "55 of 60 property sites hosted & managed in-house — Elementor, Astra, and bespoke custom themes.",
+      "73 Cloudflare zones across the web estate, 65 with live traffic.",
     images: ["https://spenc.ee/screenshots/wordpress-sites/arbor-village.webp"],
   },
 };
@@ -133,7 +133,7 @@ export default function WordPressSitesPage() {
     "@type": "CollectionPage",
     name: "WordPress Sites by Spencer D'Avis",
     description:
-      "55 of 60 Bonavista property websites hosted and managed in-house — Elementor, Astra, and bespoke custom themes.",
+      "A managed WordPress and Next.js estate spanning 73 Cloudflare zones.",
     url: "https://spenc.ee/projects/wordpress-sites",
     mainEntity: {
       "@type": "ItemList",
@@ -151,23 +151,26 @@ export default function WordPressSitesPage() {
   };
 
   return (
-    <div className="container-site rule-thick pt-16 pb-28 md:pt-20 md:pb-32">
+    <div className="container-site pt-28 pb-28 md:pt-36 md:pb-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Link href="/projects" className="nav-link label-mono inline-flex items-center gap-2">
-        <ArrowLeft size={14} /> All work
-      </Link>
+      <div className="rule-thick pt-5">
+        <Link href="/projects" className="nav-link label-mono inline-flex items-center gap-2">
+          <ArrowLeft size={14} /> All work
+        </Link>
+      </div>
 
-      <div className="mt-12 mb-14 md:mb-16">
-        <p className="label-mono">Web</p>
-        <h1 className="mt-4 text-h2">WordPress Sites</h1>
+      <div className="swiss-grid mt-12 mb-14 gap-y-5 md:mt-16 md:mb-20">
+        <p className="label-mono col-span-4 md:col-span-2">Infrastructure / Web</p>
+        <div className="col-span-4 md:col-span-8">
+        <h1 className="text-h2">Web Estate &amp; Property Sites</h1>
         <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-muted">
-          I host and manage 55 of the 60 property websites in Bonavista&apos;s portfolio
-          in-house — self-hosted WordPress on our own VPS (WPEngine eliminated) or Vercel,
-          depending on stack. Below is a selection: Elementor builds through bespoke custom
+          I manage a mixed WordPress and Next.js estate spanning 73 Cloudflare zones, 65 of which serve live traffic.
+          The sites run on a self-managed WordPress stack or Vercel depending on the application. Below is a selection,
+          from Elementor builds through bespoke custom
           themes. Hover any tile to scroll through the full page, or click to open the live
           site.
         </p>
@@ -175,6 +178,7 @@ export default function WordPressSitesPage() {
           <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" />
           Available for new projects
         </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

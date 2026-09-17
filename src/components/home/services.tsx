@@ -7,7 +7,7 @@ export function Services() {
   return (
     <section id="services" className="py-24 md:py-32">
       <div className="container-site">
-        <SectionHeader eyebrow="Services" title="What I do" />
+        <SectionHeader eyebrow="Freelance" number="05" title="Selected services" />
 
         <div className="mt-12 md:mt-16">
           {SERVICES.map((service, i) => (

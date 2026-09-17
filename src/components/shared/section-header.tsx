@@ -11,23 +11,27 @@ export function SectionHeader({
   eyebrow,
   title,
   action,
+  number,
 }: {
   eyebrow: string;
   title: ReactNode;
   action?: ReactNode;
+  number?: string;
 }) {
   return (
     <div>
       <Reveal className="reveal-rule">
         <div aria-hidden className="h-[3px] w-full bg-ink" />
       </Reveal>
-      <div className="flex items-end justify-between gap-4 pt-6">
-        <Reveal className="reveal-rise" delay={120}>
-          <p className="label-mono">{eyebrow}</p>
-          <h2 className="text-h2 mt-3">{title}</h2>
+      <div className="swiss-grid items-end pt-6">
+        <Reveal className="reveal-rise col-span-4 md:col-span-2" delay={80}>
+          <p className="label-mono">{number ? `${number} / ` : ""}{eyebrow}</p>
+        </Reveal>
+        <Reveal className="reveal-rise col-span-4 mt-4 md:col-span-7 md:mt-0" delay={120}>
+          <h2 className="text-h2">{title}</h2>
         </Reveal>
         {action ? (
-          <Reveal className="reveal-rise shrink-0" delay={220}>
+          <Reveal className="reveal-rise col-span-4 mt-5 md:col-span-3 md:mt-0 md:justify-self-end" delay={180}>
             {action}
           </Reveal>
         ) : null}

@@ -12,6 +12,22 @@ import {
 import { SKILL_PROJECTS } from "@/lib/skills";
 
 const MAX_FILTERS = 8;
+const FEATURED_ORDER = [
+  "admin-panel",
+  "virtual-staging",
+  "yardi-integration",
+  "vision-ocr-bench",
+  "maintenance",
+  "rentcafe-mcp",
+  "wordpress-plugin",
+  "wordpress-sites",
+  "archive",
+  "creative",
+];
+
+const ORDERED_FEATURED = [...FEATURED_PROJECTS].sort(
+  (a, b) => FEATURED_ORDER.indexOf(a.slug) - FEATURED_ORDER.indexOf(b.slug)
+);
 
 /** Build a sorted list of the most-used tech across all projects */
 function getTopSkills(): string[] {
@@ -87,8 +103,8 @@ export function ProjectFilter() {
   const featured = useMemo(
     () =>
       active
-        ? FEATURED_PROJECTS.filter((p) => matches(p.slug, p.techStack, active))
-        : FEATURED_PROJECTS,
+        ? ORDERED_FEATURED.filter((p) => matches(p.slug, p.techStack, active))
+        : ORDERED_FEATURED,
     [active]
   );
 
@@ -130,8 +146,8 @@ export function ProjectFilter() {
       {/* Featured */}
       {featured.length > 0 && (
         <div>
-          <p className="label-mono hairline mb-8 pt-4">Featured</p>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <h2 className="label-mono hairline mb-8 pt-4">Featured</h2>
+          <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
             {featured.map((p) => (
               <ProjectCard key={p.slug} project={p} />
             ))}
@@ -142,8 +158,8 @@ export function ProjectFilter() {
       {/* More Projects */}
       {more.length > 0 && (
         <div className={featured.length > 0 ? "mt-20" : ""}>
-          <p className="label-mono hairline mb-8 pt-4">More Projects</p>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <h2 className="label-mono hairline mb-8 pt-4">More Projects</h2>
+          <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
             {more.map((p) => (
               <ProjectCard key={p.slug} project={p} compact />
             ))}
@@ -154,7 +170,7 @@ export function ProjectFilter() {
       {/* Supporting Tools */}
       {supporting.length > 0 && (
         <div className={featured.length > 0 || more.length > 0 ? "mt-20" : ""}>
-          <p className="label-mono hairline mb-8 pt-4">Supporting Tools</p>
+          <h2 className="label-mono hairline mb-8 pt-4">Supporting Tools</h2>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {supporting.map((p) => (
               <SupportingProjectCard key={p.title} project={p} />

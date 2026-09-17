@@ -10,29 +10,48 @@ export interface SkillGroup {
 
 export const SKILLS: SkillGroup[] = [
   {
-    category: "Design & Creative",
-    items: ["Adobe Illustrator", "Adobe Photoshop", "Print & Signage", "Photography", "Branding"],
+    category: "Applied AI & Evaluation",
+    items: ["Google Gemini", "OpenAI API", "Computer Vision", "Model Evaluation", "MCP"],
   },
   {
-    category: "Web & CMS",
-    items: ["WordPress", "Elementor", "Next.js", "React", "Tailwind CSS", "PHP", "TypeScript"],
+    category: "Systems & Integrations",
+    items: ["API Integration", "Browser Automation", "Chrome Extensions", "Cloudflare Workers", "Yardi", "RentCafe"],
   },
   {
-    category: "Marketing & Listings",
-    items: ["SEO", "RentCafe", "Google Business Profile", "Apple Business Connect", "Yardi", "PostHog", "Matterport"],
+    category: "Application Engineering",
+    items: ["TypeScript", "Next.js", "React", "Node.js", "Python", "PHP", "React Native", "Swift"],
   },
   {
-    category: "AI & Automation",
-    items: ["Google Gemini", "OpenAI API", "Whisper", "MCP", "Prompt Engineering", "Puppeteer", "Cloudflare Workers"],
+    category: "Data & Infrastructure",
+    items: ["MySQL", "REST APIs", "AWS S3", "Cloudflare", "Vercel", "Git", "Puppeteer"],
   },
   {
-    category: "Engineering",
-    items: ["Python", "Node.js", "Swift", "React Native", "MySQL", "REST APIs", "AWS S3", "Vercel", "Git"],
+    category: "Design & Publishing",
+    items: ["WordPress", "Adobe Illustrator", "Adobe Photoshop", "Print & Signage", "Photography", "Branding"],
   },
 ];
 
 /** Maps each skill name to the projects where it's used */
 export const SKILL_PROJECTS: Record<string, SkillProject[]> = {
+  "Computer Vision": [{ name: "Structural Verification", slug: "virtual-staging" }],
+  "Model Evaluation": [{ name: "Vision OCR Benchmark", slug: "vision-ocr-bench" }],
+  "API Integration": [
+    { name: "Expense Reconciliation", slug: "admin-panel" },
+    { name: "RentCafe MCP Server", slug: "rentcafe-mcp" },
+    { name: "Yardi Integration", slug: "yardi-integration" },
+  ],
+  "Browser Automation": [
+    { name: "RentCafe MCP Server", slug: "rentcafe-mcp" },
+    { name: "Yardi Integration", slug: "yardi-integration" },
+  ],
+  "Chrome Extensions": [
+    { name: "Maintenance Suite", slug: "maintenance" },
+    { name: "Yardi Integration", slug: "yardi-integration" },
+  ],
+  Cloudflare: [
+    { name: "Expense Reconciliation", slug: "admin-panel" },
+    { name: "Property Sites", slug: "property-sites" },
+  ],
   // Design & Creative
   "Adobe Illustrator": [{ name: "Creative Work", slug: "creative" }],
   "Adobe Photoshop": [{ name: "Creative Work", slug: "creative" }],

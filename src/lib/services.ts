@@ -14,9 +14,9 @@ export const SERVICES: Service[] = [
     number: "01",
     title: "Web & WordPress",
     description:
-      "Design, build, hosting, and maintenance for marketing websites — from Elementor and Astra builds to bespoke custom themes, hosted in-house on a self-managed VPS or Vercel depending on stack. WPEngine eliminated across the portfolio.",
+      "Design, build, hosting, and maintenance for WordPress and Next.js sites, backed by the same infrastructure practice used across a 73-zone web estate.",
     deliverables: ["Custom themes", "Site builds & redesigns", "VPS & Vercel hosting", "Analytics & SEO setup"],
-    clients: ["Bonavista (55 of 60 sites hosted in-house)"],
+    clients: ["Bonavista (73 Cloudflare zones; 65 with live traffic)"],
     relatedSlugs: ["wordpress-sites", "wordpress-plugin"],
   },
   {

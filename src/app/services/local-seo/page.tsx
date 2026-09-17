@@ -20,12 +20,12 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <Reveal className="reveal-rise hairline pt-10 md:grid md:grid-cols-[14rem_1fr] md:gap-10">
-      <div>
+    <Reveal className="reveal-rise hairline swiss-grid gap-y-6 pt-10">
+      <div className="col-span-4 md:col-span-3">
         <p className="label-mono">{eyebrow}</p>
         <h2 className="text-h3 mt-3 md:mt-4">{title}</h2>
       </div>
-      <div className="mt-6 md:mt-0">{children}</div>
+      <div className="col-span-4 md:col-span-8 md:col-start-5">{children}</div>
     </Reveal>
   );
 }
@@ -58,15 +58,18 @@ const STATS = [
 
 export default function LocalSeoPage() {
   return (
-    <div className="container-site rule-thick pt-16 pb-28 md:pt-20 md:pb-32">
-      <Link href="/#services" className="nav-link label-mono inline-flex items-center gap-2">
-        <ArrowLeft size={14} /> Services
-      </Link>
+    <div className="container-site pt-28 pb-28 md:pt-36 md:pb-32">
+      <div className="rule-thick pt-5">
+        <Link href="/#services" className="nav-link label-mono inline-flex items-center gap-2">
+          <ArrowLeft size={14} /> Services
+        </Link>
+      </div>
 
       {/* Hero */}
-      <div className="mt-12 max-w-3xl">
-        <p className="label-mono">Services — 04</p>
-        <h1 className="text-display mt-5 font-sans">
+      <div className="swiss-grid mt-12 gap-y-5 md:mt-16">
+        <p className="label-mono col-span-4 md:col-span-2">Services / 04</p>
+        <div className="col-span-4 md:col-span-8">
+        <h1 className="text-h2 font-sans">
           Found everywhere renters look<span className="text-accent">.</span>
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted">
@@ -76,6 +79,7 @@ export default function LocalSeoPage() {
           generative-engine optimization, Google and Apple listings, reviews, and the live data that
           keeps every surface saying the same thing.
         </p>
+        </div>
       </div>
 
       {/* Stat band */}

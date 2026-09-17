@@ -80,7 +80,7 @@ export default function RentCafeMcpPage() {
         <p className="label-mono mb-6">What the agent can do</p>
         <FeatureList
           items={[
-            "Query unit availability, lease status, and notices across 60+ properties",
+            "Use nine typed tools to query unit availability, lease status, notices, and related Site Manager records",
             "Pull rent change history and pending renewals without leaving the chat",
             "Read leasing activity per property without ILS exports or vendor calls",
             "Cross-reference Site Manager state with bv_admin's MySQL records",
@@ -105,8 +105,8 @@ export default function RentCafeMcpPage() {
 
       <div className="border border-hairline p-5">
         <p className="text-sm leading-relaxed text-ink-muted">
-          <span className="font-semibold text-ink">Status:</span> Internal, unpublished. Built before MCP became
-          mainstream tooling. Available to walk through on a screen-share.
+          <span className="font-semibold text-ink">Status:</span> Internal and unpublished. The server is sole-authored;
+          company credentials and session data remain local. Available to walk through on a screen-share.
         </p>
       </div>
     </ProjectLayout>

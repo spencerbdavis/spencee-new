@@ -6,7 +6,7 @@ export function SupportingProjectCard({ project }: { project: SupportingProject 
   const inner = (
     <>
       <div className="flex items-start justify-between gap-2">
-        <h4 className="text-base font-semibold text-ink group-hover:text-paper">{project.title}</h4>
+        <h3 className="text-base font-semibold text-ink group-hover:text-paper">{project.title}</h3>
         {project.liveUrl && <ArrowUpRight size={14} className="mt-1 shrink-0" />}
       </div>
       <p className="mt-2 text-sm leading-relaxed text-ink-muted group-hover:text-paper">{project.description}</p>

@@ -1,17 +1,19 @@
-export const HEADLINE = "Marketing, engineered.";
+export const HEADLINE = "I build the systems businesses run on.";
 
 export const SUB_HEADLINE =
-  "I'm Spencer D'Avis, a Seattle marketing operations specialist. I plan the strategy, design the creative, build the websites, and automate the systems that run them — for a 60-property portfolio and freelance clients.";
+  "I'm Spencer D'Avis, a Seattle-based engineer building applied AI, integrations, and internal tools for an 80-property real estate business. I own the work from architecture through production support.";
 
 export const HERO_META = [
-  "Seattle, WA",
-  "60+ properties marketed",
-  "55 sites hosted in-house",
-  "Print · Web · AI",
+  "Applied AI",
+  "Integrations",
+  "Internal systems",
+  "Seattle · Remote US",
 ] as const;
 
 export const AVAILABILITY =
-  "Open to marketing-ops & engineering roles — and freelance web, design & SEO projects · Seattle or remote";
+  "Open to fully remote US individual-contributor engineering roles. No CS degree — I learned by shipping.";
+
+export const FREELANCE_MODE: "secondary" | "hidden" = "secondary";
 
 export const SITE_CONFIG = {
   name: "Spencer D'Avis",

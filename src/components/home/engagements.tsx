@@ -5,18 +5,18 @@ import { SITE_CONFIG } from "@/lib/config";
 
 const TEAMS = {
   kicker: "For teams hiring",
-  body: "I want a role where marketing, product, and engineering meet — room to own outcomes end to end, not just close tickets. I've spent years turning an operator's problems into shipped software: an iOS app, a Chrome extension, an MCP server, AI content and staging pipelines, and the platform that ties them together.",
+  body: "I am looking for individual-contributor engineering work where I can own ambiguous business problems through production: applied AI, integrations, internal tools, and forward-deployed systems.",
   fits: [
-    "Marketing Operations",
-    "Full-Stack / Product Engineer",
-    "Growth & AI Systems",
-    "Founding / solo builder",
+    "Applied AI Engineer",
+    "Integrations Engineer",
+    "Forward Deployed Engineer",
+    "Internal Tools Engineer",
   ],
 };
 
 const CLIENTS = {
   kicker: "For freelance clients",
-  body: "I take on web and marketing work on the side — WordPress and Next.js builds, brand and print design, local SEO/GEO, and the automation behind campaigns. Recent freelance work includes American Mary; day to day I run all of it for Bonavista's 60-property portfolio.",
+  body: "I take on a small number of web, design, and automation projects outside my engineering role. This work is secondary to the production systems shown above.",
   fits: ["Web & WordPress", "Design & brand", "Local SEO / GEO", "Marketing automation"],
 };
 
@@ -36,7 +36,7 @@ export function Engagements() {
   return (
     <section id="engagements" className="py-24 md:py-32">
       <div className="container-site">
-        <SectionHeader eyebrow="Engagements" title="Two ways to work together" />
+        <SectionHeader eyebrow="Engagements" number="06" title="Ways to work together" />
 
         <div className="mt-12 grid grid-cols-1 md:mt-16 md:grid-cols-2">
           <Reveal className="reveal-rise md:pr-12">

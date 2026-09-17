@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const TITLE = "Spencer D'Avis — Marketing Operations: Strategy, Design, Web & Systems";
+const TITLE = "Spencer D'Avis — Applied AI, Integrations & Internal Systems";
 const DESCRIPTION =
-  "Seattle marketing operations specialist. Strategy, design, web, and the systems behind them — WordPress builds, print & brand design, SEO and marketing automation for a 60-property portfolio and freelance clients.";
+  "Seattle-based engineer building applied AI, integrations, and production systems for an 80-property real estate business.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -52,9 +52,10 @@ export default function RootLayout({
             __html: "document.documentElement.classList.add('js')",
           }}
         />
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <WeatherProvider>
           <Navbar />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
         </WeatherProvider>
         <Analytics />

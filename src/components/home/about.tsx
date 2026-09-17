@@ -2,6 +2,7 @@ import { COMMITS_STAT } from "@/lib/stats";
 import { SITE_CONFIG } from "@/lib/config";
 import { Reveal } from "@/components/shared/reveal";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 const SHIPPED = [
   { label: "iOS app · App Store", href: SITE_CONFIG.appStore },
@@ -14,32 +15,33 @@ export function About() {
     <section id="about" className="scroll-mt-20 rule-thick">
       <div className="container-site py-24 md:py-32">
         <Reveal className="reveal-rise">
-          <p className="label-mono">About</p>
-
-          <div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
-            <div className="md:col-span-8">
-              <h2 className="text-h2">How I work.</h2>
-              <p className="mt-8 max-w-[42rem] text-lg leading-relaxed text-ink-muted">
-                I started in property management and taught myself to build. Today I run marketing
-                operations for Bonavista&apos;s 60-property portfolio — the strategy, the creative,
-                the websites, and the automation that ties them together — and take on freelance web
-                and design work for clients like American Mary. When something&apos;s too expensive or
-                too generic to buy, I design and build it in-house.
+          <div className="swiss-grid gap-y-8">
+            <div className="col-span-4 md:col-span-2">
+              <p className="label-mono">02 / About</p>
+            </div>
+            <div className="col-span-4 md:col-span-7">
+              <h2 className="text-h2">From operator to systems engineer.</h2>
+              <p className="mt-8 max-w-[44rem] text-lg leading-relaxed text-ink-muted">
+                I was hired to run marketing. I found that the company&apos;s deeper constraint was its
+                systems: critical work crossed email, spreadsheets, vendor portals, and software that
+                could not talk to anything else. So I learned to build.
               </p>
-              <p className="mt-6 max-w-[42rem] text-lg leading-relaxed text-ink-muted">
-                No CS degree — I learned by shipping, and I&apos;ve shipped a lot: production apps on
-                the App Store and Chrome Web Store, an MCP server built before MCP was mainstream, AI
-                pipelines for content and virtual staging, a local SEO/GEO engine, and a fleet of
-                leasing sites running on one live data backbone. I move fast because I&apos;ve owned
-                every layer — from the database to the print file.
+              <p className="mt-6 max-w-[44rem] text-lg leading-relaxed text-ink-muted">
+                I wrote the first maintenance platform as a 14,000-line PHP application before I had
+                used version control. Today I own a production Next.js platform, applied-AI pipelines,
+                browser integrations, and the web estate around them. I care most about the part after
+                a demo works: verification, failure modes, and keeping the system useful in production.
               </p>
+              <Link href="/about" className="nav-link mt-8 inline-flex items-center gap-2 font-semibold">
+                Read the full story <span aria-hidden>→</span>
+              </Link>
             </div>
 
-            <div className="md:col-span-4 md:border-l md:border-hairline md:pl-8">
+            <div className="col-span-4 md:col-span-3 md:border-l md:border-hairline md:pl-8">
               <p className="font-mono text-2xl font-semibold text-ink">{COMMITS_STAT.value}</p>
               <p className="label-mono mt-2">{COMMITS_STAT.label}</p>
 
-              <p className="label-mono mt-8">Shipped</p>
+              <p className="label-mono mt-10">Public evidence</p>
               <ul className="mt-3 divide-y divide-hairline border-t border-hairline">
                 {SHIPPED.map((s) =>
                   s.href ? (

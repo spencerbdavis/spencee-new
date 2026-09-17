@@ -5,7 +5,7 @@ import { ALL_PROJECTS } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Spencer D'Avis | Tablo News",
   description:
-    "An AI-powered local news search and archive for Seattle TV broadcasts. Whisper, ChromaDB, and RAG queries.",
+    "An early three-commit experiment in local-news transcription and semantic search. Not a production application.",
   alternates: { canonical: "https://spenc.ee/projects/tablo-news" },
 };
 
@@ -26,6 +26,13 @@ export default function TabloNewsPage() {
 
   return (
     <ProjectLayout project={project}>
+      <div className="border-l-2 border-accent bg-paper-tint p-6">
+        <p className="label-mono">Experiment / not live</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+          This repository contains three commits and the domain is offline. It is preserved here as an experiment,
+          not presented as a production application.
+        </p>
+      </div>
       <div>
         <p className="label-mono mb-6">Overview</p>
         <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">

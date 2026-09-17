@@ -29,7 +29,7 @@ function formatCount(n: number, decimals: number) {
   });
 }
 
-/** Counts 0 -> target over ~800ms once `active`. Falls back to the static value otherwise. */
+/** Counts 0 -> target over ~800ms once `active`. */
 function StatValue({ value, active }: { value: string; active: boolean }) {
   const parsed = parseStat(value);
   const [display, setDisplay] = useState(parsed.target);
@@ -56,7 +56,7 @@ function StatValue({ value, active }: { value: string; active: boolean }) {
   return (
     <>
       {parsed.prefix}
-      {formatCount(Math.round(display), parsed.decimals)}
+      {formatCount(display, parsed.decimals)}
       {parsed.suffix}
     </>
   );
@@ -89,15 +89,17 @@ export function StatsBar() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="rule-thick">
-      <div className="container-site py-12 md:py-16">
-        <div className="grid grid-cols-2 gap-px bg-hairline md:grid-cols-5">
-          {PORTFOLIO_STATS.map((stat) => (
-            <div key={stat.label} className="bg-paper p-6 md:p-8">
-              <p className="font-mono text-[1.75rem] font-semibold leading-none tracking-tight text-ink md:text-[2rem]">
+    <section ref={sectionRef} className="bg-ink text-paper">
+      <div className="container-site py-10 md:py-14">
+        <p className="label-mono !text-paper/60">Evidence / production scale</p>
+        <div className="mt-8 grid grid-cols-1 border-y border-paper/20 md:grid-cols-3">
+          {PORTFOLIO_STATS.map((stat, index) => (
+            <div key={stat.label} className={`py-7 md:px-8 md:py-8 ${index > 0 ? "border-t border-paper/20 md:border-t-0 md:border-l" : ""} first:md:pl-0 last:md:pr-0`}>
+              <p className="font-mono text-4xl font-semibold leading-none tracking-tight text-paper md:text-5xl">
                 <StatValue value={stat.value} active={active} />
               </p>
-              <p className="label-mono mt-3">{stat.label}</p>
+              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.08em] text-paper">{stat.label}</p>
+              <p className="mt-2 text-sm leading-relaxed text-paper/60">{stat.detail}</p>
             </div>
           ))}
         </div>

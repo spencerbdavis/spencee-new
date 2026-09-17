@@ -9,7 +9,7 @@ export function ProjectCard({ project, compact }: { project: Project; compact?: 
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`group invert-hover flex h-full flex-col border border-hairline ${compact ? "p-6" : "p-7"}`}
+      className={`group invert-hover flex h-full flex-col border-t border-hairline ${compact ? "py-6" : "py-8"}`}
     >
       <div className="flex items-start justify-between gap-3">
         <span className="label-mono group-hover:text-paper">{project.category}</span>

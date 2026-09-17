@@ -1,9 +1,19 @@
 export const PORTFOLIO_STATS = [
-  { value: "$103K/yr", label: "Vendor spend replaced with in-house systems" },
-  { value: "60+", label: "Properties marketed end to end" },
-  { value: "18+", label: "Marketing & operations APIs in production" },
-  { value: "4", label: "AI pipelines powering marketing content" },
-  { value: "1,000/mo", label: "Documents auto-processed" },
+  {
+    value: "$2.78M",
+    label: "Company spend reconciled",
+    detail: "6,539 receipts across 88 employees",
+  },
+  {
+    value: "86.8%",
+    label: "Receipts auto-matched",
+    detail: "95.3% of reconciled dollar value",
+  },
+  {
+    value: "319",
+    label: "Production API routes",
+    detail: "41 scheduled jobs in the internal platform",
+  },
 ] as const;
 
-export const COMMITS_STAT = { value: "2,600+", label: "Production commits behind it all" };
+export const COMMITS_STAT = { value: "2,100+", label: "Commits across 37 repositories" };

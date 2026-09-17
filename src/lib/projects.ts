@@ -2,8 +2,8 @@ export interface Project {
   slug: string;
   title: string;
   subtitle: string;
-  category: "Web" | "Design" | "Marketing Systems" | "Listings & Local";
-  outcome: string; // one-line marketing-ops outcome for the work index
+  category: "Applied AI" | "Production Systems" | "Integrations" | "Infrastructure" | "Web" | "Creative";
+  outcome: string;
   problem?: string;
   techStack: string[];
   stats: { value: string; label: string }[];
@@ -25,11 +25,11 @@ export const FEATURED_PROJECTS: Project[] = [
     slug: "maintenance",
     title: "Bonavista Maintenance Suite",
     subtitle:
-      "Work order management, mobile execution, and Yardi integration — built in-house to replace a $74K/yr vendor across 5,000 units.",
-    category: "Marketing Systems",
-    outcome: "Replaced a $74K/yr vendor with an in-house platform across 5,000 units.",
+      "A field-operations platform spanning web, iOS, and browser automation, built from an original 14,000-line PHP application and scaled with contract developers.",
+    category: "Production Systems",
+    outcome: "10,334 work orders and 30,201 geofenced check-ins across 95 field staff.",
     problem:
-      "HappyCo (the industry standard for property maintenance) charges ~$1/unit/month for their suite, plus $7/unit per inspection walk. Across 5,000 units with 2,000+ annual inspection walks, that's over $74,000/year. And they require full portfolio enrollment, even for small properties. We built our own.",
+      "The portfolio needed one system to coordinate maintenance work, field execution, resident communication, and write-back into a legacy property-management platform. Commercial tools imposed portfolio-wide pricing and still left integration gaps.",
     techStack: [
       "Next.js",
       "React Native",
@@ -40,11 +40,11 @@ export const FEATURED_PROJECTS: Project[] = [
       "Chrome Extension",
     ],
     stats: [
-      { value: "5,000+", label: "Work Orders" },
-      { value: "1,500", label: "Unit Turns" },
-      { value: "2,000", label: "Grounds Jobs" },
-      { value: "500", label: "Move-Outs" },
-      { value: "$30K+", label: "Annual Savings vs. HappyCo" },
+      { value: "10,334", label: "Work Orders" },
+      { value: "2,601", label: "Unit Turns" },
+      { value: "3,669", label: "Grounds Jobs" },
+      { value: "30,201", label: "Geofenced Check-Ins" },
+      { value: "95", label: "Field Staff" },
     ],
     links: [
       {
@@ -63,12 +63,13 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "admin-panel",
-    title: "Bonavista Admin Panel",
+    title: "Expense Reconciliation System",
     subtitle:
-      "Marketing operations platform: an AI-powered SEO engine that replaced a $400/month vendor at $0.50/run, plus Google Reviews, Matterport, receipt automation, and mileage tracking for 60+ properties.",
-    category: "Marketing Systems",
-    outcome: "Cut SEO content costs 99.7% across 60+ property websites.",
-    problem: undefined,
+      "A production pipeline that turns emailed receipts into coded, human-verified transactions and writes them back into Yardi through a browser extension.",
+    category: "Production Systems",
+    outcome: "$2.78M reconciled across 6,539 receipts, with 86.8% auto-matched.",
+    problem:
+      "Company-card reconciliation crossed email, spreadsheets, storage, accounting rules, and a legacy ERP with no suitable write API. The system had to automate the repetitive work without guessing when evidence was ambiguous.",
     techStack: [
       "Next.js",
       "TypeScript",
@@ -78,11 +79,11 @@ export const FEATURED_PROJECTS: Project[] = [
       "Matterport API",
     ],
     stats: [
-      { value: "99.7%", label: "SEO Cost Reduction" },
-      { value: "1,000/mo", label: "Receipts Auto-Processed" },
-      { value: "60+", label: "Properties Managed" },
-      { value: "20+", label: "Automated Cron Jobs" },
-      { value: "6", label: "Integrated Modules" },
+      { value: "$2.78M", label: "Spend Reconciled" },
+      { value: "6,539", label: "Receipts" },
+      { value: "86.8%", label: "Auto-Matched by Count" },
+      { value: "95.3%", label: "Auto-Matched by Value" },
+      { value: "319", label: "Production API Routes" },
     ],
     links: [],
     screenshotDir: "admin-panel",
@@ -93,7 +94,7 @@ export const FEATURED_PROJECTS: Project[] = [
     title: "RentCafe MCP Server",
     subtitle:
       "An MCP server that lets AI agents read and act on live RentCafe leasing data for 60+ properties, despite RentCafe having no public API at this tier.",
-    category: "Listings & Local",
+    category: "Integrations",
     outcome: "Opened live leasing data to AI agents — no vendor API required.",
     problem:
       "RentCafe Site Manager has no public API for portfolios under enterprise tier, so leasing data is locked behind a session-authenticated UI. I built an MCP server that maintains a headless browser session and exposes RentCafe's Site Manager actions as MCP tools, so an agent can read and act on live portfolio data without scraping or vendor-side integrations.",
@@ -107,7 +108,7 @@ export const FEATURED_PROJECTS: Project[] = [
     ],
     stats: [
       { value: "MCP", label: "Server Protocol" },
-      { value: "60+", label: "Properties Accessible" },
+      { value: "9", label: "Agent Tools" },
       { value: "Browser", label: "Authenticated Session" },
       { value: "0", label: "Public API Required" },
     ],
@@ -117,16 +118,16 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "wordpress-sites",
-    title: "WordPress Sites",
+    title: "Web Estate & Property Sites",
     subtitle:
-      "55 of the 60 property websites we manage are hosted and run in-house — self-hosted WordPress on our own VPS (WPEngine eliminated) or Vercel, depending on stack. From Elementor and Astra builds to bespoke custom themes. Available for new WordPress projects.",
-    category: "Web",
-    outcome: "55 of 60 property sites hosted and managed in-house — WPEngine eliminated.",
+      "A mixed WordPress and Next.js estate spanning 73 Cloudflare zones, with 65 zones serving live traffic and shared operational tooling behind the portfolio.",
+    category: "Infrastructure",
+    outcome: "73 Cloudflare zones, 65 serving live traffic across the web estate.",
     techStack: ["WordPress", "Elementor", "Astra", "PHP", "Custom Themes", "VPS Hosting", "Vercel"],
     stats: [
-      { value: "55/60", label: "Sites Hosted In-House" },
-      { value: "Elementor", label: "Astra · Bespoke" },
-      { value: "Available", label: "For Side Work" },
+      { value: "73", label: "Cloudflare Zones" },
+      { value: "65", label: "Zones With Live Traffic" },
+      { value: "17M", label: "Requests / 30 Days" },
     ],
     links: [],
     screenshotDir: "wordpress-sites",
@@ -138,7 +139,7 @@ export const FEATURED_PROJECTS: Project[] = [
     title: "Creative Work",
     subtitle:
       "Large-format print and signage design (window clings, A-boards, yard signs) in Illustrator and Photoshop, plus a Pixabay Editor's Choice COVID vaccine photo set with 182K views and 126K downloads picked up by news outlets and research institutions.",
-    category: "Design",
+    category: "Creative",
     outcome: "Print, signage, and photography — 182K views on the strongest set.",
     techStack: ["Adobe Illustrator", "Adobe Photoshop", "Print Design", "Signage", "Photography", "Branding"],
     stats: [
@@ -160,7 +161,7 @@ export const FEATURED_PROJECTS: Project[] = [
     title: "RentCafe × WordPress Plugin",
     subtitle:
       "A custom WordPress plugin syncing live RentCafe availability to 60+ property websites — including Seattle's MFTE affordable-housing filter that no commercial plugin supports.",
-    category: "Listings & Local",
+    category: "Integrations",
     outcome: "Live availability on 60+ sites, Seattle MFTE-compliant, $5,796/yr saved.",
     problem:
       "RentPress, the closest competing plugin, charges $75/month + $6/property/month. Across 60+ properties, that's $483/month ($5,796/year). More importantly, it doesn't support Seattle's MFTE (Multifamily Tax Exemption) program, which requires properties to surface income restricted units separately. Every Seattle plugin on the market failed this requirement.",
@@ -178,22 +179,62 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "virtual-staging",
-    title: "Virtual Staging App",
+    title: "Structural Verification for Generated Images",
     subtitle:
-      "An internal AI staging tool that generates furnished room images using Gemini, with Google Search grounding to reflect current furniture trends from real Seattle retailers.",
-    category: "Marketing Systems",
-    outcome: "AI-staged listing photos grounded in real Seattle furniture.",
+      "A deterministic quality gate for generative image edits, using a hand-implemented Sobel edge detector and edge-overlap IoU scoring to flag structural changes.",
+    category: "Applied AI",
+    outcome: "Deterministic geometry checks around a non-deterministic staging model.",
     problem:
-      "virtualstaging.ai was costing $500+/year for a workflow that could be automated. More importantly, it generated generic staged rooms that didn't reflect what real furniture actually looks like, making the staged images feel artificial to prospective residents.",
-    techStack: ["Next.js", "React", "Google Gemini", "AWS S3", "Vercel"],
+      "Generative staging can produce a plausible room while quietly moving a wall, window, or door. Visual quality alone is not enough for a listing image; the pipeline needs a deterministic check that can flag structural drift for human review.",
+    techStack: ["TypeScript", "Computer Vision", "Sobel Operator", "IoU Scoring", "Vitest", "Google Gemini"],
     stats: [
-      { value: "$500/yr", label: "Saved" },
-      { value: "Google", label: "Grounded AI" },
-      { value: "Real", label: "Furniture" },
-      { value: "60+", label: "Properties" },
+      { value: "3×3", label: "Sobel Kernels" },
+      { value: "IoU", label: "Edge-Overlap Score" },
+      { value: "Fail Closed", label: "Ambiguous Results" },
+      { value: "Tested", label: "Deterministic Gate" },
     ],
     links: [],
     screenshotDir: "virtual-staging",
+    featured: true,
+  },
+  {
+    slug: "vision-ocr-bench",
+    title: "Vision Model Evaluation Harness",
+    subtitle:
+      "A cost-aware benchmark that compares nine vision models on extraction accuracy while fetching current per-token pricing at runtime.",
+    category: "Applied AI",
+    outcome: "Nine vision models evaluated on accuracy and real inference cost.",
+    problem:
+      "Model quality claims are hard to compare and pricing changes quickly. Selecting a production OCR model required a repeatable test set, a scored baseline, and the real cost of each run rather than a demo-driven choice.",
+    techStack: ["TypeScript", "Model Evaluation", "Vision Models", "Structured Output", "Pricing APIs"],
+    stats: [
+      { value: "9", label: "Vision Models" },
+      { value: "Live", label: "Pricing Lookup" },
+      { value: "1", label: "Shared Baseline" },
+      { value: "Repeatable", label: "Scoring Harness" },
+    ],
+    links: [],
+    screenshotDir: "vision-ocr-bench",
+    featured: true,
+  },
+  {
+    slug: "yardi-integration",
+    title: "Yardi Browser Integration",
+    subtitle:
+      "A Chrome extension that writes reconciled transactions into a legacy ERP through CSP restrictions, nested frames, and asynchronous batch workflows.",
+    category: "Integrations",
+    outcome: "Reliable write-back into a critical system with no suitable API.",
+    problem:
+      "Yardi Voyager is the accounting system of record, but the available integration surface could not complete this workflow. The extension had to operate through the authenticated browser UI, recover from partial batches, and preserve a manual path when OCR was uncertain.",
+    techStack: ["Chrome Extension", "TypeScript", "React", "Tesseract.js", "Browser Automation", "Yardi"],
+    stats: [
+      { value: "3", label: "Fallback Stages" },
+      { value: "MV3", label: "Chrome Extension" },
+      { value: "CSP", label: "Constrained Runtime" },
+      { value: "Fail Closed", label: "Ambiguous Matches" },
+    ],
+    links: [],
+    screenshotDir: "yardi-integration",
     featured: true,
   },
   {
@@ -269,7 +310,7 @@ export const MORE_PROJECTS: Project[] = [
     title: "Floor Plan AI Extraction",
     subtitle:
       "A Python pipeline that extracts individual apartment units from architectural PDFs using Meta's SAM3, Gemini OCR, and OpenCV, with GPU inference on Modal H100s.",
-    category: "Marketing Systems",
+    category: "Applied AI",
     outcome: "Unit floor plans extracted from architectural PDFs for marketing use.",
     problem:
       "Extracting individual unit floor plans from full building architectural PDFs is a manual, tedious process. Property managers need isolated unit images for marketing, leasing, and resident communication. No affordable existing tool handles this reliably for multi unit residential buildings.",
@@ -285,8 +326,8 @@ export const MORE_PROJECTS: Project[] = [
     title: "Tablo News",
     subtitle:
       "An AI powered local news search and archive interface for Seattle area TV broadcasts, transcribed with Whisper, indexed with ChromaDB, and searchable via natural language RAG queries.",
-    category: "Marketing Systems",
-    outcome: "A searchable AI archive of Seattle TV news.",
+    category: "Applied AI",
+    outcome: "A three-commit experiment in searching transcribed Seattle TV news.",
     problem: undefined,
     techStack: ["Next.js", "Python", "WhisperX", "ChromaDB", "Ollama", "Turso"],
     stats: [],
@@ -299,14 +340,14 @@ export const MORE_PROJECTS: Project[] = [
     ],
     screenshotDir: "tablo-news",
     featured: false,
-    badge: "In Progress",
+    badge: "Experiment · Not Live",
   },
   {
     slug: "business-card",
     title: "Auto-Generated Business Cards",
     subtitle:
       "A templating system that auto-generates branded business cards with dynamic QR codes, vCard downloads, and property assignments. Per employee, zero design work.",
-    category: "Design",
+    category: "Creative",
     outcome: "Branded, QR-coded cards auto-generated for every employee.",
     problem: undefined,
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "QR Code API"],

@@ -7,10 +7,10 @@ import { WeatherPill } from "./weather-pill";
 
 const LINKS = [
   { label: "Work", href: "/projects" },
-  { label: "Services", href: "/#services" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
+  { label: "Capabilities", href: "/#skills" },
   { label: "Contact", href: "/#contact" },
-  { label: "Resume", href: "/spencer-davis-resume.pdf" },
+  { label: "Résumé", href: "/spencer-davis-resume.pdf" },
 ];
 
 export function Navbar() {
@@ -37,7 +37,7 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="font-mono text-sm font-medium uppercase tracking-[0.08em] text-ink"
+          className="text-sm font-semibold uppercase tracking-[0.08em] text-ink"
         >
           Spencer D&apos;Avis
         </Link>

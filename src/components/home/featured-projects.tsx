@@ -3,13 +3,18 @@ import { Reveal } from "@/components/shared/reveal";
 import { SectionHeader } from "@/components/shared/section-header";
 import { FEATURED_PROJECTS } from "@/lib/projects";
 
+const HOME_FEATURED = ["admin-panel", "virtual-staging", "yardi-integration", "vision-ocr-bench", "maintenance", "rentcafe-mcp"]
+  .map((slug) => FEATURED_PROJECTS.find((project) => project.slug === slug))
+  .filter((project): project is (typeof FEATURED_PROJECTS)[number] => Boolean(project));
+
 export function FeaturedProjects() {
   return (
     <section id="work" className="py-24 md:py-32">
       <div className="container-site">
         <SectionHeader
           eyebrow="Selected Work"
-          title="Things I've shipped"
+          number="01"
+          title="Systems under real constraints"
           action={
             <Link
               href="/projects"
@@ -22,7 +27,7 @@ export function FeaturedProjects() {
         />
 
         <div className="mt-12 border-b border-hairline md:mt-16">
-          {FEATURED_PROJECTS.map((project, i) => (
+          {HOME_FEATURED.map((project, i) => (
             <Reveal key={project.slug} delay={i * 60} className="reveal-rise">
               <Link
                 href={`/projects/${project.slug}`}
@@ -32,7 +37,7 @@ export function FeaturedProjects() {
                   aria-hidden="true"
                   className="absolute inset-0 origin-left scale-x-0 bg-accent transition-transform duration-150 ease-linear group-hover:scale-x-100 group-focus-visible:scale-x-100"
                 />
-                <div className="relative grid grid-cols-[2.5rem_1fr] items-baseline gap-x-4 gap-y-2 py-7 md:grid-cols-[4rem_1fr_auto] md:gap-x-8 md:py-8">
+                <div className="relative grid grid-cols-[2.5rem_1fr] items-baseline gap-x-4 gap-y-3 py-8 md:grid-cols-[4rem_1fr_auto] md:gap-x-8 md:py-10">
                   <span className="font-mono text-sm text-ink-muted transition-colors delay-100 duration-100 ease-linear group-hover:text-paper group-focus-visible:text-paper">
                     {String(i + 1).padStart(2, "0")}
                   </span>

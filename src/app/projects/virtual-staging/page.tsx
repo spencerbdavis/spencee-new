@@ -4,9 +4,9 @@ import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Spencer D'Avis | Virtual Staging App",
+  title: "Spencer D'Avis | Structural Verification for Generated Images",
   description:
-    "An in-house AI staging tool using Gemini with Google Search grounding for real Seattle furniture trends.",
+    "A Sobel edge detector and edge-overlap scorer that flags structural drift in AI-staged listing images.",
   alternates: { canonical: "https://spenc.ee/projects/virtual-staging" },
 };
 
@@ -42,38 +42,63 @@ export default function VirtualStagingPage() {
 
   return (
     <ProjectLayout project={project}>
-      <div>
-        <p className="label-mono mb-6">The Problem</p>
+      <section className="swiss-grid gap-y-6">
+        <p className="label-mono col-span-4 md:col-span-2">The constraint</p>
+        <div className="col-span-4 md:col-span-8">
         <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">{project.problem}</p>
-      </div>
+        </div>
+      </section>
 
-      <div>
-        <p className="label-mono mb-6">What I Built</p>
-        <FeatureList
-          items={[
-            "Internal web app at staging.bonavista.work",
-            "Gemini Flash with Google Search grounding, searching current furniture trends from real Seattle retailers",
-            'Multiple styling options including "Pacific Northwest" aesthetic',
-            "Lighting mode selection: morning, noon, or evening ambiance",
-            "Automatic room type classification and identification",
-            "Batch photo processing with real-time progress and cost tracking",
-            "Before/after photo comparison showcase",
-            "Drag-and-drop upload with property selector",
-            "ZIP export for batch downloads",
-            "AWS S3 storage with presigned URLs for secure delivery",
-          ]}
-        />
-      </div>
+      <section>
+        <p className="label-mono mb-6">Verification path</p>
+        <div className="grid grid-cols-1 gap-px bg-hairline md:grid-cols-5">
+          {[
+            ["01", "Original", "Immutable source image"],
+            ["02", "Generated", "Staged model output"],
+            ["03", "Edge maps", "Explicit 3×3 Sobel kernels"],
+            ["04", "Overlap", "Edge-intersection IoU"],
+            ["05", "Gate", "Pass, flag, or fail"],
+          ].map(([step, title, desc]) => (
+            <div key={step} className="bg-paper p-5">
+              <p className="label-mono text-accent">{step}</p>
+              <p className="mt-6 font-semibold">{title}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="swiss-grid gap-y-6">
+        <p className="label-mono col-span-4 md:col-span-2">Engineering decision</p>
+        <div className="col-span-4 md:col-span-8">
+          <h2 className="text-3xl font-semibold tracking-tight">Put a deterministic check around the generative step.</h2>
+          <FeatureList items={[
+            "Convert both images to raw grayscale buffers and calculate horizontal and vertical gradients",
+            "Threshold gradient magnitude into comparable structural edge maps",
+            "Score the intersection over union of edge pixels instead of trusting a visual-quality model",
+            "Keep the scoring code unit-tested and separate from the staging model",
+            "Send borderline or conflicting results to review rather than silently accepting them",
+          ]} />
+        </div>
+      </section>
 
       {/* Before/After */}
-      <div>
-        <p className="label-mono mb-6">Before & After</p>
+      <section>
+        <p className="label-mono mb-6">Staging output</p>
         <div className="flex flex-col gap-3">
           <BeforeAfterPair before="/screenshots/virtual-staging/before-1.webp" after="/screenshots/virtual-staging/after-1.webp" />
           <BeforeAfterPair before="/screenshots/virtual-staging/before-2.webp" after="/screenshots/virtual-staging/after-2.webp" />
         </div>
-        <p className="mt-4 text-sm text-ink-muted italic">Live at staging.bonavista.work (internal, access restricted)</p>
-      </div>
+        <p className="mt-4 text-sm text-ink-muted">Internal production tool; access is restricted.</p>
+      </section>
+
+      <aside className="border-l-2 border-accent bg-paper-tint p-6 md:p-8">
+        <p className="label-mono">Limit</p>
+        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink-muted">
+          Edge overlap is a useful structural heuristic, not proof that geometry is unchanged. Furniture, lighting,
+          texture, and occlusion can alter edges. The score is one gate in a review workflow, not an autonomous guarantee.
+        </p>
+      </aside>
     </ProjectLayout>
   );
 }

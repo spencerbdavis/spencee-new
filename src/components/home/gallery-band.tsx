@@ -39,7 +39,8 @@ export function GalleryBand() {
       <div className="container-site">
         <SectionHeader
           eyebrow="Design"
-          title="Print, brand & photography"
+          number="04"
+          title="Creative work, kept in perspective"
           action={
             <Link
               href="/projects/creative"
