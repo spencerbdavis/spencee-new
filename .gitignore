@@ -6,5 +6,5 @@ out
 next-env.d.ts
 .DS_Store
 spencee-nextjs/
-screenshots/
+/screenshots/
 .superpowers/
