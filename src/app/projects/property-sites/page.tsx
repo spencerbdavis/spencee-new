@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Next.js Leasing Microsites",
   description:
     "A fleet of bespoke Next.js 16 apartment leasing sites on Vercel, each wired to a shared in-house availability API for live pricing, floor plans, and MFTE units — with Matterport tours, Apple MapKit maps, and Mux video.",
-  alternates: { canonical: "https://spenc.ee/projects/property-sites" },
-};
+  path: "/projects/property-sites",
+  ogSlug: "property-sites",
+});
 
 function Plate({ src, alt, caption }: { src: string; alt: string; caption: string }) {
   return (

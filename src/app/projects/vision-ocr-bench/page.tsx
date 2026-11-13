@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Vision Model Evaluation Harness",
-  description: "A repeatable benchmark comparing nine vision models on extraction accuracy and live inference cost.",
-  alternates: { canonical: "https://spenc.ee/projects/vision-ocr-bench" },
-};
+  description:
+    "A repeatable benchmark comparing nine vision models on extraction accuracy and live inference cost.",
+  path: "/projects/vision-ocr-bench",
+  ogSlug: "vision-ocr-bench",
+});
 
 const STEPS = [
   ["01", "Freeze the task", "Use the same representative receipt set and expected structured fields for every model."],

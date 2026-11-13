@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { Tabs } from "@/components/ui/tabs";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Bonavista Maintenance Suite",
   description:
     "A field-operations platform spanning web, iOS, and Yardi automation, built from an original PHP system.",
-  alternates: { canonical: "https://spenc.ee/projects/maintenance" },
-};
+  path: "/projects/maintenance",
+  ogSlug: "maintenance",
+});
 
 function FeatureList({ items }: { items: string[] }) {
   return (

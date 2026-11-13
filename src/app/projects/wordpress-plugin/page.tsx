@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | RentCafe x WordPress Plugin",
   description:
     "A custom WordPress plugin that syncs live RentCafe data to 60+ property websites, including Seattle's MFTE affordable housing filter.",
-  alternates: { canonical: "https://spenc.ee/projects/wordpress-plugin" },
-};
+  path: "/projects/wordpress-plugin",
+  ogSlug: "wordpress-plugin",
+});
 
 function FeatureList({ items }: { items: string[] }) {
   return (

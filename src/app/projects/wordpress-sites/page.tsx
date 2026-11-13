@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { ScrollingSiteTile } from "@/components/projects/scrolling-site-tile";
+import { JsonLd } from "@/components/seo/json-ld";
+import { projectJsonLd } from "@/lib/seo";
+import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "WordPress Sites | Spencer D'Avis — Elementor, Astra & Custom Themes",
@@ -156,6 +159,7 @@ export default function WordPressSitesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd data={projectJsonLd(ALL_PROJECTS.find((p) => p.slug === "wordpress-sites")!)} />
 
       <div className="rule-thick pt-5">
         <Link href="/projects" className="nav-link label-mono inline-flex items-center gap-2">

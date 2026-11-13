@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata, projectJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import { ALL_PROJECTS } from "@/lib/projects";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/shared/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Design — Print, Signage, Brand & Photography",
   description:
     "A design portfolio: large-format signage and print, brand identity, and photography. Illustrator and Photoshop work produced for real Seattle properties, plus a Pixabay Editor's Choice photo set with 182K views used by news outlets and research institutions.",
-  alternates: { canonical: "https://spenc.ee/projects/creative" },
-};
+  path: "/projects/creative",
+  ogSlug: "creative",
+});
 
 interface PlateProps {
   src: string;
@@ -64,6 +68,7 @@ function SectionHead({
 export default function CreativePage() {
   return (
     <div className="container-site py-28 md:py-36">
+      <JsonLd data={projectJsonLd(ALL_PROJECTS.find((p) => p.slug === "creative")!)} />
       <Link href="/projects" className="nav-link inline-flex items-center gap-2 font-mono text-sm">
         <span aria-hidden="true">&larr;</span>
         All work

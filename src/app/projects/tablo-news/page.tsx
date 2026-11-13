@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Tablo News",
   description:
     "An early three-commit experiment in local-news transcription and semantic search. Not a production application.",
-  alternates: { canonical: "https://spenc.ee/projects/tablo-news" },
-};
+  path: "/projects/tablo-news",
+  ogSlug: "tablo-news",
+});
 
 function FeatureList({ items }: { items: string[] }) {
   return (

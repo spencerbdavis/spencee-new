@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | archive.spenc.ee",
   description:
     "A public deep-zoom archive for scanned paper ephemera — mid-century Pacific Northwest map covers and illustration. Built on Next.js, Neon, Cloudflare R2, and OpenSeadragon with AI-written backstories.",
-  alternates: { canonical: "https://spenc.ee/projects/archive" },
-};
+  path: "/projects/archive",
+  ogSlug: "archive",
+});
 
 function Plate({ src, alt, caption }: { src: string; alt: string; caption: string }) {
   return (

@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/shared/reveal";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Local SEO & Generative Engine Optimization",
   description:
     "A custom AI engine that runs local search for 60+ apartment communities — SEO and generative-engine optimization (GEO), Google Business Profile and Apple Maps listings, review responses, and the live data that keeps every surface consistent.",
-  alternates: { canonical: "https://spenc.ee/services/local-seo" },
-};
+  path: "/services/local-seo",
+});
 
 function Section({
   eyebrow,

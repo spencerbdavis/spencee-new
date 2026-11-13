@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { SpinningCard } from "@/components/projects/spinning-card";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Auto-Generated Business Cards",
   description:
     "A templating system that auto-generates branded business cards with dynamic QR codes and vCard downloads. Per employee, zero design work.",
-  alternates: { canonical: "https://spenc.ee/projects/business-card" },
-};
+  path: "/projects/business-card",
+  ogSlug: "business-card",
+});
 
 function FeatureList({ items }: { items: string[] }) {
   return (

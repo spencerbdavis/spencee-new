@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | About",
   description:
     "How a marketing operator became the engineer behind production systems for an 80-property business.",
-  alternates: { canonical: "https://spenc.ee/about" },
-};
+  path: "/about",
+});
 
 const MILESTONES = [
   {

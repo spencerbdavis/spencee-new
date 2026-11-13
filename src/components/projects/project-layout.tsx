@@ -3,10 +3,13 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { StatBlock } from "./stat-block";
 import { TechPills } from "./tech-pills";
 import type { Project } from "@/lib/projects";
+import { JsonLd } from "@/components/seo/json-ld";
+import { projectJsonLd } from "@/lib/seo";
 
 export function ProjectLayout({ project, children }: { project: Project; children: React.ReactNode }) {
   return (
     <div className="container-site pt-28 pb-28 md:pt-36 md:pb-32">
+      <JsonLd data={projectJsonLd(project)} />
       <div className="rule-thick pt-5">
         <Link href="/projects" className="nav-link label-mono inline-flex items-center gap-2">
           <ArrowLeft size={14} /> All work

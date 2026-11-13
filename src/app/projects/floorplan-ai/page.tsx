@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Floor Plan AI Extraction",
   description:
     "A Python pipeline that extracts apartment units from architectural PDFs using SAM3, Gemini OCR, and OpenCV.",
-  alternates: { canonical: "https://spenc.ee/projects/floorplan-ai" },
-};
+  path: "/projects/floorplan-ai",
+  ogSlug: "floorplan-ai",
+});
 
 export default function FloorplanAIPage() {
   const project = ALL_PROJECTS.find((p) => p.slug === "floorplan-ai")!;

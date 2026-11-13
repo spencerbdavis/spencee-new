@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Yardi Browser Integration",
-  description: "A Chrome extension that writes reconciled transactions into a legacy ERP with no suitable write API.",
-  alternates: { canonical: "https://spenc.ee/projects/yardi-integration" },
-};
+  description:
+    "A Chrome extension that writes reconciled transactions into a legacy ERP with no suitable write API.",
+  path: "/projects/yardi-integration",
+  ogSlug: "yardi-integration",
+});
 
 const CONSTRAINTS = [
   ["CSP", "The host application's content-security policy restricts how extension code can execute and communicate."],

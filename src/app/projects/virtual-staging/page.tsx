@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Structural Verification for Generated Images",
   description:
     "A Sobel edge detector and edge-overlap scorer that flags structural drift in AI-staged listing images.",
-  alternates: { canonical: "https://spenc.ee/projects/virtual-staging" },
-};
+  path: "/projects/virtual-staging",
+  ogSlug: "virtual-staging",
+});
 
 function FeatureList({ items }: { items: string[] }) {
   return (

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Suspense } from "react";
 import { ProjectFilter } from "@/components/projects/project-filter";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Projects",
   description:
     "Applied AI, integrations, and production systems built for an 80-property real estate business.",
-  alternates: { canonical: "https://spenc.ee/projects" },
-};
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

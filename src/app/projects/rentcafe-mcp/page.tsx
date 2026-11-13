@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | RentCafe MCP Server",
   description:
     "A Model Context Protocol server that gives Claude direct access to RentCafe Site Manager via a browser-authenticated headless Puppeteer session.",
-  alternates: { canonical: "https://spenc.ee/projects/rentcafe-mcp" },
-};
+  path: "/projects/rentcafe-mcp",
+  ogSlug: "rentcafe-mcp",
+});
 
 function FeatureList({ items }: { items: string[] }) {
   return (

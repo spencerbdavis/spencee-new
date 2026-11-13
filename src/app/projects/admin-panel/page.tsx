@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Expense Reconciliation System",
   description:
     "A production receipt pipeline with AI extraction, deterministic rules, human verification, and Yardi write-back.",
-  alternates: { canonical: "https://spenc.ee/projects/admin-panel" },
-};
+  path: "/projects/admin-panel",
+  ogSlug: "admin-panel",
+});
 
 function FeatureList({ items }: { items: string[] }) {
   return (
