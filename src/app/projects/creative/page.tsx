@@ -224,6 +224,22 @@ export default function CreativePage() {
         </div>
       </section>
 
+      {/* ===== Tri-fold brochure ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="Print collateral" title="East Howe Steps tri-fold">
+          An 11 × 8.5 in tri-fold set in HTML and CSS. The 34-row floor-plan
+          table, pricing, fees and pet policy are generated from a snapshot of
+          the property&apos;s data feed instead of being retyped. The fold-in flap is cut slightly
+          narrower than the outer panels so the brochure closes flat, and the
+          required Seattle fair-housing and screening disclosures sit on the
+          flap at legal size.
+        </SectionHead>
+        <div className="mt-12 grid grid-cols-1 gap-6 md:mt-16">
+          <Plate src="/photos/brochure/ehs-side-1.webp" alt="East Howe Steps brochure outside: how to lease, contact panel and cover" width={2112} height={1632} caption="Outside · flap, back panel, cover" sizes="(min-width: 1280px) 76rem, 100vw" />
+          <Plate src="/photos/brochure/ehs-side-2.webp" alt="East Howe Steps brochure inside: amenities, 34 floor plans with pricing, and a neighborhood map" width={2112} height={1632} caption="Inside · homes, 34 floor plans, neighborhood map" sizes="(min-width: 1280px) 76rem, 100vw" delay={80} />
+        </div>
+      </section>
+
       {/* ===== Event: 2026 cruise ===== */}
       <section className="mt-24 md:mt-32">
         <SectionHead eyebrow="Event" title="Bonavista 2026 Cruise, Lake Union">
