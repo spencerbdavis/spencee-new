@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { ProjectLayout } from "@/components/projects/project-layout";
+import { BeforeAfter } from "@/components/projects/before-after";
 import { ALL_PROJECTS } from "@/lib/projects";
 
 export const metadata: Metadata = pageMetadata({
@@ -88,7 +89,16 @@ export default function VirtualStagingPage() {
       <section>
         <p className="label-mono mb-6">Staging output</p>
         <div className="flex flex-col gap-3">
-          <BeforeAfterPair before="/screenshots/virtual-staging/before-1.webp" after="/screenshots/virtual-staging/after-1.webp" />
+          <BeforeAfter
+            before="/screenshots/virtual-staging/before-1.webp"
+            after="/screenshots/virtual-staging/after-1.webp"
+            beforeLabel="Empty"
+            afterLabel="Staged"
+            alt="Apartment room"
+            width={1600}
+            height={1074}
+            caption="Drag to compare: walls, windows and doors must stay where they were"
+          />
           <BeforeAfterPair before="/screenshots/virtual-staging/before-2.webp" after="/screenshots/virtual-staging/after-2.webp" />
         </div>
         <p className="mt-4 text-sm text-ink-muted">Internal production tool; access is restricted.</p>

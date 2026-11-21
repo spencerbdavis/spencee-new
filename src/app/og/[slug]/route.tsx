@@ -10,10 +10,10 @@ export function generateStaticParams() {
   return [{ slug: "home" }, ...ALL_PROJECTS.map((p) => ({ slug: p.slug }))];
 }
 
-const PAPER = "#fbf9f4";
-const INK = "#131210";
-const MUTED = "#5f594e";
-const ACCENT = "#0077b6";
+const PAPER = "#f5f4f0";
+const INK = "#0d0e11";
+const MUTED = "#565a63";
+const ACCENT = "#ff4f1a";
 
 export async function GET(_req: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

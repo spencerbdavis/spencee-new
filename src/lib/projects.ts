@@ -1,8 +1,20 @@
+import { INDEPENDENT_PROJECTS } from "./projects-independent";
+
 export interface Project {
   slug: string;
   title: string;
   subtitle: string;
-  category: "Applied AI" | "Production Systems" | "Integrations" | "Infrastructure" | "Web" | "Creative";
+  category:
+    | "Applied AI"
+    | "Production Systems"
+    | "Integrations"
+    | "Infrastructure"
+    | "Web"
+    | "Creative"
+    | "Data Systems"
+    | "Hardware";
+  /** work = built at Bonavista; independent = my own live products; lab = hardware/home lab; other = creative/experiments */
+  group?: ProjectGroup;
   outcome: string;
   problem?: string;
   techStack: string[];
@@ -11,7 +23,35 @@ export interface Project {
   screenshotDir: string;
   featured: boolean;
   badge?: string;
+  /** Card / share image under /public */
+  cover?: string;
+  /** Public source repository */
+  repo?: string;
+  /** Primary live URL */
+  live?: string;
+  year?: string;
 }
+
+export type ProjectGroup = "work" | "independent" | "lab" | "other";
+
+export const GROUP_LABELS: Record<ProjectGroup, { title: string; blurb: string }> = {
+  independent: {
+    title: "Independent products",
+    blurb: "Live public sites I designed, built and run myself, from the antenna and radar feeds to the SEO.",
+  },
+  work: {
+    title: "Production systems at Bonavista",
+    blurb: "Internal platforms, integrations and marketing systems for an 80-property Seattle real estate company.",
+  },
+  lab: {
+    title: "Hardware & home lab",
+    blurb: "Consumer devices re-purposed with custom Android kiosks, native code and a home server.",
+  },
+  other: {
+    title: "Creative & experiments",
+    blurb: "Print, photography and research prototypes.",
+  },
+};
 
 export interface SupportingProject {
   title: string;
@@ -23,6 +63,8 @@ export interface SupportingProject {
 export const FEATURED_PROJECTS: Project[] = [
   {
     slug: "maintenance",
+    group: "work",
+    cover: "/screenshots/maintenance/panel-homepage.webp",
     title: "Bonavista Maintenance Suite",
     subtitle:
       "A field-operations platform spanning web, iOS, and browser automation, built from an original 14,000-line PHP application and scaled with contract developers.",
@@ -63,6 +105,8 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "admin-panel",
+    group: "work",
+    cover: "/screenshots/admin-panel/home-screen.webp",
     title: "Expense Reconciliation System",
     subtitle:
       "A production pipeline that turns emailed receipts into coded, human-verified transactions and writes them back into Yardi through a browser extension.",
@@ -91,6 +135,7 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "rentcafe-mcp",
+    group: "work",
     title: "RentCafe MCP Server",
     subtitle:
       "An MCP server that lets AI agents read and act on live RentCafe leasing data for 60+ properties, despite RentCafe having no public API at this tier.",
@@ -118,6 +163,8 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "wordpress-sites",
+    group: "work",
+    cover: "/screenshots/wordpress-sites/harbor-flats.webp",
     title: "Web Estate & Property Sites",
     subtitle:
       "A mixed WordPress and Next.js estate spanning 73 Cloudflare zones, with 65 zones serving live traffic and shared operational tooling behind the portfolio.",
@@ -136,6 +183,8 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "creative",
+    group: "other",
+    cover: "/screenshots/creative/ingallinas-1.webp",
     title: "Creative Work",
     subtitle:
       "Large-format print and signage design (window clings, A-boards, yard signs) in Illustrator and Photoshop, plus a Pixabay Editor's Choice COVID vaccine photo set with 182K views and 126K downloads picked up by news outlets and research institutions.",
@@ -158,6 +207,8 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "wordpress-plugin",
+    group: "work",
+    cover: "/screenshots/wordpress-plugin/availability.webp",
     title: "RentCafe × WordPress Plugin",
     subtitle:
       "A custom WordPress plugin syncing live RentCafe availability to 60+ property websites — including Seattle's MFTE affordable-housing filter that no commercial plugin supports.",
@@ -179,6 +230,8 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "virtual-staging",
+    group: "work",
+    cover: "/screenshots/virtual-staging/after-1.webp",
     title: "Structural Verification for Generated Images",
     subtitle:
       "A deterministic quality gate for generative image edits, using a hand-implemented Sobel edge detector and edge-overlap IoU scoring to flag structural changes.",
@@ -199,6 +252,7 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "vision-ocr-bench",
+    group: "work",
     title: "Vision Model Evaluation Harness",
     subtitle:
       "A cost-aware benchmark that compares nine vision models on extraction accuracy while fetching current per-token pricing at runtime.",
@@ -219,6 +273,7 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "yardi-integration",
+    group: "work",
     title: "Yardi Browser Integration",
     subtitle:
       "A Chrome extension that writes reconciled transactions into a legacy ERP through CSP restrictions, nested frames, and asynchronous batch workflows.",
@@ -239,6 +294,8 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     slug: "archive",
+    group: "independent",
+    cover: "/screenshots/archive/home.webp",
     title: "archive.spenc.ee",
     subtitle:
       "A public deep-zoom archive for scanned paper ephemera — mid-century Pacific Northwest map covers, tourist pamphlets, and the illustration that filled the margins of working maps. Gigapixel tile viewing, full-text search, and AI-written backstories.",
@@ -262,7 +319,8 @@ export const FEATURED_PROJECTS: Project[] = [
       { value: "R2 + Neon", label: "Serverless Stack" },
       { value: "AI", label: "Generated Backstories" },
     ],
-    links: [{ label: "Live", url: "https://archive.spenc.ee" }],
+    links: [{ label: "Live site", url: "https://archive.spenc.ee" }],
+    live: "https://archive.spenc.ee",
     screenshotDir: "archive",
     featured: true,
     badge: "Personal · Live",
@@ -272,11 +330,13 @@ export const FEATURED_PROJECTS: Project[] = [
 export const MORE_PROJECTS: Project[] = [
   {
     slug: "property-sites",
+    group: "work",
+    cover: "/screenshots/property-sites/the-clarke.webp",
     title: "Next.js Leasing Microsites",
     subtitle:
       "A fleet of bespoke Next.js 16 leasing sites for individual apartment properties — each wired to a shared in-house availability API that keeps floor plans, live pricing, and MFTE affordable-housing units in sync, with Matterport tours, Apple MapKit maps, and Mux video.",
     category: "Web",
-    outcome: "A dozen bespoke leasing sites running on one live availability API.",
+    outcome: "Eight bespoke leasing sites running on one live availability API.",
     problem:
       "The portfolio's property sites were aging WordPress builds — slow, hard to keep in sync with live leasing data, and tedious to update site by site. I've been migrating them to bespoke Next.js sites on Vercel, each fed by a single in-house API (api.bonavista.work) so pricing, availability, and unit data stay live without per-site edits, while preserving the old WordPress URLs so nothing drops in search rankings.",
     techStack: [
@@ -291,22 +351,24 @@ export const MORE_PROJECTS: Project[] = [
       "Resend",
     ],
     stats: [
-      { value: "12", label: "Live Microsites" },
+      { value: "8", label: "Live Microsites" },
       { value: "1 API", label: "Live Availability Feed" },
       { value: "24h", label: "ISR Revalidation" },
       { value: "MFTE", label: "Affordable-Housing Filter" },
     ],
     links: [
-      { label: "Alt Capitol Hill", url: "https://altapartments.com" },
-      { label: "Rowlock", url: "https://rowlockseattle.com" },
       { label: "The Clarke", url: "https://www.theclarkegreenlake.com" },
+      { label: "Ellie Passivhaus", url: "https://www.lifeatellie.com" },
+      { label: "Odessa", url: "https://www.odessaonlakeunion.com" },
     ],
+    live: "https://www.theclarkegreenlake.com",
     screenshotDir: "property-sites",
     featured: false,
-    badge: "12 Sites · Live",
+    badge: "8 Sites · Live",
   },
   {
     slug: "floorplan-ai",
+    group: "work",
     title: "Floor Plan AI Extraction",
     subtitle:
       "A Python pipeline that extracts individual apartment units from architectural PDFs using Meta's SAM3, Gemini OCR, and OpenCV, with GPU inference on Modal H100s.",
@@ -323,6 +385,7 @@ export const MORE_PROJECTS: Project[] = [
   },
   {
     slug: "tablo-news",
+    group: "other",
     title: "Tablo News",
     subtitle:
       "An AI powered local news search and archive interface for Seattle area TV broadcasts, transcribed with Whisper, indexed with ChromaDB, and searchable via natural language RAG queries.",
@@ -344,6 +407,8 @@ export const MORE_PROJECTS: Project[] = [
   },
   {
     slug: "business-card",
+    group: "work",
+    cover: "/screenshots/business-card/card-1.webp",
     title: "Auto-Generated Business Cards",
     subtitle:
       "A templating system that auto-generates branded business cards with dynamic QR codes, vCard downloads, and property assignments. Per employee, zero design work.",
@@ -396,6 +461,12 @@ export const SUPPORTING_PROJECTS: SupportingProject[] = [
     techStack: ["Chrome Extension", "TypeScript", "React", "Tesseract.js"],
   },
   {
+    title: "Yardi GL Import Extension",
+    description:
+      "Side-panel Chrome extension paired to the admin platform by JWT: builds per-employee GL CSVs from verified receipts, injects each into Yardi's GL Import form via DataTransfer, waits for Yardi's result banner, then flags the receipts so nothing is imported twice.",
+    techStack: ["Chrome Extension", "TypeScript", "React", "Vitest"],
+  },
+  {
     title: "Google Review Policy Reporter",
     description:
       "A Puppeteer bot that reads flagged policy-violating Google reviews from the admin dashboard and auto-reports each in Google Business Profile across 60+ locations, riding the operator's authenticated Chrome session over the DevTools protocol.",
@@ -410,4 +481,4 @@ export const SUPPORTING_PROJECTS: SupportingProject[] = [
   },
 ];
 
-export const ALL_PROJECTS = [...FEATURED_PROJECTS, ...MORE_PROJECTS];
+export const ALL_PROJECTS = [...FEATURED_PROJECTS, ...INDEPENDENT_PROJECTS, ...MORE_PROJECTS];

@@ -4,6 +4,10 @@ import Image from "next/image";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { Tabs } from "@/components/ui/tabs";
 import { ALL_PROJECTS } from "@/lib/projects";
+import { CaseSection } from "@/components/projects/case";
+import { RepoLedger } from "@/components/projects/repo-ledger";
+import { OpsSystemMap } from "@/components/projects/ops-system-map";
+import { reposFor } from "@/lib/repos";
 
 export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Bonavista Maintenance Suite",
@@ -157,6 +161,12 @@ export default function MaintenancePage() {
           },
         ]}
       />
+      <CaseSection n="A" label="System map" title="How the maintenance suite connects">
+        <OpsSystemMap />
+      </CaseSection>
+      <CaseSection n="B" label="Repositories" title="The code behind it, and who wrote it">
+        <RepoLedger repos={reposFor(["maintenance-panel", "BVMaintenance", "maintenance-ext"])} caption="Repositories behind this system" />
+      </CaseSection>
     </ProjectLayout>
   );
 }

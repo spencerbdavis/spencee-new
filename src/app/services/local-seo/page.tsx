@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { BUSINESS_JSONLD, breadcrumbJsonLd, faqJsonLd, pageMetadata, serviceJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/shared/reveal";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Spencer D'Avis | Local SEO & Generative Engine Optimization",
+  title: "Local SEO, Google Business Profile & AI Search Optimization — Seattle | Spencer D'Avis",
   description:
     "A custom AI engine that runs local search for 60+ apartment communities — SEO and generative-engine optimization (GEO), Google Business Profile and Apple Maps listings, review responses, and the live data that keeps every surface consistent.",
   path: "/services/local-seo",
@@ -60,8 +61,26 @@ const STATS = [
 export default function LocalSeoPage() {
   return (
     <div className="container-site pt-28 pb-28 md:pt-36 md:pb-32">
+      <JsonLd data={BUSINESS_JSONLD} />
+      <JsonLd
+        data={serviceJsonLd({
+          name: "Local SEO & Google Business Profile",
+          serviceType: "Local search engine optimization",
+          description:
+            "Local SEO and generative-engine optimization, Google Business Profile and Apple Maps listings, and review responses, run as one system.",
+          path: "/services/local-seo",
+        })}
+      />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Services", path: "/services" }, { name: "Local SEO", path: "/services/local-seo" }])} />
+      <JsonLd
+        data={faqJsonLd([
+          { q: "What is generative engine optimization (GEO)?", a: "Making sure AI answer engines like ChatGPT, Gemini and Google AI Overviews find, understand and cite your business: structured data, consistent listings, answer-first pages and llms.txt." },
+          { q: "Do you manage Google Business Profile and Apple Maps?", a: "Yes, including hours, photos, attributes and review responses, kept in sync from one source of truth." },
+          { q: "How long until local SEO shows results?", a: "Listings fixes can move map-pack rankings within weeks; content and authority work compounds over three to six months." },
+        ])}
+      />
       <div className="rule-thick pt-5">
-        <Link href="/#services" className="nav-link label-mono inline-flex items-center gap-2">
+        <Link href="/services" className="nav-link label-mono inline-flex items-center gap-2">
           <ArrowLeft size={14} /> Services
         </Link>
       </div>

@@ -3,9 +3,11 @@ import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import Image from "next/image";
+import { OffTheClock } from "@/components/home/off-the-clock";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Spencer D'Avis | About",
+  title: "About Spencer D'Avis — Self-Taught Engineer, Gardener, Renton WA",
   description:
     "How a marketing operator became the engineer behind production systems for an 80-property business.",
   path: "/about",
@@ -38,7 +40,12 @@ export default function AboutPage() {
   return (
     <div className="container-site pt-28 pb-28 md:pt-36 md:pb-32">
       <header className="rule-thick swiss-grid gap-y-8 pt-5">
-        <p className="label-mono col-span-4 md:col-span-2">About / Spencer D&apos;Avis</p>
+        <div className="col-span-4 md:col-span-2">
+          <p className="label-mono">About / Spencer D&apos;Avis</p>
+          <div className="card relative mt-6 aspect-[4/5] w-full max-w-56 overflow-hidden p-0">
+            <Image src="/headshot.jpg" alt="Spencer D'Avis smiling on a boat, water and clouds behind" fill priority sizes="14rem" className="object-cover" />
+          </div>
+        </div>
         <div className="col-span-4 md:col-span-8">
           <h1 className="text-h2 max-w-[48rem]">I learned engineering by becoming responsible for the result.</h1>
           <p className="mt-8 max-w-[44rem] text-xl leading-relaxed text-ink-muted">
@@ -85,6 +92,10 @@ export default function AboutPage() {
             View case studies <span aria-hidden>→</span>
           </Link>
         </aside>
+      </section>
+
+      <section className="rule-thick pt-10 pb-20 md:pb-28">
+        <OffTheClock full />
       </section>
 
       <section className="rule-thick swiss-grid gap-y-8 pt-10">

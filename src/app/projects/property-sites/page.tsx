@@ -12,24 +12,6 @@ export const metadata: Metadata = pageMetadata({
   ogSlug: "property-sites",
 });
 
-function Plate({ src, alt, caption }: { src: string; alt: string; caption: string }) {
-  return (
-    <figure>
-      <div className="border border-hairline bg-paper p-2 md:p-3">
-        <Image
-          src={src}
-          alt={alt}
-          width={1600}
-          height={1000}
-          sizes="(min-width: 768px) 42rem, 100vw"
-          className="block h-auto w-full"
-        />
-      </div>
-      <figcaption className="label-mono mt-3">{caption}</figcaption>
-    </figure>
-  );
-}
-
 function FeatureList({ items }: { items: string[] }) {
   return (
     <ul className="divide-y divide-hairline border-t border-hairline">
@@ -54,6 +36,17 @@ function PipelineStep({ step, title, desc }: { step: string; title: string; desc
   );
 }
 
+const SITES = [
+  { name: "The Clarke", where: "Green Lake", url: "https://www.theclarkegreenlake.com", img: "/screenshots/property-sites/the-clarke.webp" },
+  { name: "Ellie Passivhaus", where: "Uptown", url: "https://www.lifeatellie.com", img: "/screenshots/property-sites/ellie.webp" },
+  { name: "Odessa on Lake Union", where: "Lake Union", url: "https://www.odessaonlakeunion.com", img: "/screenshots/property-sites/odessa.webp" },
+  { name: "VIVA", where: "Capitol Hill", url: "https://www.vivacaphill.com", img: "/screenshots/property-sites/viva.webp" },
+  { name: "Hawthorne", where: "Capitol Hill", url: "https://www.hawthornecapitolhill.com", img: "/screenshots/property-sites/hawthorne.webp" },
+  { name: "Cortina", where: "Eastlake", url: "https://www.cortinaeastlake.com", img: "/screenshots/property-sites/cortina.webp" },
+  { name: "East Howe Steps", where: "Eastlake", url: "https://www.easthowesteps.com", img: "/screenshots/property-sites/east-howe-steps.webp" },
+  { name: "The East Highland Studio", where: "North Capitol Hill", url: "https://commercial.easthighlandapts.com", img: "/screenshots/property-sites/east-highland-studio.webp" },
+];
+
 export default function PropertySitesPage() {
   const project = ALL_PROJECTS.find((p) => p.slug === "property-sites")!;
 
@@ -64,23 +57,31 @@ export default function PropertySitesPage() {
         <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">{project.problem}</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
-        <Plate
-          src="/screenshots/property-sites/alt-capitol-hill.webp"
-          alt="Alt Capitol Hill leasing site — full-bleed Mux hero video of the building"
-          caption="Alt Capitol Hill · altapartments.com"
-        />
-        <Plate
-          src="/screenshots/property-sites/rowlock.webp"
-          alt="Rowlock Seattle leasing site with a live availability call-to-action"
-          caption="Rowlock · rowlockseattle.com"
-        />
+      <div>
+        <p className="label-mono mb-6">Live sites · click through</p>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {SITES.map((site) => (
+            <a
+              key={site.url}
+              href={site.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-card card group overflow-hidden"
+            >
+              <div className="card-media relative aspect-[16/10] overflow-hidden border-b border-line bg-surface-2">
+                <Image src={site.img} alt={`${site.name} leasing website`} fill sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw" className="object-cover object-top" />
+              </div>
+              <div className="flex items-center justify-between gap-3 p-4">
+                <div>
+                  <p className="font-semibold">{site.name}</p>
+                  <p className="text-xs text-ink-muted">{site.where}</p>
+                </div>
+                <span className="font-mono text-xs text-ink-muted group-hover:text-ink">{new URL(site.url).hostname.replace(/^www\./, "")} ↗</span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
-      <Plate
-        src="/screenshots/property-sites/the-clarke.webp"
-        alt="The Clarke leasing site at Green Lake"
-        caption="The Clarke · theclarkegreenlake.com"
-      />
 
       {/* Architecture */}
       <div>

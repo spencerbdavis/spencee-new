@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Applied AI, integrations and internal systems by Spencer D'Avis.",
     start_url: "/",
     display: "browser",
-    background_color: "#fbf9f4",
-    theme_color: "#fbf9f4",
+    background_color: "#f5f4f0",
+    theme_color: "#f5f4f0",
     icons: [
       { src: "/icon", sizes: "64x64", type: "image/png" },
       { src: "/apple-icon", sizes: "180x180", type: "image/png" },

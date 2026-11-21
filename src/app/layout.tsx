@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Geist_Mono } from "next/font/google";
+import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { WeatherProvider } from "@/components/providers/weather-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -8,19 +8,21 @@ import { UmamiEvents } from "@/components/analytics/umami-events";
 import { ogImageUrl } from "@/lib/seo";
 import "./globals.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const TITLE = "Spencer D'Avis — Applied AI, Integrations & Internal Systems";
+const TITLE = "Spencer D'Avis — Software Engineer, Applied AI & Web Development · Seattle";
 const DESCRIPTION =
-  "Seattle-based engineer building applied AI, integrations, and production systems for an 80-property real estate business.";
+  "Seattle-area engineer building applied AI, integrations, production systems and fast marketing websites. Open to remote engineering roles and select web, SEO and AI automation projects.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -43,11 +45,14 @@ export const metadata: Metadata = {
   },
   // Canonical is set per page (lib/seo.ts pageMetadata); a root canonical here
   // would leak onto pages that forget theirs.
-  other: { "color-scheme": "light" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbf9f4",
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f4f0" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0c0f" },
+  ],
 };
 
 // Umami (self-hosted, cookieless). data-domains keeps dev and preview hosts out of the stats.
@@ -61,7 +66,7 @@ export default function RootLayout({
   return (
     // suppressHydrationWarning: the inline script in <body> adds the "js"
     // class to <html> before hydration — an intentional mutation.
-    <html lang="en" suppressHydrationWarning className={`${archivo.variable} ${geistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${interTight.variable} ${jetbrains.variable}`}>
       <head>
         <script
           defer

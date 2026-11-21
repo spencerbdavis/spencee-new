@@ -7,8 +7,8 @@ import { WeatherPill } from "./weather-pill";
 
 const LINKS = [
   { label: "Work", href: "/projects" },
+  { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Capabilities", href: "/#skills" },
   { label: "Contact", href: "/#contact" },
   { label: "Résumé", href: "/spencer-davis-resume.pdf" },
 ];
@@ -26,7 +26,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-paper transition-colors duration-100 ${
+      className={`fixed inset-x-0 top-0 z-50 bg-paper/85 backdrop-blur-md transition-colors duration-100 ${
         scrolled ? "border-b border-hairline" : "border-b border-transparent"
       }`}
     >
@@ -37,8 +37,9 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="text-sm font-semibold uppercase tracking-[0.08em] text-ink"
+          className="flex items-center gap-2 text-[0.95rem] font-bold tracking-tight text-ink"
         >
+          <span aria-hidden className="inline-block h-2.5 w-2.5 rounded-full bg-signal" />
           Spencer D&apos;Avis
         </Link>
 

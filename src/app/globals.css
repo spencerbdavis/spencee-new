@@ -2,61 +2,106 @@
 @source "../../src";
 
 /* ==========================================================
-   spenc.ee — Swiss engineering portfolio
-   Warm paper, neutral grotesk type, one blue signal, explicit grid.
-   Tokens are the single source of truth — no hex elsewhere.
+   spenc.ee — 2026 refresh
+   "Instrument panel": bold grotesk type, data in mono, one signal
+   colour, cards that carry real screenshots and live numbers.
+   Light and dark follow the OS. Tokens are the single source of
+   truth; legacy names (paper, ink, hairline, accent) are kept so
+   older pages pick up the new system without edits.
    ========================================================== */
 
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface-2: #ecebe5;
+  --fg: #0d0e11;
+  --fg-muted: #565a63;
+  --line: #dedcd4;
+  --line-strong: #0d0e11;
+  --signal: #ff4f1a; /* fills, marks, large type only */
+  --signal-text: #b8360a; /* text-size accent, 5.3:1 on --bg */
+  --on-signal: #0d0e11;
+  --live: #15803d;
+  --shadow: 0 1px 2px rgb(13 14 17 / 0.04), 0 8px 24px -12px rgb(13 14 17 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(13 14 17 / 0.05), 0 22px 44px -18px rgb(13 14 17 / 0.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0c0f;
+    --surface: #14161b;
+    --surface-2: #1b1e25;
+    --fg: #f2f1ec;
+    --fg-muted: #a2a6af;
+    --line: #2a2d35;
+    --line-strong: #f2f1ec;
+    --signal: #ff6a3d;
+    --signal-text: #ff8d68;
+    --on-signal: #0b0c0f;
+    --live: #4ade80;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+    --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.4), 0 24px 48px -18px rgb(0 0 0 / 0.8);
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-inter-tight), "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
+
+  /* Legacy names → new tokens */
+  --color-paper: var(--bg);
+  --color-paper-tint: var(--surface-2);
+  --color-ink: var(--fg);
+  --color-ink-muted: var(--fg-muted);
+  --color-hairline: var(--line);
+  --color-accent: var(--signal-text);
+
+  /* New names */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-signal: var(--signal);
+  --color-on-signal: var(--on-signal);
+  --color-live: var(--live);
+}
+
 @theme {
-  --font-sans: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
-
-  /* Ink & paper — the whole palette */
-  --color-paper: #fbf9f4;
-  --color-paper-tint: #f4f1e9;
-  --color-ink: #131210;
-  --color-ink-muted: #5f594e;
-  --color-hairline: #e7e3d8;
-  --color-accent: #0077b6;
-
-  /* Layout */
-  --container-site: 75rem; /* 1200px */
+  --container-site: 78rem; /* 1248px */
   --grid-gap: clamp(1rem, 2vw, 1.5rem);
 
-  /* Type scale */
-  --text-display: clamp(3.25rem, 8.5vw, 7rem);
-  --text-display--line-height: 0.9;
-  --text-display--letter-spacing: -0.055em;
+  --text-display: clamp(2.75rem, 6.4vw, 5.75rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
   --text-display--font-weight: 700;
-  --text-h2: clamp(2.25rem, 4.6vw, 3.75rem);
-  --text-h2--line-height: 0.98;
-  --text-h2--letter-spacing: -0.02em;
+  --text-h2: clamp(2.125rem, 4.4vw, 3.75rem);
+  --text-h2--line-height: 1;
+  --text-h2--letter-spacing: -0.03em;
   --text-h2--font-weight: 700;
   --text-h3: 1.375rem;
   --text-h3--line-height: 1.25;
-  --text-h3--letter-spacing: -0.01em;
-  --text-h3--font-weight: 600;
+  --text-h3--letter-spacing: -0.015em;
+  --text-h3--font-weight: 650;
   --text-label: 0.75rem;
   --text-label--line-height: 1;
   --text-label--letter-spacing: 0.08em;
 
-  /* Motion */
+  --radius-card: 1.25rem;
   --ease-swiss: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ============================
-   Base
-   ============================ */
+/* ============================ Base ============================ */
 
 html {
-  color-scheme: light;
+  color-scheme: light dark;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -71,42 +116,41 @@ main {
   left: 0.75rem;
   z-index: 100;
   transform: translateY(-200%);
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--fg);
+  color: var(--bg);
   padding: 0.75rem 1rem;
-  font-family: var(--font-sans);
+  border-radius: 0.5rem;
   font-size: 0.875rem;
 }
-
 .skip-link:focus {
   transform: none;
 }
 
 ::selection {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--signal);
+  color: var(--on-signal);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-ink);
+  outline: 2px solid var(--signal);
   outline-offset: 3px;
 }
 
-/* Anchor targets clear the fixed navbar */
 [id] {
   scroll-margin-top: 5.5rem;
 }
 
-/* ============================
-   Structure utilities
-   ============================ */
+/* ============================ Structure ============================ */
 
 @utility container-site {
   width: 100%;
   max-width: var(--container-site);
   margin-inline: auto;
-  padding-inline: 1.5rem;
-  @media (min-width: 768px) {
+  padding-inline: 1rem;
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
     padding-inline: 2rem;
   }
 }
@@ -121,145 +165,249 @@ main {
 }
 
 @utility rule-thick {
-  border-top: 3px solid var(--color-ink);
+  border-top: 3px solid var(--line-strong);
 }
 
 @utility hairline {
-  border-top: 1px solid var(--color-hairline);
+  border-top: 1px solid var(--line);
 }
 
 @utility hairline-y {
-  border-left: 1px solid var(--color-hairline);
+  border-left: 1px solid var(--line);
 }
 
 @utility label-mono {
-  font-family: var(--font-sans);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-weight: 500;
   font-size: var(--text-label);
   line-height: 1.4;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--fg-muted);
 }
 
 @utility tag {
   display: inline-flex;
   align-items: center;
-  padding: 0.375rem 0.625rem;
-  border: 1px solid var(--color-hairline);
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.04em;
-  color: var(--color-ink-muted);
-  background: var(--color-paper);
+  gap: 0.375rem;
+  padding: 0.3125rem 0.625rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--fg-muted);
+  background: var(--surface);
 }
 
-/* Subtle paper grain — opt-in, at most once per page */
+@utility card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--fg) 30%, var(--signal) 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Fine engineering-paper grid, used behind the hero */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--fg) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--fg) 7%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
 @utility texture-noise {
   position: relative;
 }
-.texture-noise::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 
-/* ============================
-   Interactive components
-   ============================ */
+/* ============================ Interactive ============================ */
 
 .btn-solid,
-.btn-outline {
+.btn-outline,
+.btn-signal {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   min-height: 44px;
-  padding: 0.875rem 1.75rem;
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  padding: 0.75rem 1.375rem;
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
   text-decoration: none;
-  transition: background-color 100ms linear, color 100ms linear, border-color 100ms linear;
+  transition:
+    background-color 120ms linear,
+    color 120ms linear,
+    border-color 120ms linear,
+    transform 120ms var(--ease-swiss);
+}
+.btn-solid:active,
+.btn-outline:active,
+.btn-signal:active {
+  transform: translateY(1px);
 }
 
 .btn-solid {
-  background: var(--color-ink);
-  color: var(--color-paper);
-  border: 1px solid var(--color-ink);
+  background: var(--fg);
+  color: var(--bg);
+  border: 1px solid var(--fg);
 }
 .btn-solid:hover,
-.btn-solid:focus-visible,
-.btn-solid:active {
-  background: var(--color-accent);
-  color: var(--color-paper);
-  border-color: var(--color-accent);
+.btn-solid:focus-visible {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--on-signal);
+}
+
+.btn-signal {
+  background: var(--signal);
+  color: var(--on-signal);
+  border: 1px solid var(--signal);
+}
+.btn-signal:hover,
+.btn-signal:focus-visible {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--color-ink);
-  border: 1px solid var(--color-ink);
+  color: var(--fg);
+  border: 1px solid var(--line);
 }
 .btn-outline:hover,
-.btn-outline:focus-visible,
-.btn-outline:active {
-  background: var(--color-accent);
-  color: var(--color-paper);
-  border-color: var(--color-accent);
+.btn-outline:focus-visible {
+  border-color: var(--fg);
 }
 
 .invert-hover {
-  transition: background-color 100ms linear, color 100ms linear;
+  transition:
+    background-color 120ms linear,
+    color 120ms linear;
 }
 .invert-hover:hover,
 .invert-hover:focus-visible,
-.invert-hover:focus-within,
-.invert-hover:active {
-  background: var(--color-accent);
-  color: var(--color-paper);
+.invert-hover:focus-within {
+  background: var(--fg);
+  color: var(--bg);
 }
 
-.nav-link {
-  color: var(--color-ink-muted);
+.nav-link,
+.contact-link {
+  color: var(--fg-muted);
   text-decoration: none;
-  transition: color 100ms linear;
+  transition: color 120ms linear;
 }
 .nav-link:hover,
-.nav-link:focus-visible {
-  color: var(--color-accent);
-}
-
-.contact-link {
-  color: var(--color-ink-muted);
-  transition: color 100ms linear;
-}
+.nav-link:focus-visible,
 .contact-link:hover,
 .contact-link:focus-visible {
-  color: var(--color-accent);
+  color: var(--fg);
 }
 
-/* ============================
-   Motion — entrances
-   Two registers: interactions ≤120ms linear (Tailwind utilities),
-   entrances below. Desktop gets choreography; touch/small screens
-   get a plain 200ms fade; reduced motion gets nothing.
-   Hiding is scoped to html.js so content is never withheld
-   without JavaScript.
-   ============================ */
+.link-signal {
+  color: var(--signal-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.link-signal:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Project card: lift on hover, image zoom */
+.project-card {
+  transition:
+    transform 220ms var(--ease-swiss),
+    box-shadow 220ms var(--ease-swiss),
+    border-color 120ms linear;
+}
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+  border-color: color-mix(in oklab, var(--fg) 25%, var(--line));
+}
+.project-card .card-media img {
+  transition: transform 600ms var(--ease-swiss);
+}
+.project-card:hover .card-media img {
+  transform: scale(1.03);
+}
+
+/* Data tables used in comparisons and benchmarks */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 0.75rem 0.875rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  border-bottom: 1px solid var(--line-strong);
+}
+.data-table td.num,
+.data-table th.num {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.data-table .win {
+  color: var(--fg);
+  font-weight: 650;
+}
+
+/* Long-form copy inside case studies */
+.prose-case p {
+  color: var(--fg-muted);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+.prose-case p + p {
+  margin-top: 1rem;
+}
+.prose-case strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+.prose-case code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--surface-2);
+  padding: 0.1em 0.35em;
+  border-radius: 0.3em;
+}
+
+/* ============================ Motion ============================ */
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .reveal-rise,
   html.js .reveal-clip,
   html.js .reveal-rule {
     opacity: 0;
-    transition: opacity 200ms linear;
+    transition: opacity 240ms linear;
     transition-delay: var(--reveal-delay, 0ms);
   }
   html.js .reveal-rise.is-in,
@@ -270,7 +418,7 @@ main {
 
   @media (pointer: fine) and (min-width: 768px) {
     html.js .reveal-rise {
-      transform: translateY(20px);
+      transform: translateY(16px);
       transition:
         opacity 500ms var(--ease-swiss),
         transform 500ms var(--ease-swiss);
@@ -279,11 +427,8 @@ main {
     html.js .reveal-rise.is-in {
       transform: none;
     }
-
-    /* Clip/scale the CHILD, never the observed wrapper: a fully clipped or
-       zero-scaled element has no visible area, so IntersectionObserver
-       would never fire and the reveal would deadlock. */
-    html.js .reveal-clip {
+    html.js .reveal-clip,
+    html.js .reveal-rule {
       opacity: 1;
     }
     html.js .reveal-clip > * {
@@ -294,10 +439,6 @@ main {
     html.js .reveal-clip.is-in > * {
       clip-path: inset(0 0 0 0);
     }
-
-    html.js .reveal-rule {
-      opacity: 1;
-    }
     html.js .reveal-rule > * {
       transform: scaleX(0);
       transform-origin: left;
@@ -307,10 +448,8 @@ main {
     html.js .reveal-rule.is-in > * {
       transform: scaleX(1);
     }
-
-    /* Load-time choreography (hero only — no observer) */
     html.js .load-rise {
-      animation: load-rise 600ms var(--ease-swiss) both;
+      animation: load-rise 650ms var(--ease-swiss) both;
       animation-delay: var(--reveal-delay, 0ms);
     }
   }
@@ -319,7 +458,7 @@ main {
 @keyframes load-rise {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -327,7 +466,6 @@ main {
   }
 }
 
-/* Weather pill "live" dot — gentle breathing pulse. */
 @keyframes live-pulse {
   0%,
   100% {
@@ -344,10 +482,6 @@ main {
   }
 }
 
-/* ============================
-   Ambient — footer scene
-   ============================ */
-
 @keyframes ferry-cross {
   from {
     transform: translateX(100vw);
@@ -356,10 +490,6 @@ main {
     transform: translateX(-160px);
   }
 }
-
-/* ============================
-   Reduced motion
-   ============================ */
 
 @media (prefers-reduced-motion: reduce) {
   html {
