@@ -127,7 +127,7 @@ export const FEATURED_PROJECTS: Project[] = [
       { value: "6,539", label: "Receipts" },
       { value: "86.8%", label: "Auto-Matched by Count" },
       { value: "95.3%", label: "Auto-Matched by Value" },
-      { value: "319", label: "Production API Routes" },
+      { value: "331", label: "Production API Routes" },
     ],
     links: [],
     screenshotDir: "admin-panel",
