@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
+import { CaseSection, CompareTable, Prose } from "@/components/projects/case";
 
 export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Next.js Leasing Microsites",
@@ -11,24 +12,6 @@ export const metadata: Metadata = pageMetadata({
   path: "/projects/property-sites",
   ogSlug: "property-sites",
 });
-
-function Plate({ src, alt, caption }: { src: string; alt: string; caption: string }) {
-  return (
-    <figure>
-      <div className="border border-hairline bg-paper p-2 md:p-3">
-        <Image
-          src={src}
-          alt={alt}
-          width={1600}
-          height={1000}
-          sizes="(min-width: 768px) 42rem, 100vw"
-          className="block h-auto w-full"
-        />
-      </div>
-      <figcaption className="label-mono mt-3">{caption}</figcaption>
-    </figure>
-  );
-}
 
 function FeatureList({ items }: { items: string[] }) {
   return (
@@ -54,6 +37,17 @@ function PipelineStep({ step, title, desc }: { step: string; title: string; desc
   );
 }
 
+const SITES = [
+  { name: "The Clarke", where: "Green Lake", url: "https://www.theclarkegreenlake.com", img: "/screenshots/property-sites/the-clarke.webp" },
+  { name: "Ellie Passivhaus", where: "Uptown", url: "https://www.lifeatellie.com", img: "/screenshots/property-sites/ellie.webp" },
+  { name: "Odessa on Lake Union", where: "Lake Union", url: "https://www.odessaonlakeunion.com", img: "/screenshots/property-sites/odessa.webp" },
+  { name: "VIVA", where: "Capitol Hill", url: "https://www.vivacaphill.com", img: "/screenshots/property-sites/viva.webp" },
+  { name: "Hawthorne", where: "Capitol Hill", url: "https://www.hawthornecapitolhill.com", img: "/screenshots/property-sites/hawthorne.webp" },
+  { name: "Cortina", where: "Eastlake", url: "https://www.cortinaeastlake.com", img: "/screenshots/property-sites/cortina.webp" },
+  { name: "East Howe Steps", where: "Eastlake", url: "https://www.easthowesteps.com", img: "/screenshots/property-sites/east-howe-steps.webp" },
+  { name: "The East Highland Studio", where: "North Capitol Hill", url: "https://commercial.easthighlandapts.com", img: "/screenshots/property-sites/east-highland-studio.webp" },
+];
+
 export default function PropertySitesPage() {
   const project = ALL_PROJECTS.find((p) => p.slug === "property-sites")!;
 
@@ -64,23 +58,31 @@ export default function PropertySitesPage() {
         <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">{project.problem}</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
-        <Plate
-          src="/screenshots/property-sites/alt-capitol-hill.webp"
-          alt="Alt Capitol Hill leasing site — full-bleed Mux hero video of the building"
-          caption="Alt Capitol Hill · altapartments.com"
-        />
-        <Plate
-          src="/screenshots/property-sites/rowlock.webp"
-          alt="Rowlock Seattle leasing site with a live availability call-to-action"
-          caption="Rowlock · rowlockseattle.com"
-        />
+      <div>
+        <p className="label-mono mb-6">Live sites · click through</p>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {SITES.map((site) => (
+            <a
+              key={site.url}
+              href={site.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-card card group overflow-hidden"
+            >
+              <div className="card-media relative aspect-[16/10] overflow-hidden border-b border-line bg-surface-2">
+                <Image src={site.img} alt={`${site.name} leasing website`} fill sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw" className="object-cover object-top" />
+              </div>
+              <div className="flex items-center justify-between gap-3 p-4">
+                <div>
+                  <p className="font-semibold">{site.name}</p>
+                  <p className="text-xs text-ink-muted">{site.where}</p>
+                </div>
+                <span className="font-mono text-xs text-ink-muted group-hover:text-ink">{new URL(site.url).hostname.replace(/^www\./, "")} ↗</span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
-      <Plate
-        src="/screenshots/property-sites/the-clarke.webp"
-        alt="The Clarke leasing site at Green Lake"
-        caption="The Clarke · theclarkegreenlake.com"
-      />
 
       {/* Architecture */}
       <div>
@@ -130,6 +132,44 @@ export default function PropertySitesPage() {
           two hosting stacks, one live data backbone.
         </p>
       </div>
+      <CaseSection n="A" label="Listing photos" title="Hawthorne: 68 photos ranked, 25 published, every one described">
+        <div className="grid gap-6 md:grid-cols-12 md:items-start">
+          <figure className="md:col-span-5">
+            <div className="card overflow-hidden p-0">
+              <Image src="/photos/floorplans/hw-hero-photo.webp" alt="Hawthorne living room with a private balcony, skyline and water view" width={1600} height={1073} sizes="(min-width: 768px) 28rem, 100vw" className="block h-auto w-full" />
+            </div>
+            <figcaption className="label-mono mt-3 normal-case tracking-normal">Ranked #1 of 68 (96/100): balcony, skyline and water in one frame</figcaption>
+          </figure>
+          <div className="md:col-span-7">
+            <Prose>
+              <p>
+                A new shoot came back with 68 photos. Each was scored on what a renter needs to see (light, size, view,
+                the features that set the unit apart) with a penalty for flaws, and the top 25 became the listing set, led by
+                the one frame that shows a private balcony, the skyline and the water at once.
+              </p>
+              <p>
+                Then the gallery itself: in RentCafe, 10 of 25 photos had no alt text, the rest had generic machine captions,
+                and none had a set display order for the listing feeds. A script wrote a title, alt text and caption per photo,
+                set the order, applied all 25 through RentCafe&apos;s media library, then re-read the gallery to verify. Three
+                photos drifted on the first pass and were re-applied until the read-back matched.
+              </p>
+            </Prose>
+          </div>
+        </div>
+        <div className="mt-6">
+          <CompareTable
+            caption="Alt text before and after"
+            columns={["Before", "After"]}
+            highlight={1}
+            rows={[
+              { label: "Front entrance", values: ["The exterior of a Hawthorne store with a green awning.", "Entrance to Hawthorne Apartments with glass doors, brick walls, green awnings, and the number 1618."] },
+              { label: "Building", values: ["(none)", "Street view of Hawthorne Apartments, a six-storey building with balconies above ground-floor retail."] },
+              { label: "Patio", values: ["A patio with a table and chairs is shown.", "Ground-floor patio with a bistro table, a storage bench, and potted olive and lavender plants."] },
+            ]}
+            note="Missing alt text: 10 → 0. Photos with a set listing order: 0 → 25. Verified by reading the gallery back from RentCafe."
+          />
+        </div>
+      </CaseSection>
     </ProjectLayout>
   );
 }

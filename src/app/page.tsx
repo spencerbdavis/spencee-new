@@ -1,8 +1,9 @@
 import { Hero } from "@/components/home/hero";
 import { StatsBar } from "@/components/home/stats-bar";
-import { Services } from "@/components/home/services";
 import { FeaturedProjects } from "@/components/home/featured-projects";
 import { GalleryBand } from "@/components/home/gallery-band";
+import { TwoPaths } from "@/components/home/two-paths";
+import { OffTheClock } from "@/components/home/off-the-clock";
 import { About } from "@/components/home/about";
 import { Skills } from "@/components/home/skills";
 import { Engagements } from "@/components/home/engagements";
@@ -23,8 +24,10 @@ const jsonLd = {
   alternateName: "Spencer Davis",
   image: `${SITE_CONFIG.url}/headshot.jpg`,
   address: { "@type": "PostalAddress", addressLocality: "Seattle", addressRegion: "WA", addressCountry: "US" },
-  jobTitle: "Applied AI & Integrations Engineer",
-  knowsAbout: ["Applied AI", "Model Evaluation", "API Integration", "Internal Tools", "TypeScript", "Next.js", "Browser Automation", "MCP"],
+  jobTitle: "Software Engineer — Applied AI, Integrations & Web",
+  worksFor: { "@type": "Organization", name: "Bonavista Management" },
+  homeLocation: { "@type": "Place", name: "Renton, WA" },
+  knowsAbout: ["Applied AI", "Model Evaluation", "API Integration", "Internal Tools", "TypeScript", "Next.js", "Python", "Browser Automation", "MCP", "Computer Vision", "Weather Radar", "ADS-B", "Android", "Local SEO", "Web Development"],
   sameAs: [SITE_CONFIG.linkedin, SITE_CONFIG.github, SITE_CONFIG.pixabay],
 };
 
@@ -35,10 +38,11 @@ export default function Home() {
       <Hero />
       <StatsBar />
       <FeaturedProjects />
+      <TwoPaths />
       <About />
+      <OffTheClock />
       <Skills />
       <GalleryBand />
-      {FREELANCE_MODE === "secondary" && <Services />}
       {FREELANCE_MODE === "secondary" && <Engagements />}
       <Contact />
     </>

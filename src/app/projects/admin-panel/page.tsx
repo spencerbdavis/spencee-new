@@ -5,6 +5,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
+import { CaseSection } from "@/components/projects/case";
+import { RepoLedger } from "@/components/projects/repo-ledger";
+import { OpsSystemMap } from "@/components/projects/ops-system-map";
+import { reposFor } from "@/lib/repos";
 
 export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Expense Reconciliation System",
@@ -54,7 +58,7 @@ function CostComparison() {
   return (
     <div className="mt-8 flex flex-wrap items-end gap-8">
       <div>
-        <p className="font-mono text-2xl leading-none font-semibold tracking-tight text-ink-muted line-through opacity-60">
+        <p className="font-mono text-2xl leading-none font-semibold tracking-tight text-ink-muted line-through">
           $400/mo
         </p>
         <p className="label-mono mt-2">Previous vendor</p>
@@ -306,6 +310,12 @@ export default function AdminPanelPage() {
           ]}
         />
       </section>
+      <CaseSection n="A" label="System map" title="How the finance pipeline connects">
+        <OpsSystemMap />
+      </CaseSection>
+      <CaseSection n="B" label="Repositories" title="The code behind it, and who wrote it">
+        <RepoLedger repos={reposFor(["bv_admin", "receipts-processor", "bv_acc_ext"])} caption="Repositories behind this system" />
+      </CaseSection>
     </ProjectLayout>
   );
 }

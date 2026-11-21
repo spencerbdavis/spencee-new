@@ -3,6 +3,10 @@ import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
+import { CaseSection } from "@/components/projects/case";
+import { RepoLedger } from "@/components/projects/repo-ledger";
+import { OpsSystemMap } from "@/components/projects/ops-system-map";
+import { reposFor } from "@/lib/repos";
 
 export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Yardi Browser Integration",
@@ -73,6 +77,9 @@ export default function YardiIntegrationPage() {
         This accounting extension is separate from the published maintenance extension. See the broader
         <Link href="/projects/admin-panel" className="nav-link ml-1 font-semibold">expense reconciliation case study →</Link>
       </p>
+      <CaseSection n="B" label="Repositories" title="The code behind it, and who wrote it">
+        <RepoLedger repos={reposFor(["bv_acc_ext", "maintenance-ext"])} caption="Repositories behind this system" />
+      </CaseSection>
     </ProjectLayout>
   );
 }

@@ -6,13 +6,13 @@ const linkClass =
 
 export function Footer() {
   return (
-    <footer className="border-t-[3px] border-ink">
+    <footer className="border-t border-line">
       <div>
         <div className="container-site swiss-grid gap-y-10 py-16 md:py-20">
           <div className="col-span-4 md:col-span-4">
             <p className="label-mono">Spencer D&apos;Avis</p>
             <p className="label-mono mt-2">
-              &copy; {new Date().getFullYear()} &middot; Seattle, WA
+              &copy; {new Date().getFullYear()} &middot; Renton / Seattle, WA
             </p>
           </div>
 
@@ -23,7 +23,11 @@ export function Footer() {
             <Link href="/about" className={linkClass}>
               About
             </Link>
-            <Link href="/#skills" className={linkClass}>Capabilities</Link>
+            <Link href="/services" className={linkClass}>Services</Link>
+            <Link href="/services/web-development" className={linkClass}>Web development</Link>
+            <Link href="/services/local-seo" className={linkClass}>Local SEO</Link>
+            <Link href="/services/ai-automation" className={linkClass}>AI automation</Link>
+            <Link href="/services/property-management-marketing" className={linkClass}>Property marketing</Link>
             <Link href="/#contact" className={linkClass}>
               Contact
             </Link>

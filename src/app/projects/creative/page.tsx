@@ -173,6 +173,87 @@ export default function CreativePage() {
         </div>
       </section>
 
+      {/* ===== In the wild: wayfinding, operations print, merch ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="In the wild" title="Wayfinding, operations print & merch">
+          Photographed where it lives. A wayfinding system for VIVA&apos;s package
+          lockers and amenity rooms on the building&apos;s lattice brand,
+          after-hours emergency magnets for every resident, a parking and
+          bulk-trash sign set that says no without scolding, and QR A-boards that
+          send sidewalk traffic straight to the leasing sites. The backpacks and
+          the bear are programs I started: every new hire gets an onboarding
+          backpack, and every expecting employee gets a Bonavista bear.
+        </SectionHead>
+
+        <div className="mt-12 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-4 md:gap-6">
+          <Plate src="/photos/wayfinding/viva-packages-lockers.webp" alt="VIVA sign: Packages in the lockers, in the lobby not the garage" width={768} height={1024} caption="Carrier sign · VIVA" sizes="(min-width: 768px) 25vw, 50vw" />
+          <Plate src="/photos/wayfinding/viva-this-way.webp" alt="VIVA floor decal arrow: Package lockers this way" width={768} height={1024} caption="Floor decal · VIVA" sizes="(min-width: 768px) 25vw, 50vw" delay={60} />
+          <Plate src="/photos/wayfinding/viva-package-room.webp" alt="VIVA package room door sign and tap-to-enter sign" width={768} height={1024} caption="Door signs · VIVA" sizes="(min-width: 768px) 25vw, 50vw" delay={120} />
+          <Plate src="/photos/wayfinding/viva-resident-lounge.webp" alt="VIVA resident lounge door sign" width={768} height={1024} caption="Amenity sign · VIVA" sizes="(min-width: 768px) 25vw, 50vw" delay={180} />
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+          <Plate src="/photos/print/emergency-magnets.webp" alt="Bonavista after-hours emergency magnets with icons for leaks, fire, sewer and no heat" width={1024} height={768} caption="After-hours emergency magnets · Bonavista" sizes="(min-width: 768px) 50vw, 100vw" />
+          <Plate src="/photos/print/no-furniture.webp" alt="No furniture sign with sad illustrated furniture in a dumpster, beside an authorized parking sign" width={1024} height={768} caption="Bulk-trash & parking signs · Bonavista" sizes="(min-width: 768px) 50vw, 100vw" delay={80} />
+        </div>
+
+        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+          <Plate src="/photos/print/hawthorne-a-board.webp" alt="Hawthorne Capitol Hill A-board with a Book a Tour QR code" width={768} height={1024} caption="QR A-board · Hawthorne" sizes="(min-width: 768px) 25vw, 50vw" />
+          <Plate src="/photos/print/fremont-place-a-board.webp" alt="Fremont Place A-board on the sidewalk at night with a Book a Tour QR code" width={768} height={1024} caption="QR A-board · Fremont Place" sizes="(min-width: 768px) 25vw, 50vw" delay={60} />
+          <Plate src="/photos/print/parking-sign.webp" alt="Authorized parking only sign installed on a building" width={768} height={1024} caption="Parking sign, installed" sizes="(min-width: 768px) 25vw, 50vw" delay={120} />
+          <Plate src="/photos/merch/backpacks.webp" alt="Rows of Bonavista-embroidered North Face backpacks" width={768} height={1024} caption="New-hire onboarding backpacks · Bonavista" sizes="(min-width: 768px) 25vw, 50vw" delay={180} />
+        </div>
+        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+          <Plate src="/photos/merch/bear.webp" alt="Teddy bear wearing a Bonavista t-shirt" width={360} height={480} caption="Bear for expecting employees · Bonavista" sizes="(min-width: 768px) 25vw, 50vw" />
+        </div>
+      </section>
+
+      {/* ===== Door decal (links to full case study) ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="Process" title="East Howe Steps front door">
+          Nine versions, a six-font study and automated legibility checks to get
+          one pane of glass right.
+        </SectionHead>
+        <div className="mt-12 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-12 md:items-end">
+          <Plate src="/photos/decal/installed.webp" alt="The installed East Howe Steps door decal with logo, QR, phone number, door policy and emergency number" width={1350} height={1800} caption="Installed · white cut vinyl on glass" sizes="(min-width: 768px) 33vw, 100vw" span="md:col-span-4" />
+          <div className="md:col-span-8">
+            <Link href="/projects/door-decal" className="btn-solid">
+              How we got to this design →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Tri-fold brochure ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="Print collateral" title="East Howe Steps tri-fold">
+          An 11 × 8.5 in tri-fold set in HTML and CSS. The 34-row floor-plan
+          table, pricing, fees and pet policy are generated from a snapshot of
+          the property&apos;s data feed instead of being retyped. The fold-in flap is cut slightly
+          narrower than the outer panels so the brochure closes flat, and the
+          required Seattle fair-housing and screening disclosures sit on the
+          flap at legal size.
+        </SectionHead>
+        <div className="mt-12 grid grid-cols-1 gap-6 md:mt-16">
+          <Plate src="/photos/brochure/ehs-side-1.webp" alt="East Howe Steps brochure outside: how to lease, contact panel and cover" width={2112} height={1632} caption="Outside · flap, back panel, cover" sizes="(min-width: 1280px) 76rem, 100vw" />
+          <Plate src="/photos/brochure/ehs-side-2.webp" alt="East Howe Steps brochure inside: amenities, 34 floor plans with pricing, and a neighborhood map" width={2112} height={1632} caption="Inside · homes, 34 floor plans, neighborhood map" sizes="(min-width: 1280px) 76rem, 100vw" delay={80} />
+        </div>
+      </section>
+
+      {/* ===== Event: 2026 cruise ===== */}
+      <section className="mt-24 md:mt-32">
+        <SectionHead eyebrow="Event" title="Bonavista 2026 Cruise, Lake Union">
+          The company cruise, end to end: a sponsor step-and-repeat with every
+          vendor partner, table signage on board, and the gift portal behind it,
+          where each employee picked one gift with a validated shipping address
+          before the deadline, built into the admin platform.
+        </SectionHead>
+        <div className="mt-12 grid grid-cols-1 gap-4 md:mt-16 md:grid-cols-12 md:gap-6">
+          <Plate src="/photos/print/cruise-step-and-repeat.webp" alt="Bonavista Management 2026 Cruise step-and-repeat banner with vendor sponsor logos" width={1024} height={768} caption="Sponsor step-and-repeat" sizes="(min-width: 768px) 58vw, 100vw" span="md:col-span-7" />
+          <Plate src="/photos/print/cruise-table-signs.webp" alt="Table signs lined up along the boat windows" width={480} height={360} caption="Table signs on board" sizes="(min-width: 768px) 42vw, 100vw" span="md:col-span-5" delay={80} />
+        </div>
+      </section>
+
       {/* ===== Brand & Identity ===== */}
       <section className="mt-24 md:mt-32">
         <SectionHead eyebrow="Brand & Identity" title="Risdon Middle School">
@@ -320,6 +401,15 @@ export default function CreativePage() {
             sizes="(min-width: 768px) 25vw, 50vw"
             delay={210}
           />
+        </div>
+      
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
+          <div className="min-w-0 md:col-span-7">
+            <Plate src="/photos/life/aurora.webp" alt="Green and purple aurora over Mukilteo Lighthouse and the keeper's house at night" width={480} height={360} caption="Aurora · Mukilteo Lighthouse · May 2024" sizes="(min-width: 768px) 58vw, 100vw" />
+          </div>
+          <p className="text-sm leading-relaxed text-ink-muted md:col-span-5">
+            The May 2024 geomagnetic storm, when the aurora reached as far south as Puget Sound.
+          </p>
         </div>
       </section>
     </div>

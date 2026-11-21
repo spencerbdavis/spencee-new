@@ -1,64 +1,46 @@
 import Link from "next/link";
-import { Reveal } from "@/components/shared/reveal";
-import { SectionHeader } from "@/components/shared/section-header";
-import { FEATURED_PROJECTS } from "@/lib/projects";
+import { ArrowUpRight } from "lucide-react";
+import { ProjectCard } from "@/components/projects/project-card";
+import { ALL_PROJECTS, GROUP_LABELS, type ProjectGroup } from "@/lib/projects";
 
-const HOME_FEATURED = ["admin-panel", "virtual-staging", "yardi-integration", "vision-ocr-bench", "maintenance", "rentcafe-mcp"]
-  .map((slug) => FEATURED_PROJECTS.find((project) => project.slug === slug))
-  .filter((project): project is (typeof FEATURED_PROJECTS)[number] => Boolean(project));
+const ROWS: { group: ProjectGroup; slugs: string[] }[] = [
+  { group: "work", slugs: ["admin-panel", "maintenance", "property-sites", "lobby-displays", "rentcafe-mcp", "virtual-staging"] },
+  { group: "independent", slugs: ["rntwx", "raining-here", "traffic-cameras", "overhead", "overhead-journal", "archive"] },
+  { group: "lab", slugs: ["portal-screen", "wall-display"] },
+];
 
 export function FeaturedProjects() {
   return (
-    <section id="work" className="py-24 md:py-32">
+    <section id="work" className="py-20 md:py-28">
       <div className="container-site">
-        <SectionHeader
-          eyebrow="Selected Work"
-          number="01"
-          title="Systems under real constraints"
-          action={
-            <Link
-              href="/projects"
-              className="nav-link inline-flex items-center gap-2 whitespace-nowrap font-mono text-sm"
-            >
-              All work
-              <span aria-hidden="true">&rarr;</span>
-            </Link>
-          }
-        />
-
-        <div className="mt-12 border-b border-hairline md:mt-16">
-          {HOME_FEATURED.map((project, i) => (
-            <Reveal key={project.slug} delay={i * 60} className="reveal-rise">
-              <Link
-                href={`/projects/${project.slug}`}
-                className="group relative block overflow-hidden hairline"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 origin-left scale-x-0 bg-accent transition-transform duration-150 ease-linear group-hover:scale-x-100 group-focus-visible:scale-x-100"
-                />
-                <div className="relative grid grid-cols-[2.5rem_1fr] items-baseline gap-x-4 gap-y-3 py-8 md:grid-cols-[4rem_1fr_auto] md:gap-x-8 md:py-10">
-                  <span className="font-mono text-sm text-ink-muted transition-colors delay-100 duration-100 ease-linear group-hover:text-paper group-focus-visible:text-paper">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-
-                  <div className="min-w-0">
-                    <h3 className="text-h3 transition-colors delay-100 duration-100 ease-linear group-hover:text-paper group-focus-visible:text-paper">
-                      {project.title}
-                    </h3>
-                    <p className="mt-2 max-w-2xl text-ink-muted leading-relaxed transition-colors delay-100 duration-100 ease-linear group-hover:text-paper group-focus-visible:text-paper">
-                      {project.outcome}
-                    </p>
-                  </div>
-
-                  <span className="label-mono col-start-2 transition-colors delay-100 duration-100 ease-linear group-hover:text-paper group-focus-visible:text-paper md:col-start-3 md:justify-self-end md:pt-1">
-                    {project.category}
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="label-mono">Selected work</p>
+            <h2 className="text-h2 mt-3 max-w-3xl">Production systems, live products, and hardware I&apos;ve re-purposed.</h2>
+          </div>
+          <Link href="/projects" className="btn-outline">
+            All {ALL_PROJECTS.length} projects <ArrowUpRight size={15} />
+          </Link>
         </div>
+
+        {ROWS.map((row, r) => {
+          const projects = row.slugs
+            .map((s) => ALL_PROJECTS.find((p) => p.slug === s))
+            .filter((p): p is (typeof ALL_PROJECTS)[number] => Boolean(p));
+          return (
+            <div key={row.group} className="mt-16">
+              <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3 border-t border-line pt-5">
+                <h3 className="text-h3">{GROUP_LABELS[row.group].title}</h3>
+                <p className="max-w-xl text-sm text-ink-muted">{GROUP_LABELS[row.group].blurb}</p>
+              </div>
+              <div className={`grid gap-5 sm:grid-cols-2 ${row.group === "lab" ? "" : "lg:grid-cols-3"}`}>
+                {projects.map((p, i) => (
+                  <ProjectCard key={p.slug} project={p} priority={r === 0 && i < 3} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

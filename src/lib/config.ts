@@ -1,13 +1,15 @@
 export const HEADLINE = "I build the systems businesses run on.";
 
 export const SUB_HEADLINE =
-  "I'm Spencer D'Avis, a Seattle-based engineer building applied AI, integrations, and internal tools for an 80-property real estate business. I own the work from architecture through production support.";
+  "I'm Spencer D'Avis, a Seattle-area engineer. By day I build applied AI, integrations and internal tools for an 80-property real estate company. On my own I run live weather, radar, traffic-vision and flight-tracking products, and I build websites and automation for local businesses.";
 
 export const HERO_META = [
   "Applied AI",
   "Integrations",
   "Internal systems",
-  "Seattle · Remote US",
+  "Data pipelines",
+  "Web & SEO",
+  "Hardware & IoT",
 ] as const;
 
 export const AVAILABILITY =

@@ -10,9 +10,9 @@ export const PORTFOLIO_STATS = [
     detail: "95.3% of reconciled dollar value",
   },
   {
-    value: "319",
+    value: "331",
     label: "Production API routes",
-    detail: "41 scheduled jobs in the internal platform",
+    detail: "46 scheduled jobs in the internal platform",
   },
 ] as const;
 

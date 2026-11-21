@@ -1,186 +1,118 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ProjectCard } from "./project-card";
 import { SupportingProjectCard } from "./supporting-project";
-import {
-  FEATURED_PROJECTS,
-  MORE_PROJECTS,
-  SUPPORTING_PROJECTS,
-} from "@/lib/projects";
+import { ALL_PROJECTS, GROUP_LABELS, SUPPORTING_PROJECTS, type Project, type ProjectGroup } from "@/lib/projects";
 import { SKILL_PROJECTS } from "@/lib/skills";
 
-const MAX_FILTERS = 8;
-const FEATURED_ORDER = [
-  "admin-panel",
-  "virtual-staging",
-  "yardi-integration",
-  "vision-ocr-bench",
-  "maintenance",
-  "rentcafe-mcp",
-  "wordpress-plugin",
-  "wordpress-sites",
-  "archive",
-  "creative",
-];
+const GROUP_ORDER: ProjectGroup[] = ["work", "independent", "lab", "other"];
+const MAX_FILTERS = 12;
 
-const ORDERED_FEATURED = [...FEATURED_PROJECTS].sort(
-  (a, b) => FEATURED_ORDER.indexOf(a.slug) - FEATURED_ORDER.indexOf(b.slug)
-);
-
-/** Build a sorted list of the most-used tech across all projects */
-function getTopSkills(): string[] {
+function topSkills(): string[] {
   const counts = new Map<string, number>();
-
-  const allTech = [
-    ...FEATURED_PROJECTS,
-    ...MORE_PROJECTS,
-  ].flatMap((p) => p.techStack);
-
-  SUPPORTING_PROJECTS.forEach((p) =>
-    p.techStack.forEach((t) => allTech.push(t))
-  );
-
-  for (const t of allTech) {
+  for (const t of [...ALL_PROJECTS.flatMap((p) => p.techStack), ...SUPPORTING_PROJECTS.flatMap((p) => p.techStack)]) {
     counts.set(t, (counts.get(t) ?? 0) + 1);
   }
-
   return [...counts.entries()]
-    .filter(([, count]) => count >= 2)
+    .filter(([, n]) => n >= 2)
     .sort((a, b) => b[1] - a[1])
     .slice(0, MAX_FILTERS)
-    .map(([skill]) => skill);
+    .map(([s]) => s);
 }
 
-function matches(slug: string, techStack: string[], filter: string): boolean {
-  // Check direct techStack match
-  if (techStack.some((t) => t.toLowerCase() === filter.toLowerCase())) {
-    return true;
-  }
-  // Check SKILL_PROJECTS mapping
-  const linked = SKILL_PROJECTS[filter];
-  if (linked) {
-    return linked.some((p) => p.slug === slug);
-  }
-  return false;
+function matches(slug: string, techStack: string[], filter: string) {
+  if (techStack.some((t) => t.toLowerCase() === filter.toLowerCase())) return true;
+  return SKILL_PROJECTS[filter]?.some((p) => p.slug === slug) ?? false;
 }
 
-function FilterPill({
-  label,
-  active,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}) {
+function Pill({ label, active, onClick, count }: { label: string; active: boolean; onClick: () => void; count?: number }) {
   return (
     <button
+      type="button"
       onClick={onClick}
-      className={`tag transition-colors duration-100 ${
-        active
-          ? "border-accent bg-accent text-paper"
-          : "hover:border-accent hover:text-accent"
-      }`}
+      aria-pressed={active}
+      className={`tag cursor-pointer transition-colors ${active ? "!border-ink !bg-ink !text-paper" : "hover:!border-ink hover:!text-ink"}`}
     >
       {label}
+      {count != null && <span className="font-semibold">{count}</span>}
     </button>
   );
 }
 
 export function ProjectFilter() {
-  const searchParams = useSearchParams();
-  const topSkills = useMemo(getTopSkills, []);
-  const [active, setActive] = useState<string | null>(null);
+  const params = useSearchParams();
+  const skills = useMemo(topSkills, []);
+  const [skill, setSkill] = useState<string | null>(null);
+  const [group, setGroup] = useState<ProjectGroup | null>(null);
 
-  // Read ?skill= from URL on mount
   useEffect(() => {
-    const skillParam = searchParams.get("skill");
-    if (skillParam) setActive(skillParam);
-  }, [searchParams]);
+    const s = params.get("skill");
+    if (s) setSkill(s);
+    const g = params.get("group") as ProjectGroup | null;
+    if (g && GROUP_ORDER.includes(g)) setGroup(g);
+  }, [params]);
 
-  const featured = useMemo(
-    () =>
-      active
-        ? ORDERED_FEATURED.filter((p) => matches(p.slug, p.techStack, active))
-        : ORDERED_FEATURED,
-    [active]
-  );
-
-  const more = useMemo(
-    () =>
-      active
-        ? MORE_PROJECTS.filter((p) => matches(p.slug, p.techStack, active))
-        : MORE_PROJECTS,
-    [active]
-  );
-
-  const supporting = useMemo(
-    () =>
-      active
-        ? SUPPORTING_PROJECTS.filter((p) => matches("", p.techStack, active))
-        : SUPPORTING_PROJECTS,
-    [active]
-  );
+  const visible = (p: Project) => (!skill || matches(p.slug, p.techStack, skill)) && (!group || (p.group ?? "work") === group);
+  const groups = GROUP_ORDER.map((g) => ({
+    g,
+    items: ALL_PROJECTS.filter((p) => (p.group ?? "work") === g && visible(p)).sort((a, b) => Number(b.featured) - Number(a.featured)),
+  })).filter((x) => x.items.length > 0);
+  const supporting = (!group || group === "work") ? SUPPORTING_PROJECTS.filter((p) => !skill || matches("", p.techStack, skill)) : [];
 
   return (
     <>
-      {/* Filter pills */}
-      <div className="mb-12 flex flex-wrap gap-2">
-        <FilterPill label="All" active={active === null} onClick={() => setActive(null)} />
-        {/* Show active skill first if not in top list */}
-        {active && !topSkills.includes(active) && (
-          <FilterPill label={`${active} ✕`} active onClick={() => setActive(null)} />
-        )}
-        {topSkills.map((skill) => (
-          <FilterPill
-            key={skill}
-            label={skill}
-            active={active === skill}
-            onClick={() => setActive(active === skill ? null : skill)}
-          />
-        ))}
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by type">
+          <Pill label="All work" active={group === null} onClick={() => setGroup(null)} count={ALL_PROJECTS.length} />
+          {GROUP_ORDER.map((g) => (
+            <Pill
+              key={g}
+              label={GROUP_LABELS[g].title}
+              active={group === g}
+              onClick={() => setGroup(group === g ? null : g)}
+              count={ALL_PROJECTS.filter((p) => (p.group ?? "work") === g).length}
+            />
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by technology">
+          <span className="label-mono mr-1 self-center">Tech</span>
+          {skill && !skills.includes(skill) && <Pill label={`${skill} ✕`} active onClick={() => setSkill(null)} />}
+          {skills.map((s) => (
+            <Pill key={s} label={s} active={skill === s} onClick={() => setSkill(skill === s ? null : s)} />
+          ))}
+        </div>
       </div>
 
-      {/* Featured */}
-      {featured.length > 0 && (
-        <div>
-          <h2 className="label-mono hairline mb-8 pt-4">Featured</h2>
-          <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
-            {featured.map((p) => (
-              <ProjectCard key={p.slug} project={p} />
+      {groups.map(({ g, items }) => (
+        <section key={g} className="mt-14">
+          <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3 border-t border-line pt-5">
+            <h2 className="text-h3">{GROUP_LABELS[g].title}</h2>
+            <p className="max-w-xl text-sm text-ink-muted">{GROUP_LABELS[g].blurb}</p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((p, i) => (
+              <ProjectCard key={p.slug} project={p} compact={!p.featured} priority={i < 3 && g === groups[0].g} />
             ))}
           </div>
-        </div>
-      )}
+        </section>
+      ))}
 
-      {/* More Projects */}
-      {more.length > 0 && (
-        <div className={featured.length > 0 ? "mt-20" : ""}>
-          <h2 className="label-mono hairline mb-8 pt-4">More Projects</h2>
-          <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
-            {more.map((p) => (
-              <ProjectCard key={p.slug} project={p} compact />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Supporting Tools */}
       {supporting.length > 0 && (
-        <div className={featured.length > 0 || more.length > 0 ? "mt-20" : ""}>
-          <h2 className="label-mono hairline mb-8 pt-4">Supporting Tools</h2>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <section className="mt-14">
+          <div className="mb-6 border-t border-line pt-5">
+            <h2 className="text-h3">Supporting tools</h2>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
             {supporting.map((p) => (
               <SupportingProjectCard key={p.title} project={p} />
             ))}
           </div>
-        </div>
+        </section>
       )}
 
-      {/* Empty state */}
-      {featured.length === 0 && more.length === 0 && supporting.length === 0 && (
+      {groups.length === 0 && supporting.length === 0 && (
         <p className="py-16 text-center text-ink-muted">No projects match that filter.</p>
       )}
     </>
