@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { ProjectLayout } from "@/components/projects/project-layout";
 import { ALL_PROJECTS } from "@/lib/projects";
+import { CaseSection, CompareTable, Prose } from "@/components/projects/case";
 
 export const metadata: Metadata = pageMetadata({
   title: "Spencer D'Avis | Next.js Leasing Microsites",
@@ -131,6 +132,44 @@ export default function PropertySitesPage() {
           two hosting stacks, one live data backbone.
         </p>
       </div>
+      <CaseSection n="A" label="Listing photos" title="Hawthorne: 68 photos ranked, 25 published, every one described">
+        <div className="grid gap-6 md:grid-cols-12 md:items-start">
+          <figure className="md:col-span-5">
+            <div className="card overflow-hidden p-0">
+              <Image src="/photos/floorplans/hw-hero-photo.webp" alt="Hawthorne living room with a private balcony, skyline and water view" width={1600} height={1073} sizes="(min-width: 768px) 28rem, 100vw" className="block h-auto w-full" />
+            </div>
+            <figcaption className="label-mono mt-3 normal-case tracking-normal">Ranked #1 of 68 (96/100): balcony, skyline and water in one frame</figcaption>
+          </figure>
+          <div className="md:col-span-7">
+            <Prose>
+              <p>
+                A new shoot came back with 68 photos. Each was scored on what a renter needs to see (light, size, view,
+                the features that set the unit apart) with a penalty for flaws, and the top 25 became the listing set, led by
+                the one frame that shows a private balcony, the skyline and the water at once.
+              </p>
+              <p>
+                Then the gallery itself: in RentCafe, 10 of 25 photos had no alt text, the rest had generic machine captions,
+                and none had a set display order for the listing feeds. A script wrote a title, alt text and caption per photo,
+                set the order, applied all 25 through RentCafe&apos;s media library, then re-read the gallery to verify. Three
+                photos drifted on the first pass and were re-applied until the read-back matched.
+              </p>
+            </Prose>
+          </div>
+        </div>
+        <div className="mt-6">
+          <CompareTable
+            caption="Alt text before and after"
+            columns={["Before", "After"]}
+            highlight={1}
+            rows={[
+              { label: "Front entrance", values: ["The exterior of a Hawthorne store with a green awning.", "Entrance to Hawthorne Apartments with glass doors, brick walls, green awnings, and the number 1618."] },
+              { label: "Building", values: ["(none)", "Street view of Hawthorne Apartments, a six-storey building with balconies above ground-floor retail."] },
+              { label: "Patio", values: ["A patio with a table and chairs is shown.", "Ground-floor patio with a bistro table, a storage bench, and potted olive and lavender plants."] },
+            ]}
+            note="Missing alt text: 10 → 0. Photos with a set listing order: 0 → 25. Verified by reading the gallery back from RentCafe."
+          />
+        </div>
+      </CaseSection>
     </ProjectLayout>
   );
 }

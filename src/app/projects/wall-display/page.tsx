@@ -46,16 +46,16 @@ export default function Page() {
         </div>
       </CaseSection>
 
-      <CaseSection n="03" label="Day / night" title="Drag to compare">
+      <CaseSection n="03" label="Light / dark" title="Drag to compare">
         <BeforeAfter
-          before="/screenshots/wall-display/day.webp"
-          after="/screenshots/wall-display/night.webp"
-          beforeLabel="Day"
-          afterLabel="Night"
-          alt="Wall dashboard"
-          width={1280}
-          height={800}
-          caption="Same layout, night palette below a lux threshold. Data shown is demo fixture data."
+          before="/screenshots/wall-display/current-light.webp"
+          after="/screenshots/wall-display/current-dark.webp"
+          beforeLabel="Light"
+          afterLabel="Dark"
+          alt="Current wall dashboard"
+          width={1920}
+          height={1200}
+          caption="The current panel with its demo fixture data. In auto mode it follows the day/dim/night schedule and drops to the dark palette when the room lights go off."
         />
       </CaseSection>
 
