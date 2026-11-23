@@ -114,8 +114,8 @@ export default function Page() {
       <CaseSection n="05" label="Engineering decisions">
         <Decisions
           items={[
-            { decision: "Phone talks to the scale directly", why: "CoreBluetooth state restoration relaunches the app in the background when the scale wakes, so weigh-ins land with the app closed. No hub, no server." },
-            { decision: "Disconnect as soon as it's idle", why: "The scale stays awake as long as a phone is connected. Dropping the link after 10 s of zero weight, then ignoring it for 25 s, means a walk-past no longer drains its batteries." },
+            { decision: "Phone talks to the scale directly", why: "No hub, no server, no cloud: the iPhone connects, runs the key exchange and decodes the stream itself." },
+            { decision: "Bluetooth only while the app is open", why: "Measured, not assumed: the scale advertises continuously and its display turns on whenever a phone connects. Background auto-connect woke it every time the phone came near, so the app connects only in the foreground and lets an in-progress weigh-in finish." },
             { decision: "Let the scale and the app both identify people", why: "Every family member is registered on the scale; the reading's user ID is cross-checked with each person's recent weights. Body composition computed with the wrong profile is discarded instead of saved." },
             { decision: "Only your weigh-ins go to your Health", why: "HealthKit samples carry a sync identifier, so reassigning or deleting a weigh-in updates Apple Health exactly." },
             { decision: "Advice from your own trend", why: "The plan's calorie target adjusts when the trend runs faster or slower than a healthy lean-gain or fat-loss rate, and shows how much of a change was lean mass." },
