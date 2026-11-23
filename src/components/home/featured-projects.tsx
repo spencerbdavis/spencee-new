@@ -6,7 +6,7 @@ import { ALL_PROJECTS, GROUP_LABELS, type ProjectGroup } from "@/lib/projects";
 const ROWS: { group: ProjectGroup; slugs: string[] }[] = [
   { group: "work", slugs: ["admin-panel", "maintenance", "property-sites", "lobby-displays", "rentcafe-mcp", "virtual-staging"] },
   { group: "independent", slugs: ["rntwx", "raining-here", "traffic-cameras", "overhead", "overhead-journal", "archive"] },
-  { group: "lab", slugs: ["portal-screen", "wall-display"] },
+  { group: "lab", slugs: ["weigh", "portal-screen", "wall-display"] },
 ];
 
 export function FeaturedProjects() {
@@ -33,7 +33,7 @@ export function FeaturedProjects() {
                 <h3 className="text-h3">{GROUP_LABELS[row.group].title}</h3>
                 <p className="max-w-xl text-sm text-ink-muted">{GROUP_LABELS[row.group].blurb}</p>
               </div>
-              <div className={`grid gap-5 sm:grid-cols-2 ${row.group === "lab" ? "" : "lg:grid-cols-3"}`}>
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {projects.map((p, i) => (
                   <ProjectCard key={p.slug} project={p} priority={r === 0 && i < 3} />
                 ))}
