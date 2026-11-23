@@ -19,7 +19,8 @@ export const FREELANCE_MODE: "secondary" | "hidden" = "secondary";
 
 export const SITE_CONFIG = {
   name: "Spencer D'Avis",
-  url: "https://spenc.ee",
+  // Canonical host: spenc.ee redirects to www, so canonicals/sitemap must use www.
+  url: "https://www.spenc.ee",
   email: "hello@spenc.ee",
   linkedin: "https://www.linkedin.com/in/spencerbdavis/",
   github: "https://github.com/spencerbdavis",
