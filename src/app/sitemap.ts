@@ -2,7 +2,9 @@ import type { MetadataRoute } from "next";
 import { ALL_PROJECTS } from "@/lib/projects";
 import { SERVICE_PAGES } from "@/lib/services";
 
-const BASE = "https://spenc.ee";
+import { SITE_CONFIG } from "@/lib/config";
+
+const BASE = SITE_CONFIG.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -24,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/projects`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/services`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/llms.txt`, lastModified: now, changeFrequency: "weekly", priority: 0.5 },
     { url: `${BASE}/services/local-seo`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     ...serviceRoutes,
     ...projectRoutes,

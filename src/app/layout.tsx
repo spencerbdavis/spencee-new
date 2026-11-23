@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from "@/lib/config";
 import type { Metadata, Viewport } from "next";
 import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { WeatherProvider } from "@/components/providers/weather-provider";
@@ -27,11 +28,11 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  metadataBase: new URL("https://spenc.ee"),
+  metadataBase: new URL(SITE_CONFIG.url),
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: "https://spenc.ee",
+    url: SITE_CONFIG.url,
     siteName: "Spencer D'Avis",
     locale: "en_US",
     type: "website",

@@ -187,6 +187,34 @@ export const INDEPENDENT_PROJECTS: Project[] = [
     year: "2026",
   },
   {
+    slug: "weigh",
+    group: "lab",
+    title: "Weigh — Wyze Scale Ultra iPhone App",
+    subtitle:
+      "An open-source iPhone app that reads a Wyze Scale Ultra directly over Bluetooth LE and saves weight and full body composition to Apple Health, with no Wyze app or cloud. Built by decrypting the scale's protocol from a Bluetooth capture.",
+    category: "Hardware",
+    outcome: "Decoded an undocumented Bluetooth protocol and replaced the vendor app with a better one.",
+    problem:
+      "The Wyze Scale Ultra only works through Wyze's app and cloud. Existing open-source code for the older Scale X got weight from the Ultra but never body composition: the Ultra silently ignored its user commands, and nothing public said why.",
+    techStack: ["Swift", "SwiftUI", "SwiftData", "CoreBluetooth", "HealthKit", "Swift Charts", "Python", "PacketLogger"],
+    stats: [
+      { value: "32-bit", label: "DH Key Cracked" },
+      { value: "51 / 51", label: "Frame Bytes Mapped" },
+      { value: "15", label: "Body Metrics" },
+      { value: "0", label: "Cloud Calls" },
+    ],
+    links: [
+      { label: "Source on GitHub", url: "https://github.com/spencerbdavis/wyze-scale-ultra-ios", icon: "github" },
+      { label: "Protocol write-up", url: "https://github.com/spencerbdavis/wyze-scale-ultra-ios/blob/main/docs/PROTOCOL.md" },
+    ],
+    repo: "https://github.com/spencerbdavis/wyze-scale-ultra-ios",
+    cover: "/screenshots/weigh/cover.webp",
+    screenshotDir: "weigh",
+    featured: true,
+    badge: "Open Source",
+    year: "2026",
+  },
+  {
     slug: "portal-screen",
     group: "lab",
     title: "Meta Portal → Desk Panel",

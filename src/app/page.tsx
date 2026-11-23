@@ -21,14 +21,21 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   ...PERSON_REF,
-  alternateName: "Spencer Davis",
+  alternateName: ["Spencer Davis", "spencerbdavis"],
+  description:
+    "Seattle-area software engineer building applied AI, integrations and internal tools for an 80-property real estate company, plus independent weather, radar, flight-tracking and iOS products.",
+  email: `mailto:${SITE_CONFIG.email}`,
   image: `${SITE_CONFIG.url}/headshot.jpg`,
   address: { "@type": "PostalAddress", addressLocality: "Seattle", addressRegion: "WA", addressCountry: "US" },
   jobTitle: "Software Engineer — Applied AI, Integrations & Web",
   worksFor: { "@type": "Organization", name: "Bonavista Management" },
   homeLocation: { "@type": "Place", name: "Renton, WA" },
-  knowsAbout: ["Applied AI", "Model Evaluation", "API Integration", "Internal Tools", "TypeScript", "Next.js", "Python", "Browser Automation", "MCP", "Computer Vision", "Weather Radar", "ADS-B", "Android", "Local SEO", "Web Development"],
+  knowsAbout: ["Applied AI", "Model Evaluation", "API Integration", "Internal Tools", "TypeScript", "Next.js", "Python", "Browser Automation", "MCP", "Computer Vision", "Weather Radar", "ADS-B", "Android", "iOS", "Swift", "SwiftUI", "HealthKit", "Bluetooth Low Energy", "Reverse Engineering", "Local SEO", "Web Development"],
   sameAs: [SITE_CONFIG.linkedin, SITE_CONFIG.github, SITE_CONFIG.pixabay],
+  subjectOf: [
+    { "@type": "SoftwareSourceCode", name: "Weigh (Wyze Scale Ultra iPhone app)", codeRepository: "https://github.com/spencerbdavis/wyze-scale-ultra-ios" },
+    { "@type": "SoftwareSourceCode", name: "Overhead flight tracker", codeRepository: "https://github.com/spencerbdavis/sky-over-renton" },
+  ],
 };
 
 export default function Home() {

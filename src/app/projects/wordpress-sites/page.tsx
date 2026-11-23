@@ -19,16 +19,16 @@ export const metadata: Metadata = {
     "custom WordPress theme",
     "freelance WordPress",
   ],
-  alternates: { canonical: "https://spenc.ee/projects/wordpress-sites" },
+  alternates: { canonical: "https://www.spenc.ee/projects/wordpress-sites" },
   openGraph: {
     title: "WordPress Sites | Spencer D'Avis",
     description:
       "A mixed WordPress and Next.js web estate spanning 73 Cloudflare zones, with 65 serving live traffic.",
-    url: "https://spenc.ee/projects/wordpress-sites",
+    url: "https://www.spenc.ee/projects/wordpress-sites",
     type: "website",
     images: [
       {
-        url: "https://spenc.ee/screenshots/wordpress-sites/arbor-village.webp",
+        url: "https://www.spenc.ee/screenshots/wordpress-sites/arbor-village.webp",
         width: 1440,
         alt: "WordPress sites portfolio preview",
       },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "WordPress Sites | Spencer D'Avis",
     description:
       "73 Cloudflare zones across the web estate, 65 with live traffic.",
-    images: ["https://spenc.ee/screenshots/wordpress-sites/arbor-village.webp"],
+    images: ["https://www.spenc.ee/screenshots/wordpress-sites/arbor-village.webp"],
   },
 };
 
@@ -137,7 +137,7 @@ export default function WordPressSitesPage() {
     name: "WordPress Sites by Spencer D'Avis",
     description:
       "A managed WordPress and Next.js estate spanning 73 Cloudflare zones.",
-    url: "https://spenc.ee/projects/wordpress-sites",
+    url: "https://www.spenc.ee/projects/wordpress-sites",
     mainEntity: {
       "@type": "ItemList",
       itemListElement: SITES.map((site, idx) => ({
@@ -147,7 +147,7 @@ export default function WordPressSitesPage() {
           "@type": "WebSite",
           name: site.name,
           url: site.url,
-          image: `https://spenc.ee${site.image}`,
+          image: `https://www.spenc.ee${site.image}`,
         },
       })),
     },
