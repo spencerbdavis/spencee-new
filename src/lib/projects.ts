@@ -45,7 +45,7 @@ export const GROUP_LABELS: Record<ProjectGroup, { title: string; blurb: string }
   },
   lab: {
     title: "Hardware & home lab",
-    blurb: "Consumer devices re-purposed with custom Android kiosks, native code and a home server.",
+    blurb: "Consumer devices re-purposed and freed from their vendors: an iPhone app that replaces a smart scale's, custom Android kiosks, native code and a home server.",
   },
   other: {
     title: "Creative & experiments",
