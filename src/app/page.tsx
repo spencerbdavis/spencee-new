@@ -8,6 +8,7 @@ import { About } from "@/components/home/about";
 import { Skills } from "@/components/home/skills";
 import { Engagements } from "@/components/home/engagements";
 import { Contact } from "@/components/home/contact";
+import { LiveStrip } from "@/components/live/live-strip";
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/config";
 import { FREELANCE_MODE } from "@/lib/config";
@@ -23,7 +24,7 @@ const jsonLd = {
   ...PERSON_REF,
   alternateName: ["Spencer Davis", "spencerbdavis"],
   description:
-    "Seattle-area software engineer building applied AI, integrations and internal tools for an 80-property real estate company, plus independent weather, radar, flight-tracking and iOS products.",
+    "Seattle-area software engineer building applied AI, integrations and internal tools for a 60+ property real estate company, plus independent weather, radar, flight-tracking and iOS products.",
   email: `mailto:${SITE_CONFIG.email}`,
   image: `${SITE_CONFIG.url}/headshot.jpg`,
   address: { "@type": "PostalAddress", addressLocality: "Seattle", addressRegion: "WA", addressCountry: "US" },
@@ -44,6 +45,10 @@ export default function Home() {
       <JsonLd data={jsonLd} />
       <Hero />
       <StatsBar />
+      <section className="container-site pt-12 pb-4">
+        <p className="label-mono mb-3">Side projects I run, live right now</p>
+        <LiveStrip />
+      </section>
       <FeaturedProjects />
       <TwoPaths />
       <About />

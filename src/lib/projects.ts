@@ -41,7 +41,7 @@ export const GROUP_LABELS: Record<ProjectGroup, { title: string; blurb: string }
   },
   work: {
     title: "Production systems at Bonavista",
-    blurb: "Internal platforms, integrations and marketing systems for an 80-property Seattle real estate company.",
+    blurb: "Internal platforms, integrations and marketing systems for a 60+ property Seattle real estate company.",
   },
   lab: {
     title: "Hardware & home lab",

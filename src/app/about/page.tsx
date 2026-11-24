@@ -9,7 +9,7 @@ import { OffTheClock } from "@/components/home/off-the-clock";
 export const metadata: Metadata = pageMetadata({
   title: "About Spencer D'Avis — Self-Taught Engineer, Gardener, Renton WA",
   description:
-    "How a marketing operator became the engineer behind production systems for an 80-property business.",
+    "How a marketing operator became the engineer behind production systems for a 60+ property business.",
   path: "/about",
 });
 
@@ -85,8 +85,8 @@ export default function AboutPage() {
         <aside className="col-span-4 border-t border-hairline pt-5 md:col-span-3 md:border-t-0 md:border-l md:pt-0 md:pl-6">
           <p className="label-mono">Looking for</p>
           <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-            Fully remote US individual-contributor roles in applied AI, forward-deployed engineering, integrations,
-            and internal systems.
+            Local businesses in Seattle, Renton and South King County that want AI, websites or local search done and
+            someone accountable for it. I&apos;m also open to applied-AI, forward-deployed and integrations engineering roles.
           </p>
           <Link href="/projects" className="nav-link mt-6 inline-flex items-center gap-2 font-semibold">
             View case studies <span aria-hidden>→</span>

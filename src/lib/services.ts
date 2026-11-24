@@ -124,13 +124,16 @@ export const SERVICE_PAGES: ServicePage[] = [
       "Practical AI automation for Seattle businesses: document and receipt processing, AI agents with MCP, integrations with systems that have no API, and model evaluation so you pay for the right model.",
     h1: "AI that does real work, with a human check where it matters.",
     lede:
-      "I build AI tools that sit inside the systems you already use: reading documents and receipts, filling in legacy software, answering from your own data, and flagging what needs a person. Built with evaluation and fail-closed checks, not demos.",
+      "I help businesses put AI to work on the jobs that eat their week: answering reviews, turning paperwork into data, drafting the same emails and quotes over and over. I build it inside the tools you already use, teach your team to run it, and keep a person in the loop wherever a mistake would cost you.",
     forWho: [
+      "Small businesses that want AI help but don't want to become AI experts",
       "Teams drowning in repetitive data entry between email, spreadsheets and legacy software",
       "Companies whose key system has no API (Yardi, RentCafe, older ERPs and portals)",
       "Startups choosing models and wanting real accuracy-per-dollar numbers",
     ],
     deliverables: [
+      { title: "Review replies in your voice", desc: "Draft replies to every Google review in your tone, with a person approving the unhappy ones and a simple weekly routine." },
+      { title: "Team workshops & setup", desc: "Hands-on sessions on your own work, plus a ChatGPT or Claude workspace set up with assistants for your real tasks." },
       { title: "Document & receipt automation", desc: "Email in, structured data out, matched and coded, with a human-verification step for anything ambiguous." },
       { title: "Agents & MCP servers", desc: "Give Claude or other agents safe, scoped tools over your systems, including ones with no public API." },
       { title: "Browser automation", desc: "Chrome extensions and headless sessions that work through the UI of legacy systems, with recovery and audit logs." },
@@ -142,13 +145,14 @@ export const SERVICE_PAGES: ServicePage[] = [
       { title: "Build & integrate", desc: "Production code with logging, fallbacks and fail-closed behaviour." },
       { title: "Measure", desc: "Match rates, time saved and model spend, reported against the baseline." },
     ],
-    proof: ["admin-panel", "rentcafe-mcp", "yardi-integration", "traffic-cameras", "vision-ocr-bench"],
+    proof: ["admin-panel", "google-reviews", "chatgpt-rollout", "floorplan-ai", "rentcafe-mcp", "yardi-integration"],
     proofStats: [
       { value: "$2.78M", label: "spend reconciled by AI pipeline" },
       { value: "86.8%", label: "receipts auto-matched" },
-      { value: "$0.25/day", label: "LLM cap on 42-camera vision" },
+      { value: "48", label: "staff rolled out on ChatGPT Enterprise" },
     ],
     faqs: [
+      { q: "We're a small business. Where do we start?", a: "With one afternoon. We look at where your week goes, pick the single most repetitive task, and build an assistant for it together on your own files. You leave with something working and know how to change it." },
       { q: "Will AI make mistakes with our data?", a: "It can, which is why I design for it: confidence thresholds, deterministic checks, and a human verification step for anything ambiguous. The system fails closed instead of guessing." },
       { q: "Our software has no API. Can it still be automated?", a: "Usually. I've built integrations for Yardi and RentCafe through browser extensions and authenticated headless sessions, with recovery when the UI misbehaves." },
       { q: "Which AI model should we use?", a: "It depends on your documents and budget. I run a short benchmark on your own samples comparing accuracy and real per-call cost before recommending one." },
@@ -162,9 +166,9 @@ export const SERVICE_PAGES: ServicePage[] = [
     title: "Apartment Marketing & Property Management Websites — Seattle | Spencer D'Avis",
     description:
       "Apartment websites, RentCafe and Yardi integrations, local SEO, Google Business Profile and Apple Maps listings, virtual staging and leasing funnels for property managers in Seattle and beyond.",
-    h1: "Leasing marketing built by someone who runs it for 80 properties.",
+    h1: "Leasing marketing built by someone who runs it for 60+ properties.",
     lede:
-      "I've spent years running marketing and building the systems behind it for an 80-property Seattle portfolio: property websites with live availability, local SEO across 60+ communities, listings, reviews, virtual staging and the integrations that keep it all in sync with Yardi and RentCafe.",
+      "I've spent years running marketing and building the systems behind it for a 60+ property Seattle portfolio: property websites with live availability, local SEO across 60+ communities, listings, reviews, virtual staging and the integrations that keep it all in sync with Yardi and RentCafe.",
     forWho: [
       "Property managers and owners with one to a few hundred buildings",
       "Lease-up and pre-leasing projects that need a site and a funnel fast",
