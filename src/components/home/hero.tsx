@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ArrowDown } from "lucide-react";
 import { AVAILABILITY, HEADLINE, HERO_META, SUB_HEADLINE } from "@/lib/config";
-import { LiveStrip } from "@/components/live/live-strip";
 
 const delay = (ms: number) => ({ "--reveal-delay": `${ms}ms` }) as CSSProperties;
 
@@ -17,7 +16,7 @@ export function Hero() {
             <span aria-hidden className="live-dot h-1.5 w-1.5 rounded-full bg-live" />
             Seattle · Renton · Remote US
           </span>
-          <span className="tag hidden sm:inline-flex">Open to remote engineering roles</span>
+          <span className="tag hidden sm:inline-flex">Taking on local clients</span>
         </div>
 
         <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end">
@@ -62,11 +61,7 @@ export function Hero() {
           ))}
         </ul>
 
-        <div className="load-rise mt-12" style={delay(360)}>
-          <p className="label-mono mb-3">Systems I run, live right now</p>
-          <LiveStrip />
-          <p className="mt-3 text-xs text-ink-muted">{AVAILABILITY}</p>
-        </div>
+        <p className="load-rise mt-8 text-sm text-ink-muted" style={delay(360)}>{AVAILABILITY}</p>
       </div>
     </section>
   );

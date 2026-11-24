@@ -23,7 +23,7 @@ const jetbrains = JetBrains_Mono({
 
 const TITLE = "Spencer D'Avis — Software Engineer, Applied AI & Web Development · Seattle";
 const DESCRIPTION =
-  "Seattle-area engineer building applied AI, integrations, production systems and fast marketing websites. Open to remote engineering roles and select web, SEO and AI automation projects.";
+  "Seattle-area engineer building applied AI, integrations, production systems and fast marketing websites. Working with local businesses on AI, websites and local search; open to applied-AI engineering roles.";
 
 export const metadata: Metadata = {
   title: TITLE,

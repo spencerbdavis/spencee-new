@@ -1,7 +1,7 @@
 export const HEADLINE = "I build the systems businesses run on.";
 
 export const SUB_HEADLINE =
-  "I'm Spencer D'Avis, a Seattle-area engineer. By day I build applied AI, integrations and internal tools for an 80-property real estate company. On my own I run live weather, radar, traffic-vision and flight-tracking products, and I build websites and automation for local businesses.";
+  "I'm Spencer D'Avis, a Seattle-area engineer. By day I build applied AI, integrations and internal tools for a 60+ property real estate company. On my own I run live weather, radar, traffic-vision and flight-tracking products, and I build websites and automation for local businesses.";
 
 export const HERO_META = [
   "Applied AI",
@@ -13,7 +13,7 @@ export const HERO_META = [
 ] as const;
 
 export const AVAILABILITY =
-  "Open to fully remote US individual-contributor engineering roles. No CS degree — I learned by shipping.";
+  "Working with local businesses in Seattle, Renton and South King County on AI, websites and local search. Also open to applied-AI engineering roles. No CS degree — I learned by shipping.";
 
 export const FREELANCE_MODE: "secondary" | "hidden" = "secondary";
 

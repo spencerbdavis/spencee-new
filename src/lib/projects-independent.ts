@@ -10,6 +10,51 @@ import type { Project } from "./projects";
  */
 export const INDEPENDENT_PROJECTS: Project[] = [
   {
+    slug: "google-reviews",
+    group: "work",
+    title: "Google Review Replies for 60+ Locations",
+    subtitle:
+      "A review response program for every community's Google Business Profile: AI drafts in the brand's voice, a person approves anything below four stars, and no new review waits more than 72 hours.",
+    category: "Applied AI",
+    outcome: "Every new review answered within 72 hours, and a 1,700-review backlog cleared without flooding Google.",
+    problem:
+      "With 60+ communities each on Google, reviews arrived every day across dozens of profiles. Replies depended on whoever had time, and about 1,700 older reviews had never been answered at all.",
+    techStack: ["Google Business Profile API", "Gemini", "Next.js", "MySQL", "Scheduled Jobs", "Email Alerts"],
+    stats: [
+      { value: "60+", label: "Profiles Covered" },
+      { value: "~1,700", label: "Backlog Cleared" },
+      { value: "72 h", label: "Max Wait for a Reply" },
+      { value: "≤3★", label: "Always Human-Approved" },
+    ],
+    links: [],
+    cover: "/screenshots/google-reviews/reply-detail.webp",
+    screenshotDir: "google-reviews",
+    featured: true,
+    badge: "Production",
+    year: "2026",
+  },
+  {
+    slug: "chatgpt-rollout",
+    group: "work",
+    title: "ChatGPT Enterprise Rollout to 48 Staff",
+    subtitle:
+      "Taking ChatGPT Enterprise from evaluation through executive demos and procurement to a company-wide rollout, with custom GPTs for accounting and investor letters and follow-up with teams that weren't using it.",
+    category: "Applied AI",
+    outcome: "Company-wide AI across 48 users, with usage tracked and followed up after launch.",
+    problem:
+      "A property management company runs on email, spreadsheets, letters and paperwork. Buying AI licenses is the easy part. The hard part is getting people across accounting, operations and leadership to change how they actually work.",
+    techStack: ["ChatGPT Enterprise", "Custom GPTs", "Training", "Change Management"],
+    stats: [
+      { value: "48", label: "Users Rolled Out" },
+      { value: "2", label: "Custom GPT Areas" },
+      { value: "Org-wide", label: "Rollout" },
+    ],
+    links: [],
+    screenshotDir: "chatgpt-rollout",
+    featured: true,
+    badge: "Training",
+  },
+  {
     slug: "door-decal",
     group: "work",
     title: "East Howe Steps Front-Door Decal",

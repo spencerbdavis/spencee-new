@@ -102,7 +102,7 @@ export function ProjectLayout({ project, children }: { project: Project; childre
           <div>
             <p className="text-2xl font-semibold tracking-tight md:text-3xl">Want something like this built?</p>
             <p className="mt-2 max-w-xl text-ink-muted">
-              I take on a few web, SEO and AI automation projects alongside full-time work, and I'm open to remote engineering roles.
+              I work with local businesses in Seattle, Renton and South King County on AI, websites and local search, and I'm open to applied-AI engineering roles.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

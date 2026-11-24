@@ -4,7 +4,7 @@ import { ProjectCard } from "@/components/projects/project-card";
 import { ALL_PROJECTS, GROUP_LABELS, type ProjectGroup } from "@/lib/projects";
 
 const ROWS: { group: ProjectGroup; slugs: string[] }[] = [
-  { group: "work", slugs: ["admin-panel", "maintenance", "property-sites", "lobby-displays", "rentcafe-mcp", "virtual-staging"] },
+  { group: "work", slugs: ["admin-panel", "google-reviews", "chatgpt-rollout", "maintenance", "property-sites", "lobby-displays"] },
   { group: "independent", slugs: ["rntwx", "raining-here", "traffic-cameras", "overhead", "overhead-journal", "archive"] },
   { group: "lab", slugs: ["weigh", "portal-screen", "wall-display"] },
 ];
